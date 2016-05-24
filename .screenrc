@@ -1,0 +1,26 @@
+startup_message off
+deflogin off
+vbell off
+
+altscreen on # keep alternate buffer when exiting less/vim/etc
+
+# allow bold colors
+# attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+hardstatus alwayslastline "%?%{wb}%-Lw%?%{yk}%n*%f %t%?(%u)%?%?%{wb}%+Lw%?%{wb}"
+defscrollback 50000
+
+# activity ''
+# attrcolor b ".I"   # allow bold colors - necessary for some reason
+# defbce on    # use current bg color for erased chars
+# defscrollback 5000
+# hardstatus off
+# hardstatus alwayslastline '%{= kw}%-w%{= m}%n %t%{-}%+w %-= %1` %{B}%d %D %{c}%c'
+# sorendition +b k
+# term xterm-256color
+# termcapinfo xterm* ti@:te@i   # X scrolling mechanism
+# termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+
+

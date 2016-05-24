@@ -1,0 +1,4 @@
+#!/bin/sh
+
+infocmp xterm-256color-italic | ssh $1 "mkdir -p .terminfo && cat > /tmp/cunha.terminfo && tic /tmp/cunha.terminfo"
+infocmp screen-256color-italic | ssh $1 "mkdir -p .terminfo && cat > /tmp/cunha.terminfo && tic /tmp/cunha.terminfo"

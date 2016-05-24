@@ -1,0 +1,9 @@
+[user]
+	email = cunha@dcc.ufmg.br
+	name = Italo Cunha
+[push]
+	default = current
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.config/gitignore

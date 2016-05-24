@@ -1,0 +1,55 @@
+#!/usr/bin/python
+
+import sys
+
+HEIGHT_STEP = 0.00001
+
+def _parseline(dline):
+	fields = dline.split()
+	mult = 1
+	if len(fields) > 1:
+		mult = int(fields[1])
+	return [float(fields[0]), mult]
+
+def buildcdf(fd):
+	last = float(fd.readline())
+	result = list()
+	cnt = 1
+
+	line = fd.readline()
+	while line:
+		data = float(line)
+		if data != last:
+			assert not result or last > result[-1][0], 'input not sorted'
+			result.append([last, cnt])
+			cnt += 1
+		else:
+			cnt += 1
+		last = data
+		line = fd.readline()
+
+	if not result: result.append([0.0, 0.0])
+	result.append([last, cnt])
+
+	cdf = list()
+
+	h = HEIGHT_STEP
+	i = 0
+	while i < len(result):
+		x, y = result[i][0], float(result[i][1])/cnt
+		while y < h:
+			i += 1
+			x, y = result[i][0], float(result[i][1])/cnt
+		cdf.append((x, y))
+		while y >= h:
+			h += HEIGHT_STEP
+		i += 1
+	cdf.append((result[-1][0], 1.0))
+	return cdf
+
+
+if __name__ == '__main__':
+	dcdf = buildcdf(sys.stdin)
+	for dx, dy in dcdf:
+		print dx, dy
+	sys.exit(0)

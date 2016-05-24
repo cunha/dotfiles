@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+set -x
+
+dir=$(pwd)
+fs=$(df -P $dir | tail -n 1 | cut -d " " -f 1)
+
+if [[ x$fs =~ x/.* ]] ; then
+	uxterm
+elif [[ x$fs =~ xcunha@[0-9.]+:.* ]] ; then
+    host=${fs%%:*}
+    mount=$(df -P $dir | tail -n 1 | awk '{print $6;}')
+    remote=${dir##$mount/}
+	uxterm -e zsh -i -c "ssh -t $host \"cd $remote ; zsh\""
+else
+	uxterm -e /usr/bin/zsh -c "echo $fs"
+fi

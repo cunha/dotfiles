@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+REMOTE=cunha@tigre:/home/prof/cunha
+LOCAL=/home/cunha/sshfs/tigre
+UIDFILE=/home/cunha/.ssh/sshfs/tigre-uid
+GIDFILE=/home/cunha/.ssh/sshfs/tigre-gid
+
+mkdir -p $LOCAL
+sshfs -o idmap=file -o uidfile=$UIDFILE -o gidfile=$GIDFILE -o nomap=ignore -o follow_symlinks $REMOTE $LOCAL

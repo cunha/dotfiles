@@ -1,0 +1,4 @@
+.zshlocal
+*.pyc
+*.pyo
+*.o
