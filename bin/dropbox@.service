@@ -3,8 +3,8 @@ Description=Dropbox as a system service user %i
 
 [Service]
 Type=forking
-ExecStart=/home/cunha/bin/dropbox.py start
-ExecStop=/home/cunha/bin/dropbox.py stop
+ExecStart=/usr/bin/dropbox start
+ExecStop=/usr/bin/dropbox stop
 User=%i
 Group=%i
 # 'LANG' might be unnecessary, since systemd already sets the
