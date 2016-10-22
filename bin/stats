@@ -1,0 +1,260 @@
+#!/usr/bin/python
+
+import sys
+import math
+import gzip
+from optparse import OptionParser
+
+
+S_NX = 'count'
+S_MEAN = 'mean'
+S_VAR = 'var'
+S_STDDEV = 'stddev'
+S_CV = 'cv'
+S_SX = 'sumx'
+S_SAX = 'sumabsx'
+S_SSX = 'sumsquaresx'
+S_MIN = 'min'
+S_MAX = 'max'
+S_Q1 = 'Q1'
+S_MEDIAN = 'median'
+S_Q3 = 'Q3'
+
+
+def create_parser(): # {{{
+    def open_input_file(option, _optstr, value, parser): # {{{
+        if value.endswith('.gz'): fd = gzip.open(value, 'r')
+        else: fd = open(value, 'r')
+        setattr(parser.values, option.dest, fd)
+    # }}}
+    def open_output_file(option, _optstr, value, parser): # {{{
+        if value.endswith('.gz'): fd = gzip.open(value, 'w')
+        else: fd = open(value, 'w')
+        setattr(parser.values, option.dest, fd)
+    # }}}
+    def append_stat(option, _optstr, _value, parser, *args): # {{{
+        statlist = getattr(parser.values, option.dest)
+        statlist.append(args[0])
+    # }}}
+
+    parser = OptionParser()
+
+    parser.add_option('-i',
+            dest='infd',
+            metavar='INPUT',
+            action='callback',
+            callback=open_input_file,
+            nargs=1, type='str',
+            default=sys.stdin,
+            help='read data from INPUT [stdin]')
+    parser.add_option('-o',
+            dest='outfd',
+            metavar='OUTPUT',
+            action='callback',
+            callback=open_output_file,
+            nargs=1, type='str',
+            default=sys.stdout,
+            help='write results in OUTPUT [stdout]')
+
+    parser.add_option('--nonl',
+            dest='newline',
+            action='store_false',
+            default=True,
+            help='disable newline at end of output [%default]')
+    parser.add_option('--header',
+            dest='print_header',
+            action='store_true',
+            default=False,
+            help='print header line before results [%default]')
+
+    parser.add_option('--count',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_NX,),
+            default=list())
+
+    parser.add_option('--mean',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_MEAN,),
+            default=list())
+
+    parser.add_option('--var',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_VAR,),
+            default=list())
+
+    parser.add_option('--stddev',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_STDDEV,),
+            default=list())
+
+    parser.add_option('--cv',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_CV,),
+            default=list())
+
+    parser.add_option('--sumx',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_SX,),
+            default=list())
+
+    parser.add_option('--sumabsx',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_SAX,),
+            default=list())
+
+    parser.add_option('--sumsx',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_SSX,),
+            default=list())
+
+    parser.add_option('--min',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_MIN,),
+            default=list())
+
+    parser.add_option('--max',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_MAX,),
+            default=list())
+
+    parser.add_option('--q1',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_Q1,),
+            default=list())
+
+    parser.add_option('--median',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_MEDIAN,),
+            default=list())
+
+    parser.add_option('--q3',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_Q3,),
+            default=list())
+
+    return parser
+# }}}
+
+
+def compstats(values, stats): # {{{
+    nx = 0
+    sx = 0
+    ssx = 0
+    sax = 0
+    minx = 10e1000
+    maxx = -10e1000
+
+    xvalues = list()
+
+    for x in values:
+        nx += 1
+        sx += x
+        ssx += x*x
+        sax += abs(x)
+        minx = min(minx, x)
+        maxx = max(maxx, x)
+        if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats:
+            xvalues.append(x)
+
+    if nx == 0:
+        raise ValueError('no samples read.\n')
+
+    avg = sx/nx
+    var = ssx/nx - avg**2
+    std = math.sqrt(ssx/nx - avg**2)
+    cv = 0 if avg == 0 else std/avg
+
+    ans = dict()
+    ans[S_NX] = nx
+    ans[S_MEAN] = avg
+    ans[S_VAR] = var
+    ans[S_STDDEV] = std
+    ans[S_CV] = cv
+    ans[S_SX] = sx
+    ans[S_SAX] = sax
+    ans[S_SSX] = ssx
+    ans[S_MIN] = minx
+    ans[S_MAX] = maxx
+
+    if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats:
+        xvalues.sort()
+
+        f = len(xvalues)/4.0 - 0.5
+        i = int(f)
+        a = f - i
+        q1 = (1 - a) * xvalues[i] + a * xvalues[i+1]
+        ans[S_Q1] = q1
+        f = len(xvalues)/2.0 - 0.5
+        i = int(f)
+        a = f - i
+        q2 = (1 - a) * xvalues[i] + a * xvalues[i+1]
+        ans[S_MEDIAN] = q2
+        f = len(xvalues)*3/4.0 - 0.5
+        i = int(f)
+        a = f - i
+        q3 = (1 - a) * xvalues[i] + a * xvalues[i+1]
+        ans[S_Q3] = q3
+
+    return ans
+# }}}
+
+
+def main(): # {{{
+    def line_reader(stdin):
+        for line in stdin:
+            if not line or line[0] == '#': continue
+            yield float(line)
+        raise StopIteration
+
+    parser = create_parser()
+    opts, _args = parser.parse_args()
+    if not opts.stats:
+        parser.parse_args(['-h'])
+
+    values = list()
+    for line in opts.infd:
+        if not line or line[0] == '#': continue
+        values.append(float(line))
+
+    try: ans = compstats(values, opts.stats)
+    except ValueError:
+        opts.outfd.write('no samples read.\n')
+        sys.exit(1)
+
+    if opts.print_header:
+        opts.outfd.write('# ' + ' '.join(opts.stats) + '\n')
+    opts.outfd.write(' '.join(['%.5f' % ans[s] for s in opts.stats]))
+    if opts.newline:
+        opts.outfd.write('\n')
+    return 0
+# }}}
+
+
+if __name__ == '__main__':
+    sys.exit(main())
