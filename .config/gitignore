@@ -2,3 +2,7 @@
 *.pyc
 *.pyo
 *.o
+.deps
+.dirstamp
+.sconsign.dblite
+.gdb_history
