@@ -1,0 +1,63 @@
+---
+- name: Install needed packages
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+    cache_valid_time: 600
+  with_items:
+    - "{{ cunha_base_packages }}"
+
+- name: Add user cunha
+  become: true
+  user:
+    name: cunha
+    groups: sudo,
+    append: yes
+    password: $6$OntSql4.a$O9qxiDGHjmvM1o6LTt54rSq9jr//.KiS9xJqq7zd6KUHDrQH.hE5mYtwdAKa9Xi6X.CuASuzitSzJQW3Kvv230
+
+- name: Add SSH pubkey
+  authorized_key:
+    user: cunha
+    key: "{{ lookup('file', '/home/cunha/.ssh/id_rsa.pub') }}"
+    exclusive: no
+
+- copy:
+    src: /home/cunha/.ssh/config
+    dest: /home/cunha/.ssh/config
+    owner: cunha
+    group: cunha
+    mode: 0600
+
+- name: Give users in sudo group ability to run commands w/o password
+  become: true
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo ALL\='
+    line: '%sudo ALL=(ALL:ALL) NOPASSWD:ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: Set sudo secure path
+  become: true
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^Defaults secure_path\='
+    line: 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: Disable PasswordAuthentication on SSH server
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '.*PasswordAuthentication.*'
+    line: 'PasswordAuthentication no'
+
+- name: Restart SSH server
+  become: true
+  service:
+    name: ssh
+    enabled: yes
+    state: restarted

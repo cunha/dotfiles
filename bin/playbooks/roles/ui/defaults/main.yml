@@ -1,0 +1,8 @@
+---
+cunha_ui_packages:
+  - zsh
+  - vim-nox
+  - git
+  - vcsh
+  - myrepos
+  - tcpdump

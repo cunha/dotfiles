@@ -1,0 +1,7 @@
+---
+- hosts: targets
+  gather_facts: true
+  roles:
+  # - base
+  # - ui
+  - ripe-ns

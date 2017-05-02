@@ -1,0 +1,6 @@
+---
+cunha_base_packages:
+  - sudo
+  - git
+  - tcpdump
+  - vim-nox

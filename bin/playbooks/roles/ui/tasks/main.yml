@@ -1,0 +1,40 @@
+---
+- name: Install needed packages
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+    cache_valid_time: 600
+  with_items:
+    - "{{ cunha_ui_packages }}"
+
+- name: Create cache directory
+  shell: mkdir /home/cunha/.cache
+  args:
+    creates: /home/cunha/.cache
+
+- name: Set shell to zsh
+  become: true
+  user:
+    name: cunha
+    shell: /usr/bin/zsh
+
+- name: Initialize vcsh/mr repository
+  shell: vcsh init mr
+  args:
+    creates: /home/cunha/.config/vcsh/repo.d/mr.git/config
+
+- name: Add remote for vcsh/mr
+  shell: grep origin /home/cunha/.config/vcsh/repo.d/mr.git/config || vcsh mr remote add origin git@github.com:cunha/dotmr.git
+
+- name: Pull vcsh/mr
+  shell: vcsh mr pull origin master
+
+- name: Set upstream for vcsh/mr
+  shell: vcsh mr branch --set-upstream-to=origin/master master
+
+- name: Fetching all repositories
+  shell: mr update
+
+- name: Updating FZF
+  command: /home/cunha/bin/update-fzf
