@@ -9,9 +9,10 @@
     - "{{ cunha_ui_packages }}"
 
 - name: Create cache directory
-  shell: mkdir /home/cunha/.cache
-  args:
-    creates: /home/cunha/.cache
+  file:
+    path: /home/cunha/.cache
+    state: directory
+    mode: 0755
 
 - name: Set shell to zsh
   become: true
