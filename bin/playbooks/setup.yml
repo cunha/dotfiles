@@ -1,7 +1,12 @@
 ---
 - hosts: targets
   gather_facts: true
+  become_user: root
   roles:
-  # - base
-  # - ui
-  - ripe-ns
+  - base
+
+- hosts: targets
+  gather_facts: true
+  become_user: cunha
+  roles:
+  - ui
