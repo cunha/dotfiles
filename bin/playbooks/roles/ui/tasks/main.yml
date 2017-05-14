@@ -1,24 +1,24 @@
 ---
 - name: Install needed packages
   become: true
+  become_user: root
   apt:
-    name: "{{ item }}"
+    name: "{{ cunha_ui_packages }}"
     state: latest
     cache_valid_time: 600
-  with_items:
-    - "{{ cunha_ui_packages }}"
+
+- name: Set shell to zsh
+  become: true
+  become_user: root
+  user:
+    name: cunha
+    shell: /usr/bin/zsh
 
 - name: Create cache directory
   file:
     path: /home/cunha/.cache
     state: directory
     mode: 0755
-
-- name: Set shell to zsh
-  become: true
-  user:
-    name: cunha
-    shell: /usr/bin/zsh
 
 - name: Initialize vcsh/mr repository
   shell: vcsh init mr
