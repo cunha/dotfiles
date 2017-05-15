@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# The eps2png script converts eps files to png via Ghostscript.
+# The eps2pdf script converts eps files to pdf via Ghostscript.
 #
 # Copyright (c) 2003,2004,2005,2006,2007,2008,2009,2010,2011,2013,2015
 # Wouter Kager
@@ -28,13 +28,12 @@ version=2015/08/01
 gsopts="-q -dSAFER -dNOPAUSE -dBATCH"
 psfile=/dev/null
 force=n
-hres=300
-vres=300
+dres=
 fixbb=n
 hires=
-mode=16m
-gaa="-dGraphicsAlphaBits=4"
-taa="-dTextAlphaBits=4"
+level=1.3
+model=
+qual=
 angle=0
 xscale=1
 yscale=1
@@ -45,32 +44,21 @@ outdir=
 echo "$program $version by Wouter Kager"
 
 # Scan command line options.
-while getopts :a:Bd:fh:Hm:o:r:s:tw: optionkey $*; do
+while getopts :Bd:fh:Hj:l:m:o:r:s:w: optionkey $*; do
 	case $optionkey in
-		a)	gaa=`echo $OPTARG,$OPTARG | cut -d , -f 1`
-			taa=`echo $OPTARG,$OPTARG | cut -d , -f 2`
-			if [ $gaa = 1 -o $gaa = 2 -o $gaa = 4 ]; then
-				gaa="-dGraphicsAlphaBits=$gaa"
-			else
-				gaa=
-			fi
-			if [ $taa = 1 -o $taa = 2 -o $taa = 4 ]; then
-				taa="-dTextAlphaBits=$taa"
-			else
-				taa=
-			fi ;;
 		B)	fixbb=y ;;
-		d)	hres=`echo $OPTARG,$OPTARG | cut -d , -f 1`
-			vres=`echo $OPTARG,$OPTARG | cut -d , -f 2` ;;
+		d)	dres=$OPTARG ;;
 		f)	force=y ;;
 		h)	height=`echo "$OPTARG" | sed 's/[0-9\.]*/& /'` ;;
 		H)	hires=HiRes ;;
-		m)	mode=$OPTARG ;;
+		j)	qual=`expr 100 - $OPTARG` ;;
+		l)	level=$OPTARG ;;
+		m)	model="-dProcessColorModel=/Device$OPTARG"
+			model="$model -dColorConversionStrategy=/$OPTARG" ;;
 		o)	outdir="$OPTARG" ;;
 		r)	angle=$OPTARG ;;
 		s)	xscale=`echo $OPTARG,$OPTARG | cut -d , -f 1`
 			yscale=`echo $OPTARG,$OPTARG | cut -d , -f 2` ;;
-		t)	mode=alpha ;;
 		w)	width=`echo "$OPTARG" | sed 's/[0-9\.]*/& /'` ;;
 		:)	echo "$program: the option -$OPTARG requires an argument!"
 			echo "$program: run $program without arguments for help"
@@ -90,22 +78,19 @@ if [ ${#} -eq 0 ]; then
 		Usage: $program [options] [psfile] epsfile(s)
 		
 		The valid options are:
-		 -a aa        antialiasing, aa can be 0,1,2,4 (default=4)
-		 -a gaa,taa   sets aa values for graphics,text separately
 		 -B           use Ghostscript to correct the Bounding Box
-		 -d res       specify image resolution (dpi), default=300
-		 -d hres,vres sets horizontal & vertical resolution (dpi)
+		 -d res       set distiller and sampling resolution (dpi)
 		 -f           force files to be overwritten if they exist
-		 -h height    scale image to desired height (cm/mm/in/px)
+		 -h height    scale image to desired height (in cm/mm/in)
 		 -H           use HiResBoundingBox instead of BoundingBox
-		 -m mode      specify PNG file mode where mode can be 16,
-		              48,256,16m,alpha,mono or gray (default=16m)
+		 -j quality   use JPEG compression, quality from 1 to 100
+		 -l level     set PDF level to 1.2, 1.3 (default), or 1.4
+		 -m model     set color model to either RGB, CMYK or Gray
 		 -o dir       set directory where output files are stored
 		 -r angle     rotate counter-clockwise by angle (degrees)
 		 -s scale     scale image by the requested scaling factor
 		 -s hsc,vsc   sets horizontal,vertical scaling separately
-		 -t           generate transparent PNG (same as -m alpha)
-		 -w width     scale image to specific width (cm/mm/in/px)
+		 -w width     scale image to specific width (in cm/mm/in)
 		EOF
 	exit 0
 fi
@@ -142,15 +127,15 @@ set_pscode ()
 		pscode="/!{def}def/in{72 mul}!/cm{2.54 div in}!/mm{25.4 div in}!"
 
 		if [ -n "$width" ]; then
-			pscode="$pscode/px{$hres div in}! $width $wd div"
+			pscode="$pscode $width $wd div"
 			if [ -n "$height" ]; then
-				pscode="$pscode/px{$vres div in}! $height $ht div"
+				pscode="$pscode $height $ht div"
 			else
 				pscode="$pscode dup"
 			fi
 		else
 			if [ -n "$height" ]; then
-				pscode="$pscode/px{$vres div in}! $height $ht div dup"
+				pscode="$pscode $height $ht div dup"
 			else
 				pscode="$pscode $xscale $yscale"
 			fi
@@ -171,12 +156,45 @@ set_pscode ()
 	pscode="<</PageSize [$wd $ht]>>setpagedevice $pscode"
 }
 
-# distill converts $1 to $base.png via Ghostscript.
+# set_dp sets the distiller compression and resampling parameters.
+set_dp ()
+{
+	gsres=
+	dp="systemdict/setdistillerparams known{<<"
+	dp="$dp/EmbedAllFonts true/SubsetFonts true"
+	dp="$dp/AutoFilterColorImages false/AutoFilterGrayImages false"
+	dp="$dp/AntiAliasColorImages true/AntiAliasGrayImages true"
+
+	if [ -n "$qual" ]; then
+		dp="$dp/ColorImageFilter/DCTEncode/GrayImageFilter/DCTEncode"
+		dp="$dp/ColorImageDict<</QFactor 0.$qual/ColorTransform 1"
+		dp="$dp/Blend 1/HSamples [1 1 1 1]/VSamples [1 1 1 1]>>"
+		dp="$dp/GrayImageDict<</QFactor 0.$qual/ColorTransform 1"
+		dp="$dp/Blend 1/HSamples [1 1 1 1]/VSamples [1 1 1 1]>>"
+	else
+		dp="$dp/ColorImageFilter/FlateEncode/GrayImageFilter/FlateEncode"
+	fi
+
+	if [ -n "$dres" ]; then
+		dp="$dp/DownsampleColorImages true/ColorImageResolution $dres"
+		dp="$dp/ColorImageDownsampleThreshold 1.0"
+		dp="$dp/DownsampleGrayImages true/GrayImageResolution $dres"
+		dp="$dp/GrayImageDownsampleThreshold 1.0"
+		dp="$dp/DownsampleMonoImages true/MonoImageResolution $dres"
+		dp="$dp/MonoImageDownsampleThreshold 1.0"
+		gsres="-r$dres"
+	fi
+
+	dp="$dp>>setdistillerparams}if"
+}
+
+# distill converts $1 to $base.pdf via Ghostscript.
 distill ()
 {
 	set_pscode
-	log=`gs $gsopts -sDEVICE=png$mode -sOutputFile="$outbase.png" $gaa $taa \
-		-r$hres"x"$vres -c "$pscode" -f - "$1" < "$psfile" 2>/dev/null`
+	log=`gs $gsopts -sDEVICE=pdfwrite -sOutputFile="$outbase.pdf" $gsres \
+		-dPDFSETTINGS=/prepress -dCompatibilityLevel=$level $model \
+		-c ".setpdfwrite $dp $pscode" -f - "$1" < "$psfile" 2>/dev/null`
 
 	if [ $? -ne 0 ]; then
 		echo [error]
@@ -201,6 +219,9 @@ check_file ()
 }
 
 #------------------------- End of function definitions ----------------------
+
+# Set the distiller parameters.
+set_dp
 
 # Loop through all files specified on the command line.
 for file
@@ -234,16 +255,16 @@ if [ $wd = 0 -o $ht = 0 ]; then
 	continue
 fi
 
-# Overwrite existing png file only if user agrees.
-if [ -w "$outbase.png" -a $force = n ]; then
-	echo "$program: warning, the file $outbase.png exists!"
+# Overwrite existing pdf file only if user agrees.
+if [ -w "$outbase.pdf" -a $force = n ]; then
+	echo "$program: warning, the file $outbase.pdf exists!"
 	printf "$program: should I overwrite it (y/n)? "
 	read OK
 fi
 
 # Perform conversion or skip file.
 if [ "$OK" = y ]; then
-	printf "$program: $base.eps -> $outbase.png "
+	printf "$program: $base.eps -> $outbase.pdf "
 	distill "$base.eps"
 	echo [ok]
 else
