@@ -7,3 +7,4 @@ cunha_ui_packages:
   - vcsh
   - myrepos
   - tcpdump
+  - jq
