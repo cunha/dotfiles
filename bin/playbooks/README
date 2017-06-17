@@ -1,2 +1,5 @@
-1. First run roles/base with --user root
-2. Then run roles/ui as cunha (no parameters)
+1. Configure target host(s) in `hosts` in .ssh/config
+2. `ansible-playbook -i hosts --user root setup-base.yml`
+
+3. Enable ForwardAgent for hosts in `hosts` for GitHub access
+4. `ansible-playbook -i hosts setup-cli.yml`

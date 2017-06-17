@@ -1,12 +1,6 @@
 ---
 - hosts: targets
   gather_facts: true
-  become_user: root
-  roles:
-  - base
-
-- hosts: targets
-  gather_facts: true
   become_user: cunha
   roles:
   - ui
