@@ -2,7 +2,7 @@
 	email = cunha@dcc.ufmg.br
 	name = Italo Cunha
 [push]
-	default = current
+	default = simple
 [color]
 	ui = true
 [core]
