@@ -8,3 +8,4 @@ cunha_ui_packages:
   - myrepos
   - tcpdump
   - jq
+  - aptitude
