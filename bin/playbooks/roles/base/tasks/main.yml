@@ -23,7 +23,8 @@
     key: "{{ lookup('file', '/home/cunha/.ssh/id_rsa.pub') }}"
     exclusive: no
 
-- copy:
+- name: Copy .ssh/config
+  copy:
     src: /home/cunha/.ssh/config
     dest: /home/cunha/.ssh/config
     owner: cunha
