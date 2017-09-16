@@ -49,6 +49,13 @@
     line: 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"'
     validate: '/usr/sbin/visudo -cf %s'
 
+- name: Remove requiretty from sudoers file
+  become: true
+  lineinfile:
+    dest: /etc/sudoers
+    state: absent
+    regexp: '^Defaults.*requiretty'
+
 - name: Disable PasswordAuthentication on SSH server
   become: true
   lineinfile:
