@@ -1,0 +1,5 @@
+---
+- hosts: targets
+  gather_facts: true
+  roles:
+  - pdyndns
