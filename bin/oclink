@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+MOUNTBASE=$HOME/ownCloud/
+
+if [ -d $1 ] ; then
+	OCBASE="https://owncloud.dcc.ufmg.br/index.php/apps/files/?dir=/"
+else
+	OCBASE="https://owncloud.dcc.ufmg.br/remote.php/webdav/"
+fi
+
+RELPATH=$(realpath --relative-to $MOUNTBASE $1)
+echo $OCBASE/$RELPATH
