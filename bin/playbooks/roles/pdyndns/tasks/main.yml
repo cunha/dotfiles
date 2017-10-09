@@ -1,0 +1,56 @@
+---
+- name: Install packages
+  become: true
+  apt:
+    name: "{{ apt_packages }}"
+    state: latest
+    cache_valid_time: 600
+
+- name: Install Python packages
+  become: true
+  pip:
+    name: "{{ pip_packages }}"
+    state: latest
+    executable: pip3
+
+- name: Stat pdyndns.py executable
+  stat:
+    path: "{{ pdyndns_executable }}"
+  register: pddstat
+
+- name: Check pdyndns.py is executable
+  fail:
+    msg: "{{ pdyndns_executable }} missing or not executable"
+  when: not pddstat.stat.executable
+
+- name: Configure PowerDNS
+  become: true
+  template:
+    src: pdns.conf.j2
+    dest: "{{ powerdns_config_file }}"
+    mode: 0600
+
+- name: Configure dynamic DNS backend
+  become: true
+  template:
+    src: pdyndns.conf.j2
+    dest: "{{ pdyndns_config_file }}"
+    mode: 0644
+
+- name: Create dynamic DNS backend target file directory
+  become: true
+  file: path={{ pdyndns_targets_dir }} state=directory
+
+- name: Create dynamic DNS backend target files
+  become: true
+  copy:
+    src: targets.txt
+    dest: "{{ pdyndns_targets_dir }}/targets{{ item }}.txt"
+  with_sequence: count={{ pdyndns_num_targets }}
+
+- name: Enable and restart PowerDNS
+  become: true
+  service:
+    name: pdns
+    enabled: yes
+    state: restarted

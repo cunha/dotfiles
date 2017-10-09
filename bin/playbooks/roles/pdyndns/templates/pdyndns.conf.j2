@@ -1,0 +1,17 @@
+{
+  "loglevel": "info",
+  "soa": "atlas.peering.usc.edu noc.peering.usc.edu 20170727 7200 3600 7200 120",
+  "nameservers": ["pdyndns-1.peering.usc.edu"],
+  "ttl": 600,
+  "domain": "atlas.peering.usc.edu",
+  "handlers": [
+{% for n in range(pdyndns_num_targets) %}
+    {
+      "qname": "targets{{ loop.index }}.atlas.peering.usc.edu",
+      "qtype": "A",
+      "file": "{{ pdyndns_targets_dir }}/targets{{ loop.index }}.txt"
+    }{% if not loop.last %},{% endif %}
+
+{% endfor %}
+  ]
+}
