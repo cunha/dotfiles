@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+owncloudcmd -h --trust --exclude ./.config/owncloud-exclude --user cunha \
+	/home/cunha/ownCloud https://owncloud.dcc.ufmg.br
+
