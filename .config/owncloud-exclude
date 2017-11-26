@@ -1,1 +1,4 @@
 .zshlocal
+.git
+.svn
+CVS
