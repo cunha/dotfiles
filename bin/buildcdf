@@ -17,6 +17,8 @@ def buildcdf(fd):
     result = list()
 
     last, cnt = parse(fd.readline())
+    if last is None:
+        return [[0.0, 0.0], [0.0, 1.0]]
 
     val, weight = parse(fd.readline())
     while val is not None:
