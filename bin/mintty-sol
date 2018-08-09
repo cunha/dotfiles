@@ -1,0 +1,64 @@
+#!/bin/bash
+set -e
+
+base03="#002b36"
+base02="#073642"
+base01="#586e75"
+base00="#657b83"
+base0="#839496"
+base1="#93a1a1"
+base2="#eee8d5"
+base3="#fdf6e3"
+
+yellow="#b58900"
+orange="#cb4b16"
+red="#dc322f"
+magenta="#d33682"
+violet="#6c71c4"
+blue="#268bd2"
+cyan="#2aa198"
+green="#859900"
+
+if [[ x$1 = xlight ]] ; then
+    echo -ne '\e]10;'$base00'\a'  # Black foreground
+    echo -ne '\e]11;'$base3'\a'  # Light gray background
+    echo -ne '\e]12;'$base01'\a'  # Green cursor
+
+    echo -ne '\e]4;0;'$base02'\a'   # black
+    echo -ne '\e]4;1;'$red'\a'   # red
+    echo -ne '\e]4;2;'$green'\a'   # green
+    echo -ne '\e]4;3;'$yellow'\a'   # yellow
+    echo -ne '\e]4;4;'$blue'\a'   # blue
+    echo -ne '\e]4;5;'$magenta'\a'   # magenta
+    echo -ne '\e]4;6;'$cyan'\a'   # cyan
+    echo -ne '\e]4;7;'$base2'\a'   # white (light grey really)
+    echo -ne '\e]4;8;'$base03'\a'   # bold black (i.e. dark grey)
+    echo -ne '\e]4;9;'$orange'\a'   # bold red
+    echo -ne '\e]4;10;'$base01'\a'  # bold green
+    echo -ne '\e]4;11;'$base00'\a'  # bold yellow
+    echo -ne '\e]4;12;'$base0'\a'  # bold blue
+    echo -ne '\e]4;13;'$violet'\a'  # bold magenta
+    echo -ne '\e]4;14;'$base1'\a'  # bold cyan
+    echo -ne '\e]4;15;'$base3'\a'  # bold white
+else
+    echo -ne '\e]10;'$base0'\a'  # Black foreground
+    echo -ne '\e]11;'$base03'\a'  # Light gray background
+    echo -ne '\e]12;'$base1'\a'  # Green cursor
+
+    echo -ne '\e]4;0;'$base2'\a'   # black
+    echo -ne '\e]4;1;'$red'\a'   # red
+    echo -ne '\e]4;2;'$green'\a'   # green
+    echo -ne '\e]4;3;'$yellow'\a'   # yellow
+    echo -ne '\e]4;4;'$blue'\a'   # blue
+    echo -ne '\e]4;5;'$magenta'\a'   # magenta
+    echo -ne '\e]4;6;'$cyan'\a'   # cyan
+    echo -ne '\e]4;7;'$base02'\a'   # white (light grey really)
+    echo -ne '\e]4;8;'$base3'\a'   # bold black (i.e. dark grey)
+    echo -ne '\e]4;9;'$orange'\a'   # bold red
+    echo -ne '\e]4;10;'$base1'\a'  # bold green
+    echo -ne '\e]4;11;'$base0'\a'  # bold yellow
+    echo -ne '\e]4;12;'$base00'\a'  # bold blue
+    echo -ne '\e]4;13;'$violet'\a'  # bold magenta
+    echo -ne '\e]4;14;'$base01'\a'  # bold cyan
+    echo -ne '\e]4;15;'$base03'\a'  # bold white
+fi
