@@ -187,7 +187,7 @@ def compstats(values, stats): # {{{
 
     avg = sx/nx
     var = ssx/nx - avg**2
-    std = math.sqrt(ssx/nx - avg**2)
+    std = math.sqrt(max(0, ssx/nx - avg**2))
     cv = 0 if avg == 0 else std/avg
 
     ans = dict()

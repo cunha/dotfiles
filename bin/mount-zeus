@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-REMOTE=cunha@150.164.10.8:/home/cunha
+REMOTE=cunha@zeus:/home/cunha
 LOCAL=/home/cunha/sshfs/zeus
 UIDFILE=/home/cunha/.ssh/sshfs/zeus-uid
 GIDFILE=/home/cunha/.ssh/sshfs/zeus-gid
