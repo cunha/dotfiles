@@ -1,6 +1,5 @@
 ---
 cunha_ui_packages:
-  - tmux
   - zsh
   - vim-nox
   - git
@@ -8,4 +7,7 @@ cunha_ui_packages:
   - myrepos
   - tcpdump
   - jq
-  - aptitude
+  - xclip
+  - ranger
+cunha_backported_packages:
+  - tmux

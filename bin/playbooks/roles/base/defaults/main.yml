@@ -4,3 +4,6 @@ cunha_base_packages:
   - git
   - tcpdump
   - vim-nox
+  - apt-transport-https
+  - aptitude
+  - python-pip

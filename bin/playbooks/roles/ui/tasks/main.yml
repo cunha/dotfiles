@@ -1,10 +1,34 @@
 ---
+# - name: Add stretch-backports to APT sources
+#   become: true
+#   apt_repository:
+#     repo: "deb http://deb.debian.org/debian/ {{ansible_distribution_release}}-backports main non-free-contrib"
+#     filename: backports
+#     state: present
+#     update_cache: yes
+
+- name: Set repo preferences
+  become: true
+  copy:
+    src: dist.prefs
+    dest: /etc/apt/preferences.d/dist.prefs
+    backup: yes
+
 - name: Install needed packages
   become: true
   become_user: root
   apt:
     name: "{{ cunha_ui_packages }}"
     state: latest
+    cache_valid_time: 600
+
+- name: Install backported packages
+  become: true
+  become_user: root
+  apt:
+    name: "{{ cunha_backported_packages }}"
+    state: latest
+    default_release: "{{ansible_distribution_release}}-backports"
     cache_valid_time: 600
 
 - name: Set shell to zsh
