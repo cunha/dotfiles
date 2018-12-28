@@ -19,6 +19,7 @@ S_MAX = 'max'
 S_Q1 = 'Q1'
 S_MEDIAN = 'median'
 S_Q3 = 'Q3'
+S_P95 = 'p95'
 
 
 def create_parser(): # {{{
@@ -158,6 +159,13 @@ def create_parser(): # {{{
             nargs=0, callback_args=(S_Q3,),
             default=list())
 
+    parser.add_option('--p95',
+            dest='stats',
+            action='callback',
+            callback=append_stat,
+            nargs=0, callback_args=(S_P95,),
+            default=list())
+
     return parser
 # }}}
 
@@ -179,7 +187,7 @@ def compstats(values, stats): # {{{
         sax += abs(x)
         minx = min(minx, x)
         maxx = max(maxx, x)
-        if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats:
+        if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats or S_P95:
             xvalues.append(x)
 
     if nx == 0:
@@ -202,7 +210,7 @@ def compstats(values, stats): # {{{
     ans[S_MIN] = minx
     ans[S_MAX] = maxx
 
-    if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats:
+    if S_MEDIAN in stats or S_Q1 in stats or S_Q3 in stats or S_P95 in stats:
         xvalues.sort()
 
         f = len(xvalues)/4.0 - 0.5
@@ -220,6 +228,11 @@ def compstats(values, stats): # {{{
         a = f - i
         q3 = (1 - a) * xvalues[i] + a * xvalues[i+1]
         ans[S_Q3] = q3
+        f = len(xvalues)*95/100.0 - 0.5
+        i = int(f)
+        a = f - i
+        p95 = (1 - a) * xvalues[i] + a * xvalues[i+1]
+        ans[S_P95] = p95
 
     return ans
 # }}}
@@ -249,7 +262,7 @@ def main(): # {{{
 
     if opts.print_header:
         opts.outfd.write('# ' + ' '.join(opts.stats) + '\n')
-    opts.outfd.write(' '.join(['%.5f' % ans[s] for s in opts.stats]))
+    opts.outfd.write(' '.join(['%.6g' % ans[s] for s in opts.stats]))
     if opts.newline:
         opts.outfd.write('\n')
     return 0
