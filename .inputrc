@@ -1,0 +1,5 @@
+$include /etc/inputrc
+"\C-p":history-search-backward
+"\C-n":history-search-forward
+"\e[3;5~":kill-word
+"\C-H":backward-kill-word
