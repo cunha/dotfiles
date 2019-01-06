@@ -9,5 +9,6 @@ cunha_ui_packages:
   - jq
   - xclip
   - ranger
+  - ncurses-term
 cunha_backported_packages:
   - tmux
