@@ -1,4 +1,8 @@
 $include /etc/inputrc
+
+set bell-style none
+set bell-style visible
+
 "\C-p":history-search-backward
 "\C-n":history-search-forward
 "\e[3;5~":kill-word
