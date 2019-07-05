@@ -401,7 +401,7 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "cunha"; user_name = "cunha"; nick = "psycho"; };
+  core = { real_name = "asdf"; user_name = "asdf"; nick = "psycho"; };
   "fe-text" = { actlist_sort = "refnum"; };
   "irc/dcc" = { dcc_autoget = "yes"; };
 };

@@ -1,11 +1,11 @@
 ---
-# - name: Add stretch-backports to APT sources
-#   become: true
-#   apt_repository:
-#     repo: "deb http://deb.debian.org/debian/ {{ansible_distribution_release}}-backports main non-free-contrib"
-#     filename: backports
-#     state: present
-#     update_cache: yes
+- name: Add stretch-backports to APT sources
+  become: true
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian/ {{ansible_distribution_release}}-backports main non-free-contrib"
+    filename: backports
+    state: present
+    update_cache: yes
 
 - name: Set repo preferences
   become: true
