@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "editor.fontFamily": "Fira Code",
+    "editor.wordWrap": "bounded",
+    "editor.rulers": [
+        80
+    ],
+    "window.zoomLevel": 1,
+}
