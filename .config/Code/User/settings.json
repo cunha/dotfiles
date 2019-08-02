@@ -1,9 +1,41 @@
 {
-    "workbench.colorTheme": "Tomorrow Night Blue",
     "editor.fontFamily": "Fira Code",
-    "editor.wordWrap": "bounded",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "boundary",
     "editor.rulers": [
         80
     ],
-    "window.zoomLevel": 1,
+    "editor.trimAutoWhitespace": true,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "files.exclude": {
+        "**/.zshlocal": true,
+    },
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.cursorBlinking": true,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 16,
+    // Languages
+    "python.jediEnabled": true,
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.rulers": [
+            88,
+        ],
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.wordWrapColumn": 88,
+    },
+    "[shellscript]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+    },
+    // Extensions
+    "rewrap.wrappingColumn": 72,
+    "shellcheck.enable": true,
+    "git.autofetch": true,
 }
