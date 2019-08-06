@@ -2,7 +2,7 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.renderWhitespace": "boundary",
     "editor.rulers": [
         80
@@ -10,8 +10,10 @@
     "editor.trimAutoWhitespace": true,
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 80,
+    "explorer.openEditors.visible": 0,
     "files.exclude": {
         "**/.zshlocal": true,
+        "**/*.pyc": true,
     },
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.cursorBlinking": true,
@@ -22,6 +24,7 @@
     // Languages
     "python.jediEnabled": true,
     "python.formatting.provider": "black",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4 }",
     "[python]": {
         "editor.rulers": [
             88,
