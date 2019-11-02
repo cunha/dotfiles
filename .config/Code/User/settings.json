@@ -1,8 +1,10 @@
 {
+    "diffEditor.ignoreTrimWhitespace": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontSize": 14,
     "editor.fontLigatures": true,
     "editor.formatOnSave": false,
+    "editor.minimap.enabled": true,
     "editor.renderWhitespace": "boundary",
     "editor.rulers": [
         80
@@ -18,7 +20,7 @@
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.cursorBlinking": true,
     "window.restoreWindows": "none",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "workbench.colorTheme": "Tomorrow Night Blue",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 16,
@@ -49,19 +51,9 @@
     "shellcheck.enable": true,
     "git.autofetch": true,
     "latex-workshop.view.pdf.viewer": "external",
-    "latex-workshop.view.pdf.external.command": {
-        "command": "evince",
-        "args": [
-            "%PDF%",
-        ]
-    },
-    "latex-workshop.view.pdf.external.synctex": {
-        "command": "evince",
-        "args": [
-            "%LINE%",
-            "%PDF%",
-            "%TEX%"
-        ]
-    },
+    "latex-workshop.view.pdf.external.viewer.command": "zathura",
+    "latex-workshop.view.pdf.external.viewer.args": [
+        "%PDF%"
+    ],
     "latex-workshop.chktex.enabled": false,
 }
