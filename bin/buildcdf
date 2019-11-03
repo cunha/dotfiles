@@ -2,9 +2,7 @@
 
 import sys
 
-HEIGHT_STEP = 0.00001
-
-def buildcdf(iterator):
+def buildcdf(iterator, height_step=0.00001):
     result = list()
 
     last, cnt = next(iterator)
@@ -28,7 +26,7 @@ def buildcdf(iterator):
 
     cdf = list()
 
-    h = HEIGHT_STEP
+    h = height_step
     i = 0
     while i < len(result):
         x, y = result[i][0], float(result[i][1])/cnt
@@ -39,13 +37,13 @@ def buildcdf(iterator):
             x, y = result[i][0], float(result[i][1])/cnt
         cdf.append((x, y))
         while y >= h:
-            h += HEIGHT_STEP
+            h += height_step
         i += 1
     cdf.append((result[-1][0], 1.0))
     return cdf
 
 
-def parse_lines(fd):
+def _parse_lines(fd):
     for line in fd:
         if not line:
             yield None, None
@@ -58,7 +56,7 @@ def parse_lines(fd):
 
 
 if __name__ == '__main__':
-    dcdf = buildcdf(parse_lines(sys.stdin))
+    dcdf = buildcdf(_parse_lines(sys.stdin))
     for dx, dy in dcdf:
         sys.stdout.write('%f %f\n' % (dx, dy))
     sys.exit(0)

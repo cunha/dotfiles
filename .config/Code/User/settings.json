@@ -1,7 +1,8 @@
 {
     "diffEditor.ignoreTrimWhitespace": true,
+    "editor.cursorSurroundingLines": 4,
     "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 14,
+    "editor.fontSize": 13,
     "editor.fontLigatures": true,
     "editor.formatOnSave": false,
     "editor.minimap.enabled": true,
@@ -17,10 +18,15 @@
         "**/.zshlocal": true,
         "**/*.pyc": true,
     },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+    },
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.cursorBlinking": true,
     "window.restoreWindows": "none",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "workbench.colorTheme": "Tomorrow Night Blue",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 16,
@@ -34,6 +40,10 @@
         ],
         "editor.wordWrapColumn": 100,
     },
+    "[markdown]": {
+        "editor.wordWrapColumn": 72,
+        "editor.wordWrap": "bounded",
+    },
     "[python]": {
         "editor.rulers": [
             88,
@@ -42,13 +52,23 @@
         "editor.insertSpaces": true,
         "editor.wordWrapColumn": 88,
     },
+    "rust.build_on_save": true,
+    "rust.clippy_preference": "on",
+    "rust.racer_completion": true,
+    "rust.show_warnings": true,
+    "rust.rustfmt_path": "/home/cunha/.cargo/bin/rustfmt",
+    "[rust]": {
+        "editor.rulers": [
+            100,
+        ],
+        "editor.wordWrapColumn": 100,
+        "editor.formatOnSave": true,
+    },
     "[shellscript]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
     },
     // Extensions
-    "rewrap.wrappingColumn": 72,
-    "shellcheck.enable": true,
     "git.autofetch": true,
     "latex-workshop.view.pdf.viewer": "external",
     "latex-workshop.view.pdf.external.viewer.command": "zathura",
@@ -56,4 +76,29 @@
         "%PDF%"
     ],
     "latex-workshop.chktex.enabled": false,
+    "metaGo.decoration.backgroundColor": "yellow",
+    "metaGo.decoration.backgroundOpacity": "1",
+    "metaGo.decoration.color": "blue",
+    "metaGo.decoration.fontFamily": "Fira Code",
+    "metaGo.decoration.fontWeight": "normal",
+    "rewrap.wrappingColumn": 72,
+    "shellcheck.enable": true,
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "git-commit",
+        "jade",
+        "latex",
+        "less",
+        "markdown",
+        "pug",
+        "restructuredtext",
+        "text"
+    ],
+    "cSpell.userWords": [
+        "italo",
+        "reimplement",
+        "submodules",
+        "traceroute"
+    ],
+    "git.confirmSync": false,
 }

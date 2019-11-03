@@ -1,7 +1,10 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
-hijackdet
+# emutcp
+# aws-emutcp-dev
+emutcp-vm-1
+# hijackdet
 # zeus
 # disco1
 # disco2

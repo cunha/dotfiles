@@ -67,6 +67,13 @@ method to `xim`).
 aptitude install fonts-roboto msttcorefonts
 ```
 
+#### Configure default browser
+
+```{bash}
+update-alternatives --config gnome-www-browser
+xdg-settings set default-web-browser firefox-esr.desktop
+```
+
 ### Networking
 
 We include `network-manager-gnome` to get `nm-applet`, which is among the few

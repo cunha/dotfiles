@@ -10,5 +10,5 @@ cunha_ui_packages:
   - xclip
   - ranger
   - ncurses-term
-cunha_backported_packages:
+  - kitty-terminfo
   - tmux

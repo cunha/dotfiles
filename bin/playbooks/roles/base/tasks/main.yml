@@ -2,11 +2,9 @@
 - name: Install needed packages
   become: true
   apt:
-    name: "{{ cunha_base_packages }}"
+    name: "{{ base_packages }}"
     state: latest
     update_cache: yes
-# with_items:
-#   - "{{ cunha_base_packages }}"
 
 - name: Add user cunha
   become: true
@@ -17,12 +15,14 @@
     password: $6$OntSql4.a$O9qxiDGHjmvM1o6LTt54rSq9jr//.KiS9xJqq7zd6KUHDrQH.hE5mYtwdAKa9Xi6X.CuASuzitSzJQW3Kvv230
 
 - name: Add SSH pubkey
+  become: true
   authorized_key:
     user: cunha
     key: "{{ lookup('file', '/home/cunha/.ssh/id_rsa.pub') }}"
     exclusive: no
 
 - name: Copy .ssh/config
+  become: true
   copy:
     src: /home/cunha/.ssh/config
     dest: /home/cunha/.ssh/config

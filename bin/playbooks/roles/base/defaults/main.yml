@@ -1,9 +1,7 @@
 ---
-cunha_base_packages:
+base_packages:
   - sudo
   - git
-  - tcpdump
-  - vim-nox
   - apt-transport-https
   - aptitude
   - python-pip
