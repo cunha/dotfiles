@@ -20,7 +20,7 @@
   apt:
     name: "{{ cunha_ui_packages }}"
     state: latest
-    cache_valid_time: 600
+    update_cache: yes
 
 # - name: Install backported packages
 #   become: true

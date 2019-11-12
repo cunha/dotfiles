@@ -12,3 +12,6 @@ cunha_ui_packages:
   - ncurses-term
   - kitty-terminfo
   - tmux
+  - man
+  - manpages-dev
+  # - manpages-posix-dev requires contrib/non-free repos
