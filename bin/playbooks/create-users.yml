@@ -1,0 +1,6 @@
+---
+- hosts: targets
+  gather_facts: true
+  become_user: root
+  roles:
+  - users

@@ -1,9 +1,14 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
+joe1
+# aws-peering
+# aws-dev
+# aws-small-1
+# aws-small-1
 # emutcp
 # aws-emutcp-dev
-emutcp-vm-1
+# emutcp-vm-1
 # hijackdet
 # zeus
 # disco1
