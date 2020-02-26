@@ -30,14 +30,22 @@
     "outline.showModules": false,
     "terminal.integrated.cursorBlinking": true,
     "window.restoreWindows": "none",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.colorTheme": "Tomorrow Night Blue",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 16,
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.perEditorGroup": true,
+    "workbench.editor.limit.value": 5,
     // Languages
     "python.jediEnabled": true,
     "python.formatting.provider": "black",
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4 }",
+    "[c]": {
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false,
+        "editor.wordWrapColumn": 80
+    },
     "[cpp]": {
         "editor.rulers": [
             100,
@@ -73,7 +81,30 @@
         "editor.insertSpaces": true,
     },
     // Extensions
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "git-commit",
+        "jade",
+        "latex",
+        "less",
+        "markdown",
+        "plaintext",
+        "pug",
+        "restructuredtext",
+        "text"
+    ],
+    "cSpell.userWords": [
+        "italo",
+        "reimplement",
+        "submodules",
+        "traceroute"
+    ],
+    "cSpell.enabled": true,
+    "cSpell.showStatus": true,
+    "cSpell.dictionaries": ["en"],
+    "cSpell.logLevel": "Debug",
     "git.autofetch": true,
+    "git.confirmSync": false,
     "latex-workshop.view.pdf.viewer": "external",
     "latex-workshop.view.pdf.external.viewer.command": "zathura",
     "latex-workshop.view.pdf.external.viewer.args": [
@@ -87,22 +118,4 @@
     "metaGo.decoration.fontWeight": "normal",
     "rewrap.wrappingColumn": 72,
     "shellcheck.enable": true,
-    "cSpell.enabledLanguageIds": [
-        "asciidoc",
-        "git-commit",
-        "jade",
-        "latex",
-        "less",
-        "markdown",
-        "pug",
-        "restructuredtext",
-        "text"
-    ],
-    "cSpell.userWords": [
-        "italo",
-        "reimplement",
-        "submodules",
-        "traceroute"
-    ],
-    "git.confirmSync": false,
 }
