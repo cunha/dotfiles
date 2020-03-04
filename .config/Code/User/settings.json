@@ -6,6 +6,7 @@
     "editor.fontLigatures": true,
     "editor.formatOnSave": false,
     "editor.minimap.enabled": true,
+    "editor.quickSuggestions": false,
     "editor.renderWhitespace": "boundary",
     "editor.rulers": [
         80
@@ -38,8 +39,6 @@
     "workbench.editor.limit.perEditorGroup": true,
     "workbench.editor.limit.value": 5,
     // Languages
-    "python.jediEnabled": true,
-    "python.formatting.provider": "black",
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, TabWidth: 4, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4 }",
     "[c]": {
         "editor.tabSize": 8,
@@ -56,6 +55,9 @@
         "editor.wordWrapColumn": 72,
         "editor.wordWrap": "bounded",
     },
+    "python.jediEnabled": true,
+    "python.formatting.provider": "black",
+    "python.venvFolders": ["."],
     "[python]": {
         "editor.rulers": [
             88,
@@ -81,28 +83,30 @@
         "editor.insertSpaces": true,
     },
     // Extensions
-    "cSpell.enabledLanguageIds": [
-        "asciidoc",
-        "git-commit",
-        "jade",
-        "latex",
-        "less",
-        "markdown",
-        "plaintext",
-        "pug",
-        "restructuredtext",
-        "text"
-    ],
-    "cSpell.userWords": [
-        "italo",
-        "reimplement",
-        "submodules",
-        "traceroute"
-    ],
-    "cSpell.enabled": true,
-    "cSpell.showStatus": true,
-    "cSpell.dictionaries": ["en"],
-    "cSpell.logLevel": "Debug",
+    // "cSpell.enabledLanguageIds": [
+    //     "asciidoc",
+    //     "git-commit",
+    //     "jade",
+    //     "latex",
+    //     "less",
+    //     "markdown",
+    //     "plaintext",
+    //     "pug",
+    //     "restructuredtext",
+    //     "text"
+    // ],
+    // "cSpell.userWords": [
+    //     "italo",
+    //     "reimplement",
+    //     "submodules",
+    //     "traceroute"
+    // ],
+    // "cSpell.enabled": true,
+    // "cSpell.showStatus": true,
+    // "cSpell.dictionaries": [
+    //     "en"
+    // ],
+    // "cSpell.logLevel": "Debug",
     "git.autofetch": true,
     "git.confirmSync": false,
     "latex-workshop.view.pdf.viewer": "external",
@@ -118,4 +122,37 @@
     "metaGo.decoration.fontWeight": "normal",
     "rewrap.wrappingColumn": 72,
     "shellcheck.enable": true,
+    "shellcheck.disableVersionCheck": true,
+    // "vim.easymotion": true,
+    // "vim.sneak": true,
+    // "vim.incsearch": true,
+    // "vim.useSystemClipboard": true,
+    // "vim.useCtrlKeys": true,
+    // "vim.hlsearch": true,
+    // "vim.insertModeKeyBindings": [],
+    // "vim.normalModeKeyBindingsNonRecursive": [
+    //     {
+    //         "before": [
+    //             "<leader>",
+    //             "d"
+    //         ],
+    //         "after": [
+    //             "d",
+    //             "d"
+    //         ]
+    //     },
+    //     {
+    //         "before": [
+    //             "<C-n>"
+    //         ],
+    //         "commands": [
+    //             ":nohl"
+    //         ]
+    //     }
+    // ],
+    // "vim.leader": ";",
+    // "vim.handleKeys": {
+    //     "<C-a>": false,
+    //     "<C-f>": false
+    // }
 }
