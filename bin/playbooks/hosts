@@ -2,6 +2,8 @@
 
 [targets]
 joe1
+joe2
+joe3
 # aws-peering
 # aws-dev
 # aws-small-1
