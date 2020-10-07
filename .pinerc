@@ -19,7 +19,7 @@ personal-name=
 user-domain=dcc.ufmg.br
 
 # List of SMTP servers for sending mail. If blank: Unix Alpine uses sendmail.
-smtp-server=smtp.dcc.ufmg.br/ssl/novalidate-cert/user=cunha
+smtp-server=smtp.dcc.ufmg.br:465/ssl/novalidate-cert/user=cunha
 
 # NNTP server for posting news. Also sets news-collections for news reading.
 nntp-server=

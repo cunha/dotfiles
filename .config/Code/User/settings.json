@@ -155,4 +155,23 @@
     //     "<C-a>": false,
     //     "<C-f>": false
     // }
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "git-commit",
+        "jade",
+        "latex",
+        "less",
+        "markdown",
+        "pug",
+        "restructuredtext",
+        "text"
+    ],
+    "cSpell.userWords": [
+        "italo",
+        "reimplement",
+        "submodules",
+        "traceroute"
+    ],
+    "git.confirmSync": false,
+    "python.languageServer": "Jedi",
 }
