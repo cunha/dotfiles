@@ -4,4 +4,4 @@ base_packages:
   - git
   - apt-transport-https
   - aptitude
-  - python-pip
+  - python3-pip

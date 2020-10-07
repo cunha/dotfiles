@@ -1,9 +1,10 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
-joe1
-joe2
-joe3
+toddaws2
+# joe1
+# joe2
+# joe3
 # aws-peering
 # aws-dev
 # aws-small-1
@@ -16,3 +17,5 @@ joe3
 # disco1
 # disco2
 
+[targets:vars]
+ansible_python_interpreter=/usr/bin/python3
