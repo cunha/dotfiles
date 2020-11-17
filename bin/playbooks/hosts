@@ -1,7 +1,11 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
-joe1
+joe-tlhop
+# joe1
+# joe2
+# joe3
+# zeus
 # aws-peering
 # aws-dev
 # aws-small-1
