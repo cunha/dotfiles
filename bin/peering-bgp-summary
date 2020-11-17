@@ -1,9 +1,9 @@
 #!/bin/zsh
 # This uses our aliases
 
-HOSTS=(amsterdam01.mux.peering.usc.edu clemson01.mux.peering.usc.edu grnet01.mux.peering.usc.edu isi01.mux.peering.usc.edu neu01.mux.peering.usc.edu phoenix01.mux.peering.usc.edu seattle01.mux.peering.usc.edu ufmg01.mux.peering.usc.edu uw01.mux.peering.usc.edu utah01.mux.peering.usc.edu wisc01.mux.peering.usc.edu gatech01.mux.peering.usc.edu)
+HOSTS=(amsterdam01.mux.peering.ee.columbia.edu clemson01.mux.peering.ee.columbia.edu gatech01.mux.peering.ee.columbia.edu grnet01.mux.peering.ee.columbia.edu isi01.mux.peering.ee.columbia.edu neu01.mux.peering.ee.columbia.edu phoenix01.mux.peering.ee.columbia.edu seattle01.mux.peering.ee.columbia.edu ufmg01.mux.peering.ee.columbia.edu ufms01.mux.peering.ee.columbia.edu uw01.mux.peering.ee.columbia.edu utah01.mux.peering.ee.columbia.edu wisc01.mux.peering.ee.columbia.edu)
 
-PENDING=(dallas01.mux.peering.usc.edu ufms01.mux.peering.usc.edu usc01.mux.peering.usc.edu cornell01.mux.peering.usc.edu)
+PENDING=(dallas01.mux.peering.ee.columbia.edu usc01.mux.peering.ee.columbia.edu cornell01.mux.peering.ee.columbia.edu)
 
 for host in $HOSTS ; do
     echo "$host:"

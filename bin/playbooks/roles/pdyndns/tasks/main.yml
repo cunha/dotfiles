@@ -41,24 +41,12 @@
   become: true
   file: path={{ pdyndns_targets_dir }} state=directory
 
-- name: Create dynamic DNS backend PEERING target files
+- name: Create dynamic DNS backend target files
   become: true
   copy:
-    src: peering-targets.txt
+    src: targets.txt
     dest: "{{ pdyndns_targets_dir }}/targets{{ item }}.txt"
-  with_sequence: count={{ peering_num_targets }}
-
-- name: Copy full list of AMS-IX targets
-  become: true
-  copy:
-    src: amsix-full-targets.txt
-    dest: "{{ pdyndns_targets_dir }}/amsix-full-targets.txt"
-
-- name: Create dynamic DNS backend AMS-IX target files
-  become: true
-  shell: for i in $(seq {{ amsix_num_targets }}) ; do shuf -n {{ amsix_num_ips }} -o amsix$i.txt amsix-full-targets.txt ; done
-  args:
-    chdir: "{{ pdyndns_targets_dir }}"
+  with_sequence: count={{ pdyndns_num_targets }}
 
 - name: Enable and restart PowerDNS
   become: true

@@ -7,3 +7,5 @@
 	ui = true
 [core]
 	excludesfile = ~/.config/gitignore
+[pull]
+	rebase = true

@@ -18,3 +18,5 @@ joe-tlhop
 # disco1
 # disco2
 
+[targets:vars]
+ansible_python_interpreter=/usr/bin/python3

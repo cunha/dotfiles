@@ -15,7 +15,4 @@ powerdns_config_file: /etc/powerdns/pdns.conf
 pdyndns_executable: /usr/local/bin/pdyndns.py
 pdyndns_config_file: /etc/powerdns/pdyndns.conf.json
 pdyndns_targets_dir: /var/run/pdyndns/targets
-
-peering_num_targets: 16
-amsix_num_targets: 100
-amsix_num_ips: 600
+pdyndns_num_targets: 32
