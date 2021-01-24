@@ -82,7 +82,14 @@ handle_extension() {
             w3m -dump "${FILE_PATH}" && exit 5
             lynx -dump -- "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
-            ;; # Continue with next handler on failure
+            exit 1;; # Continue with next handler on failure
+
+        ## JSON
+        json|ipynb)
+            jq --color-output . "${FILE_PATH}" && exit 5
+            python -m json.tool -- "${FILE_PATH}" && exit 5
+            exit 1;;
+
     esac
 }
 
