@@ -1,7 +1,7 @@
 #!/bin/zsh
 # This uses our aliases
 
-HOSTS=(amsterdam01.mux.peering.ee.columbia.edu clemson01.mux.peering.ee.columbia.edu gatech01.mux.peering.ee.columbia.edu grnet01.mux.peering.ee.columbia.edu isi01.mux.peering.ee.columbia.edu neu01.mux.peering.ee.columbia.edu phoenix01.mux.peering.ee.columbia.edu seattle01.mux.peering.ee.columbia.edu ufmg01.mux.peering.ee.columbia.edu ufms01.mux.peering.ee.columbia.edu uw01.mux.peering.ee.columbia.edu utah01.mux.peering.ee.columbia.edu wisc01.mux.peering.ee.columbia.edu)
+HOSTS=(amsterdam01.mux.peering.ee.columbia.edu clemson01.mux.peering.ee.columbia.edu gatech01.mux.peering.ee.columbia.edu grnet01.mux.peering.ee.columbia.edu isi01.mux.peering.ee.columbia.edu neu01.mux.peering.ee.columbia.edu phoenix01.mux.peering.ee.columbia.edu saopaulo01.mux.peering.ee.columbia.edu sbu01.mux.peering.ee.columbia.edu seattle01.mux.peering.ee.columbia.edu ufmg01.mux.peering.ee.columbia.edu ufms01.mux.peering.ee.columbia.edu uw01.mux.peering.ee.columbia.edu utah01.mux.peering.ee.columbia.edu wisc01.mux.peering.ee.columbia.edu)
 
 PENDING=(dallas01.mux.peering.ee.columbia.edu usc01.mux.peering.ee.columbia.edu cornell01.mux.peering.ee.columbia.edu)
 
