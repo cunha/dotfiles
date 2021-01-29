@@ -1,0 +1,27 @@
+#!/usr/bin/env perl
+
+use MIME::Base64;
+use Encode;
+
+sub on_osc_seq {
+  my ($term, $op, $args) = @_;
+  return () unless $op eq 52;
+  my ($clip, $data) = split ';', $args, 2;
+  # $clip may contain any character from the set c p s 0 1 2 3 4 5 6 7. It is
+  # used to construct a list of selection parameters for clipboard, primary,
+  # select, or cut buffers 0 through 8 respectively, in the order given.
+  # FIXME we ignore $clip
+  if ($data eq '?') {
+    # If $data is ?, xterm replies to the host with the selection data encoded
+    # using the same protocol.
+    my $data_free = $term->selection();
+    Encode::_utf8_off($data_free);
+    $term->tt_write("\e]52;$clip;".encode_base64($data_free, '')."\a");
+  } else {
+    my $data_decoded = decode_base64($data);
+    Encode::_utf8_on($data_decoded);
+    $term->selection($data_decoded, 1);
+    $term->selection_grab(urxvt::CurrentTime, 1);
+  }
+  ()
+}

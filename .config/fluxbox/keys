@@ -1,0 +1,96 @@
+OnDesktop Mouse1 :HideMenus
+OnDesktop Mouse3 :RootMenu
+
+OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnWindow Mod1 Mouse2 :Lower
+OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing NearestCorner}
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+
+OnTitlebar Mouse1 :MacroCmd {Raise} {Focus} {ActivateTab}
+OnTitlebar Move1 :StartMoving
+OnTitlebar Mouse2 :Lower
+OnTitlebar Mouse3 :WindowMenu
+OnTitlebar Control Mouse1 :StartTabbing
+OnTitlebar Double Mouse1 :Shade
+
+# Mod4 j :NextWindow (workspace=[current])
+# XF86RotateWindows :NextWindow (workspace=[current])
+# Mod4 Shift j :NextTab
+# Mod4 k :PrevWindow (workspace=[current])
+# Shift XF86RotateWindows :PrevWindow (workspace=[current])
+# Mod4 Shift k :PrevTab
+Mod1 F4 :Close
+XF86Close :Close
+# Mod4 Tab :ClientMenu (workspace=[current])
+Mod1 Tab :NextWindow (workspace=[current])
+Mod4 d :ShowDesktop
+
+Mod4 h :Minimize
+Mod4 k :MaximizeVertical
+Mod4 l :MaximizeHorizontal
+Mod4 semicolon :Maximize
+Mod4 Shift semicolon :FullScreen
+
+Mod4 minus :MacroCmd {SendToNextHead} {Exec centerwindow left}
+Mod4 i :Exec centerwindow left
+Mod4 o :Exec centerwindow right
+# Mod4 shift j :MacroCmd {ResizeTo 800 950} {MoveTo 0 0 TopLeft} {MaximizeHorizontal} 
+# Mod4 shift k :MacroCmd {MoveTo 0 0 BottomLeft} {ResizeTo 800 950} {MaximizeHorizontal} 
+Mod4 bracketleft :MacroCmd {MaximizeVertical} {MoveTo 0 0 TopLeft}
+Mod4 shift bracketleft :MacroCmd {ResizeTo 960 700} {MaximizeVertical} {MoveTo 0 0 TopLeft}
+Mod4 bracketright :MacroCmd {MaximizeVertical} {MoveTo 0 0 TopRight}
+Mod4 shift bracketright :MacroCmd {ResizeTo 960 700} {MaximizeVertical} {MoveTo 0 0 TopRight}
+Mod4 a :ToggleCmd {SetLayer top} {SetLayer normal}
+
+# Mod4 backslash :MacroCmd {ResizeTo 958 700} {MoveTo 0 0 TopRight}
+# Mod4 backslash :MacroCmd {ResizeTo 1080 700} {MoveTo 0 0 TopRight}
+
+Mod4 slash :Exec xset dpms force off
+
+Mod4 r :Exec fbrun -font "Source Code Pro-8"
+Mod4 q :If {Some Matches (Title=^xps:main:.*)} {NextWindow (Title=^psychopad:main:.*)} {Exec urxvt -e /usr/bin/tmux new-session -A -s main}
+Mod4 w :Exec urxvt
+# Mod4 e :Exec urxvt -g 128x28 -e /usr/bin/zsh -c ranger
+Mod4 e :Exec urxvt -e /usr/bin/zsh -c ranger
+Mod4 f :If {Some Matches (Navigator)} {NextWindow (Navigator)} {Exec iceweasel}
+Mod4 g :If {Some Matches (Chromium)} {NextWindow (Chromium)} {Exec chromium --enable-remote-extensions}
+# Mod4 t :If {Some Matches (Mail)} {NextWindow (Mail)} {Exec icedove}
+
+Mod4 BackSpace :Exec swapintl.sh
+
+Mod4 F11 :Restart
+
+XF86AudioPlay :Exec mocp --play
+XF86AudioStop :Exec mocp --stop
+XF86AudioNext :Exec mocp --next
+XF86AudioPrev :Exec mocp --previous
+# XF86AudioMute :Exec amixer sset Master,0 toggle
+# XF86AudioRaiseVolume :Exec amixer sset Master,0 5+
+# XF86AudioLowerVolume :Exec amixer sset Master,0 5-
+XF86AudioMute :Exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioRaiseVolume :Exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+XF86AudioLowerVolume :Exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+
+XF86MonBrightnessUp :Exec sudo /home/cunha/bin/bright up
+XF86MonBrightnessDown :Exec sudo /home/cunha/bin/bright down
+
+Mod4 1 :Workspace 1
+Mod4 2 :Workspace 2
+Mod4 3 :Workspace 3
+Mod4 4 :Workspace 4
+Mod4 Shift 1 :TakeToWorkspace 1
+Mod4 Shift 2 :TakeToWorkspace 2
+Mod4 Shift 3 :TakeToWorkspace 3
+Mod4 Shift 4 :TakeToWorkspace 4
+Mod4 grave :NextWorkspace
+Mod4 Shift grave :TakeToNextWorkspace 1
+# Mod4 1 :GotoWindow 1 {static} (xterm)
+# Mod4 2 :GotoWindow 2 {static} (xterm)
+# Mod4 3 :GotoWindow 3 {static} (xterm)
+# Mod4 4 :GotoWindow 4 {static} (xterm)
+# Mod4 1 :GotoWindow 1
+# Mod4 2 :GotoWindow 2
+# Mod4 3 :GotoWindow 3
+# Mod4 4 :GotoWindow 4
+

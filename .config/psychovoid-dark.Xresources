@@ -1,0 +1,58 @@
+! ! HIGHER BRIGHTNESS CONFIG
+! UXTerm*background: #202020
+! UXTerm*foreground: #909090
+! ! Black, Gray30
+! UXTerm*color0: #000000
+! UXTerm*color8: #404040
+! ! DarkRed, Firebrick
+! UXTerm*color1: #C01616
+! UXTerm*color9: #E03030
+! ! DarkOliveGreen, ForestGreen
+! UXTerm*color2: #107010
+! UXTerm*color10: #308030
+! ! DarkOrange, GoldenRod
+! UXTerm*color3: #F07000
+! UXTerm*color11: #FF8010
+! ! Navy, RoyalBlue4
+! UXTerm*color4: #2626C0
+! UXTerm*color12: #2A3AC0
+! ! DeepPink, DarkVioletRed
+! UXTerm*color5: #962076
+! UXTerm*color13: #E020A0
+! ! DeepSkyBlue4
+! UXTerm*color6: #4050B0
+! UXTerm*color14: #5060C0
+! ! SlateGray
+! UXTerm*color7: #708090
+! UXTerm*color15: #90A0B0
+
+
+! HIGHER BRIGHTNESS CONFIG
+URxvt*background: #202020
+URxvt*foreground: #909090
+! Black, Gray30
+URxvt*color0: #000000
+URxvt*color8: #404040
+! DarkRed, Firebrick
+URxvt*color1: #C01616
+URxvt*color9: #E03030
+! DarkOliveGreen, ForestGreen
+URxvt*color2: #107010
+URxvt*color10: #308030
+! DarkOrange, GoldenRod
+URxvt*color3: #F07000
+URxvt*color11: #FF8010
+! Navy, RoyalBlue4
+URxvt*color4: #2626C0
+URxvt*color12: #2A3AC0
+! DeepPink, DarkVioletRed
+URxvt*color5: #B020A0
+URxvt*color13: #E020A0
+! DeepSkyBlue4
+URxvt*color6: #4050B0
+URxvt*color14: #5060C0
+! SlateGray
+URxvt*color7: #708090
+URxvt*color15: #90A0B0
+
+

@@ -1,0 +1,52 @@
+// link this file from /usr/share/X11/xkb/compat, then add it
+// to /usr/share/X11/xkb/compat/complete
+
+default partial xkb_compatibility "compatcunha" {
+  interpret osfLeft {
+    repeat= True;
+    action = RedirectKey(keycode=<LEFT>, clearmodifiers=Mod5);
+  };
+
+  interpret osfRight {
+    repeat= True;
+    action = RedirectKey(keycode=<RGHT>, clearmodifiers=Mod5);
+  };
+
+  interpret osfUp {
+    repeat= True;
+    action = RedirectKey(keycode=<UP>, clearmodifiers=Mod5);
+  };
+
+  interpret osfDown {
+    repeat= True;
+    action = RedirectKey(keycode=<DOWN>, clearmodifiers=Mod5);
+  };
+
+  interpret osfPageUp {
+    repeat= True;
+    action = RedirectKey(keycode=<PGUP>, clearmodifiers=Mod5);
+  };
+
+  interpret osfPageDown {
+    repeat= True;
+    action = RedirectKey(keycode=<PGDN>, clearmodifiers=Mod5);
+  };
+
+  interpret osfBeginLine {
+    repeat= True;
+    action = RedirectKey(keycode=<HOME>, clearmodifiers=Mod5);
+  };
+
+  interpret osfEndLine {
+    repeat= True;
+    action = RedirectKey(keycode=<END>, clearmodifiers=Mod5);
+  };
+
+  interpret osfDelete {
+    repeat= True;
+    action = RedirectKey(keycode=<DELE>, clearmodifiers=Mod5);
+  };
+
+};
+
+

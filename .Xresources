@@ -1,0 +1,113 @@
+Xft.autohint:   0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting:    1
+Xft.antialias:  1
+Xft.rgba:       rgb
+
+! x1 laptop screen 2 vim columns requires Source Code Pro 11
+urxvt.font:             xft:Source Code Pro:style=medium:size=11
+! urxvt.font:             xft:Fira Code:style=light:size=12
+
+urxvt.depth:            32
+urxvt.intensityStyles:  false
+urxvt.letterSpace:      -1
+urxvt.loginShell:       false
+urxvt.scrollBar:        false
+urxvt.saveLines:        65535
+urxvt.cursorBlink:      on
+urxvt.cursorOnTime:     100
+urxvt.cursorOffTime:    100
+urxvt.urgentOnBell:     true
+urxvt.jumpScroll:       true
+urxvt.skipScroll:       true
+urxvt.secondaryScreen:  1
+urxvt.secondaryScroll:  0
+urxvt.secondaryWheel:   1
+urxvt.scrollTtyOutput: false
+urxvt.scrollTtyKeypress: true
+
+urxvt.perl-ext-common:  default,eval,matcher,selection-to-clipboard,font-size,osc52
+urxvt.perl-lib:         /home/cunha/.config/urxvt-perl
+
+urxvt.keysym.M-S-F11:   font-size:decrease
+urxvt.keysym.M-S-F12:   font-size:increase
+
+urxvt.url-launcher:     /usr/bin/xdg-open
+urxvt.matcher.rend.0:   Uline fg6
+urxvt.matcher.button:   1
+
+urxvt.clipboard.autocopy: true
+urxvt.clipboard.copycmd:  xclip -i -selection clipboard
+urxvt.clipboard.pastecmd: xclip -o -selection clipboard
+urxvt.keysym.S-Insert:    eval:paste_clipboard
+! urxvt.keysym.C-BackSpace: \033[33~ ! ([33~ is F19)
+
+urxvt.keysym.M-BackSpace: \033[33~
+
+!!! generating tmux navigation command
+! urxvt.keysym.Mod4-h: \033[21~h
+! urxvt.keysym.Mod4-j: \033[21~j
+! urxvt.keysym.Mod4-k: \033[21~k
+! urxvt.keysym.Mod4-l: \033[21~l
+
+!!! colors
+urxvt.keysym.M-S-F9: command:\033]10;#657b83\007\033]11;#fdf6e3\007\033]708;#fdf6e3\007\033]12;#586e75\007\033]13;#586e75\007\033]4;0;#073642\007\033]4;1;#dc322f\007\033]4;2;#00ad40\007\033]4;3;#b68000\007\033]4;4;#268bd2\007\033]4;5;#d33682\007\033]4;6;#2aa198\007\033]4;7;#eee8d5\007\033]4;8;#002b36\007\033]4;9;#cb4b16\007\033]4;10;#586e75\007\033]4;11;#657b83\007\033]4;12;#839496\007\033]4;13;#6c71c4\007\033]4;14;#93a1a1\007\033]4;15;#fdf6e3\007
+urxvt.keysym.M-S-F10: command:\033]10;#839496\007\033]11;#002b36\007\033]708;#002b36\007\033]12;#93a1a1\007\033]13;#93a1a1\007\033]4;7;#073642\007\033]4;1;#dc322f\007\033]4;2;#00ad40\007\033]4;3;#b68000\007\033]4;4;#268bd2\007\033]4;5;#d33682\007\033]4;6;#2aa198\007\033]4;0;#eee8d5\007\033]4;15;#002b36\007\033]4;9;#cb4b16\007\033]4;14;#586e75\007\033]4;12;#657b83\007\033]4;11;#839496\007\033]4;13;#6c71c4\007\033]4;10;#93a1a1\007\033]4;8;#fdf6e3\007
+
+! XTerm resources:
+! https://www.in-ulm.de/~mascheck/X11/XTerm
+! https://lukas.zapletalovi.com/2013/07/hidden-gems-of-xterm.html
+UXTerm*customization: -color
+UXTerm.termName: xterm-256color
+
+UXTerm*locale:          true
+UXTerm*metaSendsEscape: true
+UXTerm*utf8:            1
+UXTerm*eightBitInput:   false
+UXTerm*eightBitControl: false
+UXTerm*eightBitOutput:  true
+UXTerm*dynamicColors: true
+
+UXTerm*allowWindowOps: true
+
+! Font
+UXTerm*faceName:     Source Code Pro
+UXTerm*faceSize:     12
+UXTerm*faceSize1:    8
+UXTerm*faceSize2:    10
+UXTerm*faceSize3:    12
+UXTerm*faceSize4:    14
+UXTerm*faceSize5:    16
+UXTerm*faceSize6:    18
+UXTerm*colorBDMode:  false
+UXTerm*colorULMode:  false
+UXTerm*italicULMode: false
+! UXTerm*scaleHeight:   1.25
+
+! Buffer
+UXTerm*fastScroll:      true
+UXTerm*saveLines:       10000
+UXTerm*scrollBar:       false
+Uxterm*scrollTtyOutput: false
+
+UXTerm*visualBell:      false
+
+UXTerm*cursorBlink:     on
+UXTerm*cursorOnTime:    250
+UXTerm*cursorOffTime:   250
+
+! Clipboard and selection
+UXTerm*highlightSelection: true
+UXTerm*on3Clicks:          regex [^[:blank:]]*
+! UXTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+UXTerm*selectToClipboard:  true
+
+UXTerm*trimSelection:      true
+
+UXTerm*VT100.translations:       #override \
+Shift <KeyPress> Insert: insert-selection(CLIPBOARD)\n\
+Meta Shift <Key> F11: smaller-vt-font()\n\
+Meta Shift <Key> F12: larger-vt-font()\n
+
+#include "/home/cunha/.config/solarized-dark.Xresources"

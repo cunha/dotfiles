@@ -1,0 +1,85 @@
+general {
+	colors = true
+	interval = 5
+	color_good = "#00A000"
+	color_degraded = "#FDB218"
+	color_bad = "#B01010"
+}
+
+order += "volume master"
+order += "wireless wlp2s0"
+order += "battery 0"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "path_exists keyboard"
+order += "tztime local"
+order += "run_watch Docker"
+
+volume master {
+	format = " %volume"
+	format_muted = " (%volume)"
+	device = "pulse"
+	mixer = "Master"
+	mixer_idx = 0
+	separator_block_width = 20
+}
+
+wireless wlp2s0 {
+	format_up = " %quality %essid"
+	format_down = " down"
+	separator_block_width = 20
+}
+
+cpu_usage {
+	format = "  %usage"
+	degraded_threshold = 25
+	max_threshold = 75
+	separator = false
+	separator_block_width = 20
+}
+
+cpu_temperature 0 {
+	max_threshold = 70
+	format = " %degrees °C"
+	format_above_threshold = " %degrees °C"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
+	separator_block_width = 20
+}
+
+battery 0 {
+	format = "%status %percentage"
+	# format = "%status %percentage %remaining %emptytime"
+	# format_down = "No battery"
+	status_bat = ""
+	status_chr = ""
+	status_unk = " "
+	status_full = ""
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 30
+	threshold_type = "percentage"
+	integer_battery_capacity = true
+	separator_block_width = 20
+}
+
+path_exists keyboard {
+	path = "/home/cunha/.cache/us-intl"
+	format = " br"
+	format_down = " us"
+	color_good = "#FFFFFF"
+	color_bad = "#FFFFFF"
+}
+
+tztime local {
+	format = "%m/%d %H:%M"
+	separator_block_width = 20
+}
+
+run_watch Docker {
+	format = ""
+	format_down = ""
+	separator = false
+	separator_block_width = 20
+	pidfile = "/var/run/docker.pid"
+	color_good = "#4040FF"
+	color_bad = "#606060"
+}
