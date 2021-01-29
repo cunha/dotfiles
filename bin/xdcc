@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eux
+
+xrandr --output eDP-1 --auto
+# xrandr --output DP-1-1 --pos 0x0 --rotate left --auto
+# sleep 2s
+# xrandr --output DP-1-2 --auto --above eDP-1
+xrandr --dpi 144 --output eDP-1 --pos 640x2160 --auto --output DP-1-2 --pos 0x0 --auto
+sleep 2s
+xrandr --dpi 144
+i3-msg restart
+# pkill -HUP fluxbox

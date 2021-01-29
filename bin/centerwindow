@@ -1,0 +1,37 @@
+#!/bin/bash
+set -eu
+
+ROOTX=$(xwininfo -root | grep Width | grep -E -o "[0-9]+")
+TERMX=646
+
+eval $(xdotool getwindowfocus getwindowgeometry --shell)
+
+if [ $ROOTX -eq 1366 ] ; then
+	CENTER=$(( 1366/2 ))
+	TOP=0
+elif [ $ROOTX -eq 1920 ] ; then
+	CENTER=$(( 1920/2 ))
+	TOP=0
+elif [ $ROOTX -eq 3286 ] ; then
+#    0                1366               3286
+#                     |------------------|
+#  312 |--------------| 1920 1080        |
+#      | 1366 768     |                  |
+#      |--------------|------------------|
+# 1080
+	if [ $X -ge 1366 ] ; then
+		CENTER=$(( 1366 + 1920/2 ))
+		TOP=0
+	else
+		CENTER=$(( 1366/2 ))
+		TOP=312
+	fi
+fi
+
+if [ $1 = "left" ] ; then
+	xdotool getwindowfocus windowmove $(( $CENTER - $WIDTH - 1 )) $TOP
+elif [ $1 = "right" ] ; then
+	xdotool getwindowfocus windowmove $(( $CENTER + 1 )) $TOP
+fi
+
+

@@ -1,0 +1,36 @@
+#!/usr/bin/xdotool
+key --delay 10
+g
+g
+v
+G
+dollar
+backslash
+y
+colon
+q
+exclam
+
+key --delay 100
+Return
+
+key --delay 10
+r
+m
+space
+n
+e
+w
+period
+m
+a
+i
+l
+
+key --delay 100
+Return
+ctrl+d
+
+search --classname Navigator
+windowactivate
+

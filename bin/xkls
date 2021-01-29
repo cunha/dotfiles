@@ -1,0 +1,21 @@
+#!/bin/sh
+set -ex
+
+case "$1" in
+800)
+	xrandr --output VGA-1 --mode 800x600 --auto
+	xrandr --output LVDS-1 --mode 800x600 --auto
+	;;
+768)
+	xrandr --output VGA-1 --mode 1360x768 --auto
+	xrandr --output LVDS-1 --mode 1360x768 --auto
+	;;
+1024|*)
+	xrandr --output HDMI-1 --mode 1024x768 --auto
+	xrandr --output eDP-1 --mode 1024x768 --auto
+	;;
+1920|*)
+	xrandr --output HDMI-1 --mode 1920x1080 --auto
+	xrandr --output eDP-1 --mode 1920x1080 --auto
+	;;
+esac

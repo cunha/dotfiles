@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eux
+
+xrandr --output DP-1-1 --off
+xrandr --output DP-2-1 --off
+xrandr --output DP-1-2 --off
+xrandr --output DP-1-3 --off
+xrandr --output DP-2 --off
+xrandr --output HDMI-1 --off
+xrandr --output HDMI-2 --off
+xrandr --output eDP-1 --auto
+xrandr --dpi 144
+# gsettings set org.gnome.desktop.interface scaling-factor 0
+# gsettings set org.gnome.desktop.interface text-scaling-factor 1
+# gsettings set org.gnome.desktop.interface cursor-size 24
+export GDK_DPI_SCALE=1.5
+i3-msg restart
+# pkill -HUP fluxbox

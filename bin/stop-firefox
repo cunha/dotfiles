@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+
+exec ./stop-application-on-unfocus.py Firefox firefox-esr

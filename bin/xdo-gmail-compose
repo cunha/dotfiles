@@ -1,0 +1,32 @@
+#!/usr/bin/xdotool
+key --delay 100
+ctrl+a
+ctrl+c
+
+key --delay 50
+super+9
+super+w
+
+key --delay 5
+v
+i
+m
+space
+n
+e
+w
+period
+m
+a
+i
+l
+Return
+backslash
+p
+z
+j
+z
+o
+z
+j
+
