@@ -1,0 +1,143 @@
+# unhash -am "*" ;
+# alias date='date +%Y%m%d.%H%M' ;
+alias mdate='date +%Y%m%d.%H%M%S' ;
+alias ls='ls --color=auto --group-directories-first' ;
+alias dir='ls -hl' ;
+alias dirs='dirs -v' ;
+alias clear='' ;
+alias xboard='xboard -size medium -ics -icshost 69.36.243.188 -icsport 5000 -telnet -telnetProgram timeseal'
+alias fzf='fzf-tmux'
+alias xin='xclip -i -selection clipboard'
+
+# check if the machine has a DRAC or IPMI
+alias ipmiinfo="sudo ipmitool sdr elist mcloc"
+
+alias awkcsv="gawk -vFPAT='[^,]*|\"[^\"]*\"'"
+alias wgetsite='wget -r -e robots=off --no-parent --reject "index.html*"'
+alias pdfimgresz='convert -density 200x200 -quality 60 -compress jpeg'
+
+alias dockps='docker ps -a --format="table {{.Names}}\t{{.Command}}\t{{.Status}}"'
+
+peering-dump-configs () {
+    ssh peering.usc.edu -tt "cd /opt/peering/web ; sudo ./django-manage.sh dump-configs"
+    scp -r peering.usc.edu:/opt/peering/web/local/dump-configs .
+}
+
+peering-ssh-bird () {
+    if [[ $1 == "--cli" ]] ; then
+        ssh $2 -tt 'sudo docker exec -ti peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl'
+    elif [[ $1 == "--scp" ]] ; then
+        scp "$2" "$3:"
+        ssh $3 -tt 'sudo docker cp '$2' peeringmux_bird_1:/root/'$2
+    elif [[ $1 == "--summary" ]] ; then
+        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show protocols \"up*\""' \
+                | grep BGP > bird-summary.txt
+        local sessions=$(wc -l < bird-summary.txt)
+        local established=$(grep Established bird-summary.txt | wc -l)
+        echo "$established of $sessions IPv4 sessions established"
+    elif [[ $1 == "--export" ]] ; then
+        echo "[$2] routes exported to $3"
+        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show route export '$3'"'
+    else
+        ssh $1 -tt 'sudo docker exec -ti peeringmux_bird_1 bash'
+    fi
+}
+
+peering-ssh-bird6 () {
+    if [[ $1 == "--cli" ]] ; then
+        ssh $2 -tt 'sudo docker exec -ti peeringmux_bird6_1 birdc6 -s /var/run/peering/bird6/bird6.ctl'
+    elif [[ $1 == "--scp" ]] ; then
+        scp "$2" "$3:"
+        ssh $3 -tt 'sudo docker cp '$2' peeringmux_bird6_1:/root/'$2
+    elif [[ $1 == "--summary" ]] ; then
+        ssh $2 'sudo docker exec peeringmux_bird6_1 birdc -s /var/run/peering/bird6/bird6.ctl "show protocols \"up*\""' \
+                | grep BGP > bird-summary.txt
+        local sessions=$(wc -l < bird-summary.txt)
+        local established=$(grep Established bird-summary.txt | wc -l)
+        echo "$established of $sessions IPv6 sessions established"
+    elif [[ $1 == "--export" ]] ; then
+        echo "[$2] routes exported to $3"
+        ssh $2 'sudo docker exec peeringmux_bird6_1 birdc -s /var/run/peering/bird6/bird6.ctl "show route export '$3'"'
+    else
+        ssh $1 -tt 'sudo docker exec -ti peeringmux_bird6_1 bash'
+    fi
+}
+
+transfer() {
+    # check arguments
+    if [ $# -eq 0 ];
+    then
+        echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"
+        return 1
+    fi
+
+    # get temporarily filename, output is written to this file show progress can be showed
+    tmpfile=$( mktemp -t transferXXX )
+
+    # upload stdin or file
+    file=$1
+
+    if tty -s;
+    then
+        basefile=$(basename "$file" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
+
+        if [ ! -e $file ];
+        then
+            echo "File $file doesn't exists."
+            return 1
+        fi
+
+        if [ -d $file ];
+        then
+            # zip directory and transfer
+            zipfile=$( mktemp -t transferXXX.zip )
+            cd $(dirname $file) && zip -r -q - $(basename $file) >> $zipfile
+            curl --progress-bar --upload-file "$zipfile" "https://transfer.sh/$basefile.zip" >> $tmpfile
+            rm -f $zipfile
+        else
+            # transfer file
+            curl --progress-bar --upload-file "$file" "https://transfer.sh/$basefile" >> $tmpfile
+        fi
+    else
+        # transfer pipe
+        curl --progress-bar --upload-file "-" "https://transfer.sh/$file" >> $tmpfile
+    fi
+
+    # cat output link
+    cat $tmpfile
+
+    # cleanup
+    rm -f $tmpfile
+}
+
+DEVM_NAME=devops
+DEVM_ZONE=us-east1-b
+GINSTANCES="gcloud --project=devops-221314 compute instances"
+
+devm () {
+    case $1 in ;
+    --ip)
+        ${=GINSTANCES} describe "--zone=$DEVM_ZONE" "$DEVM_NAME" \
+                | shyaml get-value networkInterfaces.0.accessConfigs.0.natIP
+        ;;
+    --stop)
+        ${=GINSTANCES} stop "--zone=$DEVM_ZONE" "$DEVM_NAME"
+        ;;
+    --start)
+        ${=GINSTANCES} start "--zone=$DEVM_ZONE" "$DEVM_NAME"
+        devm --config
+        ;;
+    --config)
+        echo -n "rewriting .ssh/config..."
+        local IP=$(devm --ip)
+        while [[ -z $IP ]] ; do
+            echo "."
+            sleep 2s
+            IP=$(devm --ip)
+        done
+        sed -i '/Host devops/{N; s/Host devops\n\tHostName [0-9.]\+/Host devops\n\tHostName '$IP'/}' .ssh/config
+        ;;
+    *)
+        echo "unknown devm operation: $1"
+    esac
+}

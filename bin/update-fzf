@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+FZF_BASE=$HOME/.config/zsh/fzf.git/
+
+(cd $HOME ; mr update)
+$FZF_BASE/install --64 --key-bindings --completion --no-update-rc
+rm -f $HOME/.fzf.bash
+
+

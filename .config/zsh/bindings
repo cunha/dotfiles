@@ -1,0 +1,124 @@
+# Reduce timeout for ESC/Meta chaining.
+KEYTIMEOUT=1
+
+WORDCHARS='*?_-.,[]~=&;!#$%^/(){}<>'
+
+# Disable C-q C-s flow control:
+setopt noflowcontrol
+
+autoload -U select-word-style
+
+insert-last-word-forward() zle insert-last-word 1
+zle -N insert-last-word-forward
+
+backward-kill-bashword () {
+	select-word-style bash
+	zle backward-kill-word
+	select-word-style normal
+}
+zle -N backward-kill-bashword
+
+kill-bashword () {
+	select-word-style bash
+	zle kill-word
+	select-word-style normal
+}
+zle -N kill-bashword
+
+backward-bashword () {
+	select-word-style bash
+	zle backward-word
+	select-word-style normal
+}
+zle -N backward-bashword
+
+forward-bashword () {
+	select-word-style bash
+	zle forward-word
+	select-word-style normal
+}
+zle -N forward-bashword
+
+function prepend-sudo {
+  if [[ $BUFFER != "sudo "* ]]; then
+      BUFFER="sudo $BUFFER"
+      CURSOR+=5
+  fi
+}
+zle -N prepend-sudo
+bindkey -M emacs "^[q" prepend-sudo
+bindkey -M viins "^[q" prepend-sudo
+bindkey -M vicmd "qs" prepend-sudo
+
+bindkey -M emacs '^H' backward-delete-word
+case $TERM in
+rxvt-unicode*)
+    bindkey -M emacs '^[Od' backward-word
+    bindkey -M emacs '^[Oc' forward-word
+    bindkey -M emacs '^[^[[D' backward-bashword
+    bindkey -M emacs '^[^[[C' forward-bashword
+    bindkey -M emacs '^[[3^' kill-word
+    bindkey -M emacs '^[^[[3~' kill-bashword
+    bindkey -M emacs '^[[33~' backward-kill-bashword
+    bindkey -M viins '^[Od' backward-word
+    bindkey -M viins '^[Oc' forward-word
+    bindkey -M viins '^[^[[D' backward-bashword
+    bindkey -M viins '^[^[[C' forward-bashword
+    bindkey -M viins '^[[3^' kill-word
+    bindkey -M viins '^[^[[3~' kill-bashword
+    bindkey -M viins '^[[33~' backward-kill-bashword
+    ;;
+tmux*|xterm*)
+    bindkey -M emacs '^[[1;5D' backward-word
+    bindkey -M emacs '^[[1;5C' forward-word
+    bindkey -M emacs '^[[1;3D' backward-bashword
+    bindkey -M emacs '^[[1;3C' forward-bashword
+    bindkey -M emacs '^[[3;5~' kill-word
+    bindkey -M emacs '^[[3;3~' kill-bashword
+    bindkey -M emacs '^[[H' beginning-of-line
+    bindkey -M emacs '^[[F' end-of-line
+    bindkey -M emacs '^[^?' backward-kill-bashword
+    bindkey -M viins '^[[1;5D' backward-word
+    bindkey -M viins '^[[1;5C' forward-word
+    bindkey -M viins '^[[1;3D' backward-bashword
+    bindkey -M viins '^[[1;3C' forward-bashword
+    bindkey -M viins '^[[3;5~' kill-word
+    bindkey -M viins '^[[3;3~' kill-bashword
+    bindkey -M viins '^[[H' beginning-of-line
+    bindkey -M viins '^[[F' end-of-line
+    bindkey -M viins '^[^?' backward-kill-bashword
+    ;;
+    # tmux on urxvt:
+    # bindkey -M emacs '^[[1;5D' backward-word
+    # bindkey -M emacs '^[[1;5C' forward-word
+    # bindkey -M emacs '^[^[[D' backward-bashword
+    # bindkey -M emacs '^[^[[C' forward-bashword
+    # bindkey -M emacs '^[[3;5~' kill-word
+    # bindkey -M emacs '^[^[[3~' kill-bashword
+    # bindkey -M emacs '^[[18;2~' backward-kill-bashword
+esac
+# temporary
+bindkey -M emacs '^w' beep
+bindkey -M viins '^w' beep
+
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^P' insert-last-word
+bindkey -M viins '^N' insert-last-word-forward
+bindkey -M viins '^O' copy-prev-shell-word
+bindkey -M viins '^K' push-line
+bindkey -M vicmd '^K' push-line
+bindkey -M vicmd v edit-command-line
+
+bindkey -M isearch '^N' history-incremental-search-forward
+bindkey -M isearch '^R' history-incremental-search-backward
+bindkey -M isearch '^P' history-incremental-search-backward
+bindkey -M isearch '\e' accept-search
+
+# autoload run-help
+# bindkey -M viins '^N' run-help
+# bindkey -M vicmd '^N' run-help
+
+# bindkey -v ;
+bindkey -e ;

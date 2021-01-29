@@ -1,0 +1,38 @@
+function zsh-start-ssh-agent {
+    echo "starting new ssh-agent" ;
+    ssh-agent | sed 's/^echo/#echo/' > $ZSH_SSH_AGENT_ENV ;
+    chmod 600 $ZSH_SSH_AGENT_ENV ;
+    . $ZSH_SSH_AGENT_ENV > /dev/null ;
+}
+
+function zsh-ssh-agent {
+    if [[ -n $SSH_AUTH_SOCK ]] ; then
+        echo "sock: $SSH_AUTH_SOCK, continuing"
+        ;
+    elif [[ -f $ZSH_SSH_AGENT_ENV ]] ; then
+        . $ZSH_SSH_AGENT_ENV > /dev/null
+        if ! ( ps $SSH_AGENT_PID | grep ssh-agent > /dev/null ) ; then
+            echo "agent not running with PID $SSH_AGENT_PID; restarting"
+            zsh-start-ssh-agent
+        fi
+    fi
+#     else
+#         if [[ ! -o interactive ]] ; then zsh-start-ssh-agent ; fi ;
+#     fi
+    if [[ -o interactive ]] ; then
+        echo "bound to SSH agent on socket $SSH_AUTH_SOCK; keys:"
+        ssh-add -l
+    fi
+}
+
+function update_ssh_auth_sock {
+	[[ -e $SSH_AUTH_SOCK ]] && return
+	eval $(tmux show-environment SSH_AUTH_SOCK)
+	eval $(tmux show-environment DISPLAY)
+	echo "$fg[red]SSH_AUTH_SOCK DISPLAY updated.$terminfo[sgr0]"
+}
+
+# This functionality no longer needed, we now chain the SSH agent:
+# export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
+# zsh-ssh-agent ;
+

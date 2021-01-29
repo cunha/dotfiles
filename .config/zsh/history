@@ -1,0 +1,22 @@
+HISTFILE="$HOME/.cache/zhistory"
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt hist_ignore_all_dups ;
+# setopt share_history ; # pretty bad for TMUX
+
+function zshaddhistory {
+	if [[ ! -w . ]] ; then return ; fi
+	currdir=$(pwd)
+	if [[ $currdir =~ '^/home/cunha/Dropbox' ]] ; then return ; fi
+	if [[ $currdir =~ '^/home/cunha/ownCloud' ]] ; then return ; fi
+	if [[ $currdir =~ '^/home/cunha/GDrive' ]] ; then return ; fi
+	if [[ $currdir =~ '^/home/cunha/Desktop' ]] ; then return ; fi
+	touch .zshlocal
+	echo -n $1 >> .zshlocal
+	sz=$(stat --format "%s" .zshlocal)
+	if [[ $sz -gt 1048576 ]] ; then
+		tail --bytes 786432 .zshlocal > .zshlocal.tmp
+		mv .zshlocal.tmp .zshlocal
+	fi
+}

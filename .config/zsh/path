@@ -1,0 +1,27 @@
+typeset -U path
+path=( /sbin /usr/sbin $path )
+
+# typeset -TU PYTHONPATH pythonpath
+# export PYTHONPATH
+# pythonpath=( $HOME/libs/python/ $pythonpath )
+
+# typeset -TU LD_LIBRARY_PATH libpath
+# export LD_LIBRARY_PATH
+# libpath=( $HOME/work/libs/lib/ $libpath )
+
+# if command -v rustc > /dev/null ; then
+# 	export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+#   path=( $HOME/.cargo/bin $path )
+# fi
+
+if [[ -x $HOME/bin/go/bin/go ]] ; then
+	export GOROOT=$HOME/bin/go
+	export GOPATH=$HOME/go/
+	path=( $GOROOT/bin $path )
+fi
+
+if [[ -d $HOME/.cargo/bin ]] ; then
+	path=( $HOME/.cargo/bin $path )
+fi
+
+path=( $HOME/bin $HOME/.local/bin $path )

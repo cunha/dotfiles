@@ -1,0 +1,7 @@
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
+setopt complete_aliases
+
+unsetopt beep
+

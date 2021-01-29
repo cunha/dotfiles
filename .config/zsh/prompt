@@ -1,0 +1,59 @@
+function settitle { echo -ne "\e]0;$1\007" ; }
+
+autoload -Uz vcs_info
+zstyle 'vcs_info:*' enable git cvs svn hg
+zstyle ':vcs_info:*' actionformats '%F{magenta}%b:%a%f'
+zstyle ':vcs_info:*' formats '%F{magenta}%b%f'
+zstyle ':vcs_info:*' disable-patterns "$HOME/sshfs/*"
+
+function set-prompt {
+	if [[ $KEYMAP = vicmd ]] ; then
+		PS1KML="{" ;
+		PS1KMR="}" ;
+	else
+		PS1KML="[" ;
+		PS1KMR="]" ;
+	fi ;
+	PROMPT="%{$terminfo[sgr0]%}$PS1KML"
+	PROMPT+="%1(j.%F{yellow}%j%f .)"
+
+	if [[ $TMUX != "" ]] ; then
+		WINDOW=$(tmux display-message -p "#I")
+	fi ;
+	if [[ $WINDOW != "" ]] ; then
+		PROMPT+="$WINDOW:"
+	fi ;
+	PROMPT+="%F{red}%m%f:%F{blue}%~%f"
+	if [[ ! -z $vcs_info_msg_0_ ]] ; then
+		PROMPT+=" ${vcs_info_msg_0_}"
+	fi
+	PROMPT+="$PS1KMR"
+	PROMPT+="$PROMPT_TERM_COLOR%# %f"
+
+}
+
+function zle-line-init zle-keymap-select {
+	set-prompt ;
+	zle reset-prompt ;
+}
+
+autoload edit-command-line ;
+autoload colors zsh/terminfo ;
+colors ;
+
+zle -N zle-line-init ;
+zle -N zle-keymap-select ;
+zle -N edit-command-line ;
+
+# autoload -Uz vcs_info ;
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:*:prompt:*' check-for-changes true
+# zstyle ':vcs_info:git:prompt:*' stagedstr '*'
+# zstyle ':vcs_info:git:prompt:*' unstagedstr '*'
+# zstyle ':vcs_info:git:prompt:*' formats "%b"
+# zstyle ':vcs_info:git:prompt:*' actionformats "%b|%a"
+
+PS1KML="[" ;
+PS1KMR="]" ;
+set-prompt ;
+
