@@ -1,0 +1,42 @@
+set -g status-bg 'colour53'
+set -g status-left '#[fg=colour252,bg=colour57] #S '
+set -g status-right '#[fg=colour252,bg=colour57] %H:%M '
+setw -g window-status-format '#[fg=colour252,bg=colour53]  #I  #[fg=colour250,bg=colour53]#W  '
+setw -g window-status-current-format '#[fg=colour231,bg=colour31,bold]  #I  #W  '
+
+# smart pane switching with awareness of vim splits (tmux-vim-navigator):
+is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'
+# disabling -n C-arrow bindings because PuTTY does not do C-arrows:
+bind -n h if-shell "$is_vim" "send-keys C-a h" "select-pane -L"
+bind -n j if-shell "$is_vim" "send-keys C-a j" "select-pane -D"
+bind -n k if-shell "$is_vim" "send-keys C-a k" "select-pane -U"
+bind -n l if-shell "$is_vim" "send-keys C-a l" "select-pane -R"
+
+bind -n s choose-tree
+bind -n d detach-client
+bind -n z resize-pane -Z
+bind -n [ copy-mode
+bind -n p paste-buffer
+
+bind -n c new-window
+bind -n K kill-window
+bind -n % split-window -h -c "#{pane_current_path}"
+bind -n '"' split-window -c "#{pane_current_path}"
+
+bind -n 1 select-window -t 1
+bind -n 2 select-window -t 2
+bind -n 3 select-window -t 3
+bind -n 4 select-window -t 4
+bind -n 5 select-window -t 5
+bind -n 6 select-window -t 6
+bind -n 7 select-window -t 7
+bind -n 8 select-window -t 8
+bind -n 9 select-window -t 9
+bind -n 0 select-window -t 10
+bind -n \; previous-window
+bind -n "'" next-window
+
+bind -n : command-prompt
+
+bind -n i source "/home/cunha/.config/tmux/insert-mode"
+bind -n F10 source "/home/cunha/.config/tmux/insert-mode"

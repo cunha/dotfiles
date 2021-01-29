@@ -1,0 +1,39 @@
+set -g status-bg 'colour234'
+set -g status-left '#[fg=colour252,bg=colour52] #S '
+set -g status-right '#[fg=colour252,bg=colour52] %H:%M '
+setw -g window-status-format '#[fg=colour252,bg=colour234]  #I  #[fg=colour250,bg=colour234]#W  '
+setw -g window-status-current-format '#[fg=colour231,bg=colour31,bold]  #I  #W  '
+
+unbind -n h
+unbind -n j
+unbind -n k
+unbind -n l
+
+unbind -n s
+unbind -n z
+unbind -n d
+unbind -n [
+unbind -n p
+
+unbind -n c
+unbind -n K
+unbind -n %
+unbind -n '"'
+
+unbind -n 1
+unbind -n 2
+unbind -n 3
+unbind -n 4
+unbind -n 5
+unbind -n 6
+unbind -n 7
+unbind -n 8
+unbind -n 9
+unbind -n 0
+unbind -n \;
+unbind -n "'"
+
+unbind -n :
+
+unbind -n i
+bind -n F10 source /home/cunha/.config/tmux/command-mode

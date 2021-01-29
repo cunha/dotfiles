@@ -1,0 +1,8 @@
+set -qg prefix C-b
+set -g status-left '#[fg=colour244,bg=colour238] #S '
+set -g status-right '#[fg=colour244,bg=colour238] %H:%M '
+setw -g window-status-format '#[fg=colour238,bg=colour238]  #I  #[fg=colour238,bg=colour238]#W  '
+setw -g window-status-current-format '#[fg=colour244,bg=colour238]  #I  #W  '
+run-shell "rm -f /home/cunha/.config/tmux/toggle-tmux"
+run-shell "ln -s /home/cunha/.config/tmux/outer-tmux /home/cunha/.config/tmux/toggle-tmux"
+
