@@ -1,0 +1,216 @@
+output DP-1 {
+        pos 2160 832
+        background #000022 solid_color
+}
+output DP-2 {
+        pos 0 0
+        transform normal
+        transform 270
+        # output background <file> center
+        background #000020 solid_color
+}
+
+# Get keyboard with swaymsg -t get_inputs | grep -C3 keyboard
+input "type:keyboard" {
+    xkb_layout "us,us"
+    xkb_variant ",intl"
+    xkb_options "shift:both_capslock,grp:win_space_toggle"
+}
+
+seat seat0 xcursor_theme default 48
+
+default_border pixel 2
+hide_edge_borders smart
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #000000 #000000 #ff0000   #0080ff
+client.focused_inactive #000000 #000000 #000000 #ff0000   #222222
+client.unfocused        #000000 #000000 #000000 #ff0000   #222222
+client.urgent           #000000 #000000 #000000 #ff0000   #ff0000
+client.placeholder      #000000 #000000 #000000 #ff0000   #000000
+client.background       #ffffff
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango: Roboto, Font Awesome 5 Free, Font Awesome 5 Brands
+
+floating_modifier $mod
+
+bindsym $mod+q exec --no-startup-id exec kitty
+# bindsym $mod+w exec --no-startup-id exec urxvt
+# bindsym $mod+q exec --no-startup-id exec urxvt -fn "xft:Source Code Pro:style=medium:size=13"
+# bindsym $mod+o exec --no-startup-id /home/cunha/bin/edit-in-vim.sh
+
+# bindsym $mod+F1 exec --no-startup-id kitty pamix
+bindsym $mod+F1 exec --no-startup-id pavucontrol
+bindsym $mod+F10 exec --no-startup-id blueman-manager
+
+
+mode "exit: [r]eload, re[s]tart, e[x]it, reboo[t], shutdow[n]" {
+  bindsym r reload
+  bindsym s restart
+  bindsym x exit
+  bindsym t exec systemctl reboot
+  bindsym n exec systemctl shutdown
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+bindsym $mod+Escape mode "exit: [r]eload, re[s]tart, e[x]it, reboo[t], shutdow[n]"
+
+bindsym $mod+slash exec /home/cunha/bin/delay-monitor-off.sh
+bindsym $mod+BackSpace exec --no-startup-id /home/cunha/bin/swapintl.sh
+bindsym --release $mod+equal exec slock
+
+# bindsym XF86AudioPlay exec "mocp --play"
+# bindsym XF86AudioStop exec "mocp --stop"
+# bindsym XF86AudioNext exec "mocp --next"
+# bindsym XF86AudioPrev exec "mocp --prev"
+# bindsym XF86AudioMute exec "amixer sset Master,0 toggle"
+# bindsym XF86AudioRaiseVolume exec "amixer sset Master,0 5+"
+# bindsym XF86AudioLowerVolume exec "amixer sset Master,0 5-"
+bindsym XF86AudioMute exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-mute toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-volume +3%
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-volume -3%
+
+bindsym XF86MonBrightnessUp exec /home/cunha/bin/bright up
+bindsym XF86MonBrightnessDown exec /home/cunha/bin/bright down
+
+bindsym $mod+F4 kill
+bindsym $mod+d exec dmenu_run
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+left focus left
+bindsym $mod+down focus down
+bindsym $mod+up focus up
+bindsym $mod+right focus right
+
+# bindsym $mod+Shift+h move left
+# bindsym $mod+Shift+j move down
+# bindsym $mod+Shift+k move up
+# bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move workspace to output left
+bindsym $mod+Shift+j move workspace to output down
+bindsym $mod+Shift+k move workspace to output up
+bindsym $mod+Shift+l move workspace to output right
+
+bindsym $mod+semicolon split toggle
+
+bindsym $mod+z fullscreen toggle
+
+bindsym Print exec --no-startup-id scrot -s latest.png
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $key-super+space exec --no-startup-id pkill -MINRT+1 waybar
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+# bindsym $mod+0 exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Chromium\\" \\"workspace 0; exec --no-startup-id chromium --enable-remote-extensions\\""
+bindsym $mod+1 exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Firefox-esr\\" \\"workspace 1; exec --no-startup-id firefox-esr\\""
+bindsym $mod+2 workspace 2
+bindsym $mod+tab exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Code\\" \\"exec --no-startup-id code\\""
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+# move focused container to workspace
+bindsym $mod+Shift+0 move container to workspace 0
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        # back to normal: Enter or Escape
+        bindsym Mod4+r mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+m focus floating; mode "moveit"
+mode "moveit" {
+    bindsym k move up 20px
+    bindsym h move left 20px
+    bindsym j move down 20px
+    bindsym l move right 20px
+    bindsym 0 move position 0px 0px
+    bindsym Up move up 20px
+    bindsym Left move left 20px
+    bindsym Down move down 20px
+    bindsym Right move right 20px
+    bindsym Mod4+m mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bar {
+        swaybar_command waybar
+}
+
+# Startup applications
+exec --no-startup-id gsettings set org.gnome.desktop.interface scaling-factor 1.5
+
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/gnome-settings-daemon'
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/pasystray'
+
+exec --no-startup-id i3-msg 'exec exec /usr/bin/udiskie --tray'
+exec --no-startup-id i3-msg 'exec exec /usr/bin/blueman-applet'
+exec --no-startup-id i3-msg 'exec exec /usr/bin/nm-applet'
+exec --no-startup-id i3-msg 'exec exec /usr/bin/insync start'
+
+exec --no-startup-id i3-msg 'exec exec /usr/bin/redshift -c /home/cunha/.config/redshift.conf'
+exec --no-startup-id i3-msg 'exec exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1'
+
+
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/owncloud --logfile /home/cunha/.cache/owncloud.log'
+# exec --no-startup-id i3-msg 'exec /home/cunha/bin/dropbox.py start'
+
+# for_window [title='ssh-agent'] floating enable
+# exec --no-startup-id i3-msg 'exec exec urxvt -fs 16 -e /usr/bin/zsh -c ssh-add .ssh/muxops_id_rsa .ssh/id_rsa'
+
+assign [class="VirtualBox"] 7
+# assign [class="Code"] 9
+# assign [class="Spotify"] 8
+# for_window [class="VirtualBox"] floating enable
+# for_window [class="Steam"] floating enable

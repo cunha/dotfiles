@@ -1,35 +1,19 @@
 ---
-# - name: Add stretch-backports to APT sources
-#   become: true
-#   apt_repository:
-#     repo: "deb http://deb.debian.org/debian/ {{ansible_distribution_release}}-backports main non-free-contrib"
-#     filename: backports
-#     state: present
-#     update_cache: yes
-
-# - name: Set repo preferences
-#   become: true
-#   copy:
-#     src: dist.prefs
-#     dest: /etc/apt/preferences.d/dist.prefs
-#     backup: yes
-
-- name: Install needed packages
+- name: Install UI packages
   become: true
   become_user: root
   apt:
     name: "{{ cunha_ui_packages }}"
     state: latest
-    update_cache: yes
+    cache_valid_time: 600
 
-# - name: Install backported packages
-#   become: true
-#   become_user: root
-#   apt:
-#     name: "{{ cunha_backported_packages }}"
-#     state: latest
-#     default_release: "{{ansible_distribution_release}}-backports"
-#     cache_valid_time: 600
+- name: Install optional UI packages
+  become: true
+  become_user: root
+  apt:
+    name: "{{ cunha_ui_packages_nofail }}"
+    state: latest
+    cache_valid_time: 600
 
 - name: Set shell to zsh
   become: true
@@ -44,22 +28,22 @@
     state: directory
     mode: 0755
 
-- name: Initialize vcsh/mr repository
-  shell: vcsh init mr
-  args:
-    creates: /home/cunha/.config/vcsh/repo.d/mr.git/config
+# - name: Initialize vcsh/mr repository
+#   shell: vcsh init mr
+#   args:
+#     creates: /home/cunha/.config/vcsh/repo.d/mr.git/config
 
-- name: Add remote for vcsh/mr
-  shell: grep origin /home/cunha/.config/vcsh/repo.d/mr.git/config || vcsh mr remote add origin git@github.com:cunha/dotmr.git
+# - name: Add remote for vcsh/mr
+#   shell: grep origin /home/cunha/.config/vcsh/repo.d/mr.git/config || vcsh mr remote add origin git@github.com:cunha/dotmr.git
 
-- name: Pull vcsh/mr
-  shell: vcsh mr pull origin master
+# - name: Pull vcsh/mr
+#   shell: vcsh mr pull origin master
 
-- name: Set upstream for vcsh/mr
-  shell: vcsh mr branch --set-upstream-to=origin/master master
+# - name: Set upstream for vcsh/mr
+#   shell: vcsh mr branch --set-upstream-to=origin/master master
 
-- name: Fetching all repositories
-  shell: mr update
+# - name: Fetching all repositories
+#   shell: mr update
 
-- name: Updating FZF
-  command: /home/cunha/bin/update-fzf
+# - name: Updating FZF
+#   command: /home/cunha/bin/update-fzf
