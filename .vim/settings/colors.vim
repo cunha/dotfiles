@@ -9,7 +9,7 @@ let g:solarized_visibility = "low"
 let g:solarized_hitrail = 0
 let g:solarized_menu = 0
 colorscheme solarized
-set background=light
+set background=dark
 syntax on
 
 " colorscheme psycho

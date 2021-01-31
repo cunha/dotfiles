@@ -5,7 +5,7 @@ compinit -d $HOME/.cache/zcompdump ;
 
 # From /usr/share/doc/fzf/README.Debian
 source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# source /usr/share/doc/fzf/examples/completion.zsh  (does not exist on buster?)
 # Deprecated by using fzf from Debian repos: source $HOME/.fzf.zsh
 
 zstyle ':completion:*:*:gnuplot:*:*' file-patterns '*.plot' '*'
