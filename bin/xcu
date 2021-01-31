@@ -1,8 +1,0 @@
-#!/bin/sh
-set -eux
-
-xrandr --output eDP-1 --dpi 144 --auto
-# xrandr --output HDMI-1 --above eDP-1 --dpi 96 --auto
-xrandr --output DP-1-2 --above eDP-1 --dpi 144 --auto
-i3-msg restart
-# pkill -HUP fluxbox

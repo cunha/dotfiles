@@ -1,6 +1,0 @@
-#!/bin/sh
-set -eux
-# 3840x2160
-# 2560x1440
-xrandr --dpi 144 --output eDP-1 --pos 640x2160 --auto --output DP-2 --pos 0x0 --auto
-i3-msg restart
