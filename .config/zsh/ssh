@@ -15,10 +15,9 @@ function zsh-ssh-agent {
             echo "agent not running with PID $SSH_AGENT_PID; restarting"
             zsh-start-ssh-agent
         fi
+    else
+        zsh-start-ssh-agent
     fi
-#     else
-#         if [[ ! -o interactive ]] ; then zsh-start-ssh-agent ; fi ;
-#     fi
     if [[ -o interactive ]] ; then
         echo "bound to SSH agent on socket $SSH_AUTH_SOCK; keys:"
         ssh-add -l
@@ -33,6 +32,6 @@ function update_ssh_auth_sock {
 }
 
 # This functionality no longer needed, we now chain the SSH agent:
-# export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
-# zsh-ssh-agent ;
+export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
+zsh-ssh-agent ;
 
