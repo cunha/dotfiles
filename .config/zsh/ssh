@@ -32,6 +32,6 @@ function update_ssh_auth_sock {
 }
 
 # This functionality no longer needed, we now chain the SSH agent:
-export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
-zsh-ssh-agent ;
+# export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
+# zsh-ssh-agent ;
 
