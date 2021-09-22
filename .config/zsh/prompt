@@ -27,6 +27,9 @@ function set-prompt {
 	if [[ ! -z $vcs_info_msg_0_ ]] ; then
 		PROMPT+=" ${vcs_info_msg_0_}"
 	fi
+	if [[ ! -z $VIRTUAL_ENV ]] ; then
+		PROMPT+=" %F{green}${VIRTUAL_ENV##*/}%f"
+	fi
 	PROMPT+="$PS1KMR"
 	PROMPT+="$PROMPT_TERM_COLOR%# %f"
 
