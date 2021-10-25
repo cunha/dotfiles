@@ -7,8 +7,5 @@ disable=C0111,C0103,C0301,C0321,C0326,C0330,R0801,R0903,R0911,R0913,R0914,R0902,
 
 [BASIC]
 
-[FORMAT]
-indent-string="\t"
-
 [VARIABLES]
 dummy-variables-rgx=_|dummy
