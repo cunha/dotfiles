@@ -6,7 +6,6 @@ alias dir='ls -hl' ;
 alias dirs='dirs -v' ;
 alias clear='' ;
 alias xboard='xboard -size medium -ics -icshost 69.36.243.188 -icsport 5000 -telnet -telnetProgram timeseal'
-alias dotgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias fzf='fzf-tmux'
 alias xin='xclip -i -selection clipboard'
 
@@ -31,10 +30,10 @@ peering-ssh-bird () {
         scp "$2" "$3:"
         ssh $3 -tt 'sudo docker cp '$2' peeringmux_bird_1:/root/'$2
     elif [[ $1 == "--summary" ]] ; then
-        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show protocols \"up*\""' \
-                | grep BGP > bird-summary.txt
-        local sessions=$(wc -l < bird-summary.txt)
-        local established=$(grep Established bird-summary.txt | wc -l)
+        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show protocols all \"up*\""' \
+                > bird-summary.txt
+        local sessions=$(grep Description bird-summary.txt | wc -l)
+        local established=$(grep -Ee "BGP state.*Established" bird-summary.txt | wc -l)
         echo "$established of $sessions IPv4 sessions established"
     elif [[ $1 == "--export" ]] ; then
         echo "[$2] routes exported to $3"
