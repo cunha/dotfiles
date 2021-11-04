@@ -116,7 +116,7 @@ DEVM_ZONE=us-east1-b
 GINSTANCES="gcloud --project=devops-221314 compute instances"
 
 devm () {
-    case $1 in ;
+    case $1 in
     --ip)
         ${=GINSTANCES} describe "--zone=$DEVM_ZONE" "$DEVM_NAME" \
                 | shyaml get-value networkInterfaces.0.accessConfigs.0.natIP
