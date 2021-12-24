@@ -15,35 +15,41 @@
     state: latest
     cache_valid_time: 600
 
-- name: Set shell to zsh
-  become: true
-  become_user: root
-  user:
-    name: cunha
-    shell: /usr/bin/zsh
-
 - name: Create cache directory
   file:
     path: /home/cunha/.cache
     state: directory
     mode: 0755
 
-# - name: Initialize vcsh/mr repository
-#   shell: vcsh init mr
-#   args:
-#     creates: /home/cunha/.config/vcsh/repo.d/mr.git/config
+- name: Initialize .dotfiles
+  shell: git init --bare /home/cunha/.dotfiles
+  args:
+    creates: /home/cunha/.dotfiles
 
-# - name: Add remote for vcsh/mr
-#   shell: grep origin /home/cunha/.config/vcsh/repo.d/mr.git/config || vcsh mr remote add origin git@github.com:cunha/dotmr.git
+- name: Disable showUntrackedFiles
+  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha config status.showUntrackedFiles no
 
-# - name: Pull vcsh/mr
-#   shell: vcsh mr pull origin master
+- name: Add git@github.com:cunha/dotfiles.git as remote
+  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha remote add origin git@github.com:cunha/dotfiles.git
 
-# - name: Set upstream for vcsh/mr
-#   shell: vcsh mr branch --set-upstream-to=origin/master master
+- name: Fetch dotfiles repo contents
+  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha fetch
 
-# - name: Fetching all repositories
-#   shell: mr update
+- name: Removing commonly created files/directories before checkout
+  file:
+    path: "/home/cunha/{{item}}"
+    state: absent
+  with_items: "{{ paths_to_remove_before_checkout }}"
+
+- name: Checking out dotfiles
+  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha checkout master
+
+- name: Set shell to zsh
+  become: true
+  become_user: root
+  user:
+    name: cunha
+    shell: /usr/bin/zsh
 
 # - name: Updating FZF
 #   command: /home/cunha/bin/update-fzf
