@@ -17,3 +17,28 @@ cunha_ui_packages_nofail:
   - fzf
   - fasd
   - tmux-plugin-manager
+  - xclip
+
+paths_to_remove_before_checkout:
+  - bin
+  - .config
+  - .local/share/fonts
+  - .local/share/applications
+  - .ansible.cfg
+  - .gdbinit
+  - .gitconfig
+  - .gvimrc
+  - .inputrc
+  - .irssi
+  - .pinerc
+  - .pylintrc
+  - .screenrc
+  - .tmux.conf
+  - .vim
+  - .vimrc
+  - .xsession
+  - .xprofile
+  - .XCompose
+  - .Xresources
+  - .zshenv
+  - .zshrc
