@@ -1,2 +1,3 @@
 DEBEMAIL="cunha@dcc.ufmg.br"
 DEBFULLNAME="Italo Cunha"
+umask 007
