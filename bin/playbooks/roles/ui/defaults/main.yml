@@ -11,9 +11,10 @@ cunha_ui_packages:
   - tmux
   - man
   - manpages-dev
+  - wget
 
 cunha_ui_packages_nofail:
-  - manpages-posix-dev  # requires contrib/non-free repos
+  # - manpages-posix-dev  # requires contrib/non-free repos
   - fzf
   - fasd
   - tmux-plugin-manager

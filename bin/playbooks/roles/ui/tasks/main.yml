@@ -31,6 +31,7 @@
 
 - name: Add git@github.com:cunha/dotfiles.git as remote
   shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha remote add origin git@github.com:cunha/dotfiles.git
+  ignore_errors: yes
 
 - name: Fetch dotfiles repo contents
   shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha fetch
