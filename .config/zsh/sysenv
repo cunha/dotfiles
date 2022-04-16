@@ -1,3 +1,4 @@
 DEBEMAIL="cunha@dcc.ufmg.br"
 DEBFULLNAME="Italo Cunha"
-umask 007
+# uncomment to prevent others from reading our files:
+# umask 007
