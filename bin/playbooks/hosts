@@ -1,7 +1,7 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
-# localhost ansible_connection=local
+localhost ansible_connection=local
 # joe-tlhop
 # joe1
 # joe2
@@ -18,11 +18,7 @@
 # zeus
 # disco1
 # disco2
-vcm0
-vcm1
-vcm2
-vcm3
-vcm4
+# vcm1
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
