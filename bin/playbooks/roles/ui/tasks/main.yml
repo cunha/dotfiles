@@ -52,5 +52,12 @@
     name: cunha
     shell: /usr/bin/zsh
 
+- name: Cloning dein into .vim/plugins
+  git:
+    repo: git@github.com:Shougo/dein.vim.git
+    dest: /home/cunha/.vim/plugins/dein.vim
+    update: yes
+    clone: yes
+
 # - name: Updating FZF
 #   command: /home/cunha/bin/update-fzf
