@@ -1,6 +1,10 @@
 #!/bin/bash
 
-server=$(hostname)
+if [[ $# -ge 1 ]] ; then
+    server=$1
+else
+    server=$(hostname)
+fi
 
 if [[ -s $HOME/.ssh/config ]] ; then
     if ! grep "Host $server" $HOME/.ssh/config &> /dev/null ; then
