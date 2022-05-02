@@ -1,6 +1,6 @@
 set nocompatible
 
-set runtimepath+=/home/cunha/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/plugins/dein.vim/
 call dein#begin(expand('~/.cache/dein'))
 " call dein#add('/home/cunha/.config/zsh/fzf.git')
 call dein#add('/home/cunha/.cache/dein/repos/github.com/Shougo/dein.vim')

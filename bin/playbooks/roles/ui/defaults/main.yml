@@ -21,10 +21,10 @@ cunha_ui_packages_nofail:
   - tmux-plugin-manager
   - xclip
 
-cunha_xonsh_packages:
-  - xonsh
-  - prompt-toolkit
-  - python-lsp-server
+cunha_pip_packages:
+  - xonsh[full]
+  - prompt-toolkit[full]
+  - python-lsp-server[full]
 
 paths_to_remove_before_checkout:
   - bin

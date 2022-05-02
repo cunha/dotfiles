@@ -11,7 +11,7 @@
 " colorscheme solarized
 set background=dark
 
-" colorscheme default
-colorscheme srcery
+" colorscheme srcery
+colorscheme default
 syntax on
 
