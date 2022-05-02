@@ -45,12 +45,12 @@
 - name: Checking out dotfiles
   shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha checkout master
 
-- name: Set shell to zsh
-  become: true
-  become_user: root
-  user:
-    name: cunha
-    shell: /usr/bin/zsh
+# - name: Set shell to zsh
+#   become: true
+#   become_user: root
+#   user:
+#     name: cunha
+#     shell: /usr/bin/zsh
 
 - name: Cloning dein into .vim/plugins
   git:

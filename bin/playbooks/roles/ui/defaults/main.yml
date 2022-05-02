@@ -5,6 +5,7 @@ cunha_ui_packages:
   - git
   - tcpdump
   - jq
+  - keychain
   - ranger
   - ncurses-term
   - kitty-terminfo
@@ -20,6 +21,11 @@ cunha_ui_packages_nofail:
   - tmux-plugin-manager
   - xclip
 
+cunha_xonsh_packages:
+  - xonsh
+  - prompt-toolkit
+  - python-lsp-server
+
 paths_to_remove_before_checkout:
   - bin
   - .config
@@ -32,6 +38,7 @@ paths_to_remove_before_checkout:
   - .inputrc
   - .irssi
   - .pinerc
+  - .profile
   - .pylintrc
   - .screenrc
   - .tmux.conf
