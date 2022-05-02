@@ -1,9 +1,9 @@
 set nocompatible
-set runtimepath+=~/.vim/plugins/dein.vim/
-"{{{
+
+set runtimepath+=/home/cunha/.cache/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.cache/dein'))
-call dein#add('/home/cunha/.vim/plugins/dein.vim')
-call dein#add('/home/cunha/.config/zsh/fzf.git')
+" call dein#add('/home/cunha/.config/zsh/fzf.git')
+call dein#add('/home/cunha/.cache/dein/repos/github.com/Shougo/dein.vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('ConradIrwin/vim-bracketed-paste')
 " call dein#add('cunha/vim-colors-solarized')
@@ -14,6 +14,7 @@ call dein#add('haya14busa/vim-poweryank')
 call dein#add('machakann/vim-sandwich')
 call dein#add('moll/vim-bbye')
 call dein#add('scrooloose/nerdtree')
+call dein#add('srcery-colors/srcery-vim')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 call dein#add('unblevable/quick-scope')

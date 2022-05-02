@@ -10,7 +10,8 @@
 " let g:solarized_menu = 0
 " colorscheme solarized
 set background=dark
+
+" colorscheme default
+colorscheme srcery
 syntax on
 
-" colorscheme psycho
-" syntax on
