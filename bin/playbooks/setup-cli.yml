@@ -2,4 +2,6 @@
 - hosts: targets
   gather_facts: true
   roles:
+  - rust
+    - rust_update: true
   - ui
