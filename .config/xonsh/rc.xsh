@@ -3,6 +3,7 @@ import os
 $UPDATE_OS_ENVIRON = True
 $SHELL = "xonsh"
 $FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
+$COLORTERM = "truecolor"
 
 $DEBEMAIL = "cunha@dcc.ufmg.br"
 $DEBFULLNAME = "Italo Cunha"
