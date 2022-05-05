@@ -3,6 +3,7 @@ aliases["dockps"] = ["docker", "ps", "-a", "--format", "table {{.Names}}\t{{.Com
 aliases["dotgit"] = ["git", "--git-dir", p"$HOME/.dotfiles", "--work-tree", p"$HOME"]
 aliases["fzf"] = ["fzf-tmux"]
 aliases["ipmiinfo"] = ["sudo", "ipmitool", "sdr", "elist", "mcloc"]
+aliases["ll"] = ["ls", "-l"]
 aliases["mdate"] = ["date", "+%Y%m%d.%H%M%S"]
 aliases["pdfimgresz"] = ["convert", "-density", "200x200", "-quality", "60", "-compress", "jpeg"]
 aliases["wgetsite"] = ["wget", "-r", "-e", "robots=off", "--no-parent", "--reject", "index.html*"]
