@@ -12,6 +12,6 @@ if [[ -s $HOME/.ssh/config ]] ; then
     fi
 fi
 
-cmdline="code --folder-uri \"vscode-remote://ssh-remote+$server/$(pwd)/$1\""
+cmdline="code --folder-uri \"vscode-remote://ssh-remote+$server/$(pwd)\""
 echo $cmdline
-printf "\033]52;c;$(echo $cmdline | base64)\a"
+# printf "\033]52;c;$(echo $cmdline | base64)\a"
