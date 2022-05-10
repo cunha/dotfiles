@@ -26,5 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+. "$HOME/.cargo/env"
+
 # Uncomment this line to jump into xonsh on initialization
 # exec xonsh
