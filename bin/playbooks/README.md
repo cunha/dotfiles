@@ -4,7 +4,7 @@
 
 ```{bash}
 pip3 install ansible
-ansible-galaxy install fubarhouse.rust
+ansible-galaxy install hurricanehrndz.rustup -p roles/
 ```
 
 ## Configure remote machines

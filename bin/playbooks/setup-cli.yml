@@ -1,7 +1,11 @@
 ---
 - hosts: targets
   gather_facts: true
+  vars:
+    rustup_user: cunha
+    rustup_cargo_crates: []
+    rustup_configure_shell: false
   roles:
-  - rust
-    - rust_update: true
+  - hurricanehrndz.rustup
   - ui
+  - hx

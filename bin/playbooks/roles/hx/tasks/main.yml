@@ -1,0 +1,22 @@
+---
+- name: Cloning Helix
+  git:
+    repo: "{{ helix_repo }}"
+    dest: "{{ helix_clone_dir }}"
+    update: yes
+    clone: yes
+  register: githelix
+
+- name: Building Helix
+  shell:
+    cmd: cargo install --path helix-term
+    chdir: "{{ helix_clone_dir }}"
+  when: githelix.changed
+
+- name: Fetching grammars
+  shell: "hx --grammar fetch"
+  when: githelix.changed
+
+- name: Building grammars
+  shell: "hx --grammar build"
+  when: githelix.changed
