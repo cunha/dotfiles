@@ -1,4 +1,5 @@
 aliases["awkcsv"] = ["gawk", r"-vFPAT=[^,]*|\"[^\"]*\""]
+aliases["checkdisks"] = ["sudo", "iostat", "-xz", "10"]
 aliases["dockps"] = ["docker", "ps", "-a", "--format", "table {{.Names}}\t{{.Command}}\t{{.Status}}"]
 aliases["dotgit"] = ["git", "--git-dir", p"$HOME/.dotfiles", "--work-tree", p"$HOME"]
 aliases["fzf"] = ["fzf-tmux"]
