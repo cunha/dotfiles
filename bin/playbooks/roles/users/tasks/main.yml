@@ -2,8 +2,6 @@
   become: true
   user:
     name: "{{ item }}"
-    groups: sudo,
-    append: yes
     password: $6$z1.Z8ZcG$rV25sfMlPd6luu6weLPZuiUPJYTTcCtnJ8n9l.oP0/25RbiVJnWyzdFOUnwCdHU/bC/gajNyn1jN94vFIAWMn.
   with_items: "{{ user_list }}"
 
