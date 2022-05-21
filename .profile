@@ -29,4 +29,4 @@ fi
 . "$HOME/.cargo/env"
 
 # Uncomment this line to jump into xonsh on initialization
-# exec xonsh
+exec xonsh
