@@ -80,12 +80,15 @@ else:
 
 # Reload ENV in tmux shells
 @events.on_precommand
-def _update_tmux_ssh(cmd: str) -> None:
+def _update_tmux_env(cmd: str) -> None:
     if "TMUX" in __xonsh__.env:
         if not os.path.exists(__xonsh__.env.get("SSH_AUTH_SOCK", "/fail")):
             source-bash $(tmux show-environment SSH_AUTH_SOCK)
-            source-bash $(tmux show-environment DISPLAY)
-            print_color("{ORANGE}SSH_AUTH_SOCK and DISPLAY updated.{RESET}")
+            print_color("{INTENSE_RED}SSH_AUTH_SOCK updated.{RESET}")
+        bash_string = $(tmux show-environment DISPLAY).strip()
+        if bash_string != "-DISPLAY":
+            source-bash @(bash_string)
+            print_color("{INTENSE_RED}DISPLAY updated.{RESET}")
 
 ##############################################################################
 # Configurables:
