@@ -8,15 +8,19 @@
   register: githelix
 
 - name: Building Helix
-  shell:
-    cmd: cargo install --path helix-term
+  command:
+    cmd: /home/cunha/.cargo/bin/cargo install --path helix-term
     chdir: "{{ helix_clone_dir }}"
   when: githelix.changed
 
 - name: Fetching grammars
-  shell: "hx --grammar fetch"
+  shell:
+    cmd: "source /home/cunha/.profile && hx --grammar fetch"
+    executable: /bin/bash
   when: githelix.changed
 
 - name: Building grammars
-  shell: "hx --grammar build"
+  shell:
+    cmd: "source /home/cunha/.profile && hx --grammar build"
+    executable: /bin/bash
   when: githelix.changed

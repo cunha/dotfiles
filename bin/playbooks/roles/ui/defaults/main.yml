@@ -18,6 +18,7 @@ cunha_ui_packages_nofail:
   # - manpages-posix-dev  # requires contrib/non-free repos
   - fzf
   - fasd
+  - shellcheck
   - tmux-plugin-manager
   - xclip
 

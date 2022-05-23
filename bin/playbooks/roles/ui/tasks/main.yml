@@ -33,21 +33,21 @@
   register: dotfiles_repo
 
 - name: Initialize .dotfiles
-  shell: git init --bare /home/cunha/.dotfiles
+  command: git init --bare /home/cunha/.dotfiles
   args:
     creates: /home/cunha/.dotfiles
   when: not dotfiles_repo.stat.exists
 
 - name: Disable showUntrackedFiles
-  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha config status.showUntrackedFiles no
+  command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha config status.showUntrackedFiles no
   when: not dotfiles_repo.stat.exists
 
 - name: Add git@github.com:cunha/dotfiles.git as remote
-  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha remote add origin git@github.com:cunha/dotfiles.git
+  command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha remote add origin git@github.com:cunha/dotfiles.git
   when: not dotfiles_repo.stat.exists
 
 - name: Fetch dotfiles repo contents
-  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha fetch
+  command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha fetch
   when: not dotfiles_repo.stat.exists
 
 - name: Removing commonly created files/directories before checkout
@@ -58,11 +58,11 @@
   when: not dotfiles_repo.stat.exists
 
 - name: Checking out dotfiles
-  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha checkout master
+  command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha checkout master
   when: not dotfiles_repo.stat.exists
 
 - name: Pull dotfiles
-  shell: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha pull
+  command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha pull
 
 - name: Cloning dein into .vim/plugins
   git:
@@ -72,7 +72,7 @@
     clone: yes
 
 - name: Updating Rust compiler
-  shell: rustup update
+  command: /home/cunha/.cargo/bin/rustup update
 
 # - name: Set shell to zsh
 #   become: true
