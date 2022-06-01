@@ -14,8 +14,15 @@ $PATH.add("/sbin")
 $PATH.add("/usr/sbin")
 if os.path.exists(p"$HOME/.cargo/bin"):
     $PATH.add(p"$HOME/.cargo/bin")
-if os.path.exists(p"/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"):
-    $PATH.add(p"/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin")
+
+winpath = p"/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+if os.path.exists(winpath):
+    $PATH.add(winpath)
+else:
+    if "VSCODE_GIT_ASKPASS_NODE" in ${...}:
+        sshpath = f"{$VSCODE_GIT_ASKPASS_NODE}/bin/remote-cli".replace("node/", "")
+        if os.path.exists(sshpath):
+            $PATH.add(sshpath)
 
 if $(which code).startswith("/"):
     $EDITOR = "code"
