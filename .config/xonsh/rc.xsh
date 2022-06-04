@@ -14,6 +14,8 @@ $PATH.add("/sbin")
 $PATH.add("/usr/sbin")
 if os.path.exists(p"$HOME/.cargo/bin"):
     $PATH.add(p"$HOME/.cargo/bin")
+if os.path.exists(p"$HOME/.julia/bin"):
+    $PATH.add(p"$HOME/.julia/bin")
 
 winpath = p"/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
 if os.path.exists(winpath):
