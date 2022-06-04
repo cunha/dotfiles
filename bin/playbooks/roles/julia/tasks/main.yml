@@ -1,0 +1,36 @@
+---
+- name: Check if Julia is installed
+  stat:
+    path: "{{julia_install_dir}}"
+  register: dotjulia
+
+- block:
+    - name: End play if Julia is installed
+      debug:
+        msg: "Julia is installed, upgrade with UpdateJulia.jl"
+    - meta: end_play
+  when: dotjulia.stat.exists
+
+- name: Create Julia installation directory
+  file:
+    path: "{{julia_install_dir}}"
+    state: directory
+
+- name: Downloading Julia
+  get_url:
+    url: "{{ julia_tgz }}"
+    dest: "{{ansible_env.HOME}}/julia.tgz"
+
+- name: Decompressing Julia
+  unarchive:
+    src: "{{ansible_env.HOME}}/julia.tgz"
+    remote_src: true
+    dest: "{{julia_install_dir}}"
+    extra_opts:
+      - --strip-components
+      - 1
+
+- name: Removing Julia installer
+  file:
+    path: "{{ansible_env.HOME}}/julia.tgz"
+    state: absent

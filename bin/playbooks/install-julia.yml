@@ -2,4 +2,4 @@
 - hosts: targets
   gather_facts: true
   roles:
-  - ui
+  - julia
