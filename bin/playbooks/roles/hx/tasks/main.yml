@@ -14,13 +14,12 @@
   when: githelix.changed
 
 - name: Fetching grammars
-  shell:
-    cmd: "source /home/cunha/.profile && hx --grammar fetch"
-    executable: /bin/bash
-  when: githelix.changed
+  command: /home/cunha/.cargo/bin/hx --grammar fetch
 
 - name: Building grammars
-  shell:
-    cmd: "source /home/cunha/.profile && hx --grammar build"
-    executable: /bin/bash
-  when: githelix.changed
+  command: /home/cunha/.cargo/bin/hx --grammar build
+
+- name: Removing Helix build files
+  file:
+    path: "{{helix_clone_dir}}/target"
+    state: absent
