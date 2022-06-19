@@ -40,6 +40,7 @@ xontrib load docker_tabcomplete
 xontrib load apt_tabcomplete
 xontrib load prompt_ret_code
 xontrib load vox
+xontrib load autovox
 
 # TODO: Figure out how to re-alias dirs to dirs -vl  (rc.d/aliases.xsh)
 # TODO: Print run time of long-running processes; bash/zsh REPORTTIME env
@@ -98,6 +99,13 @@ def _update_tmux_env(cmd: str) -> None:
         if bash_string != "-DISPLAY":
             source-bash @(bash_string)
             print_color("{INTENSE_RED}DISPLAY updated.{RESET}")
+
+@events.autovox_policy
+def home_virtualenvs_policy(path, **_):
+    basename = os.path.basename(path)
+    venv = p"$HOME/.virtualenvs" / basename
+    if venv.exists():
+        return venv
 
 ##############################################################################
 # Configurables:
