@@ -11,6 +11,11 @@
 # revtr
 # timbersaw
 # zeus
+# vcm1
+# revtr
+# dev
+# peering.ee.columbia.edu
+# peering2
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
