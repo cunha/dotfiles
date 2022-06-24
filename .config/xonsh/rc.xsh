@@ -81,7 +81,7 @@ def _xonsh_cunha_write_local_history(
         os.rename(f"{histfile}.tmp", histfile)
         print_color(f"{ORANGE}Resized .xshlocal{RESET}")
 
-# Checks and warnings warnings
+# Checks and warnings
 if $(which xclip).startswith("xclip not in"):
     print_color("{YELLOW}xclip not found.{RESET}")
 else:
