@@ -30,5 +30,9 @@ if [ -s "$HOME/.cargo/env" ] ; then
     . "$HOME/.cargo/env"
 fi
 
+if [ -d "$HOME/.julia/bin" ] ; then
+    PATH="$HOME/.julia/bin:$PATH"
+fi
+
 # Uncomment this line to jump into xonsh on initialization
 # exec xonsh
