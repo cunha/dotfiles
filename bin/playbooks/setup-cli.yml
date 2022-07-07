@@ -6,8 +6,8 @@
     rustup_cargo_crates: []
     rustup_configure_shell: false
     install_puppeteer_deps: false
-    install_hx: true
-    install_julia: true
+    install_hx: false
+    install_julia: false
   roles:
     - role: hurricanehrndz.rustup
     - role: ui

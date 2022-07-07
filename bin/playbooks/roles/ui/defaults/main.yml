@@ -33,6 +33,7 @@ paths_to_remove_before_checkout:
   - .local/share/fonts
   - .local/share/applications
   - .ansible.cfg
+  - .bashrc
   - .gdbinit
   - .gitconfig
   - .gvimrc
@@ -89,3 +90,5 @@ puppeteer_deps:
   - lsb-release
   - wget
   - xdg-utils
+
+neovim_latest_deb: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
