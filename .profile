@@ -16,23 +16,5 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -s "$HOME/.cargo/env" ] ; then
-    . "$HOME/.cargo/env"
-fi
-
-if [ -d "$HOME/.julia/bin" ] ; then
-    PATH="$HOME/.julia/bin:$PATH"
-fi
-
 # Uncomment this line to jump into xonsh on initialization
 # exec xonsh
