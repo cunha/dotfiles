@@ -92,8 +92,9 @@ else:
 @events.on_precommand
 def _update_tmux_env(cmd: str) -> None:
     if "TMUX" in __xonsh__.env:
-        if not os.path.exists(__xonsh__.env.get("SSH_AUTH_SOCK", "/fail")):
-            source-bash $(tmux show-environment SSH_AUTH_SOCK)
+        sock = $(tmux show-environment SSH_AUTH_SOCK).split("=")[1].strip()
+        if sock != __xonsh__.env.get("SSH_AUTH_SOCK", "/fail"):
+            $SSH_AUTH_SOCK = sock
             print_color("{INTENSE_RED}SSH_AUTH_SOCK updated.{RESET}")
 
         # bash_string = $(tmux show-environment DISPLAY).strip()
