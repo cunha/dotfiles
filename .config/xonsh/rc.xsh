@@ -95,10 +95,19 @@ def _update_tmux_env(cmd: str) -> None:
         if not os.path.exists(__xonsh__.env.get("SSH_AUTH_SOCK", "/fail")):
             source-bash $(tmux show-environment SSH_AUTH_SOCK)
             print_color("{INTENSE_RED}SSH_AUTH_SOCK updated.{RESET}")
-        bash_string = $(tmux show-environment DISPLAY).strip()
-        if bash_string != "-DISPLAY":
-            source-bash @(bash_string)
-            print_color("{INTENSE_RED}DISPLAY updated.{RESET}")
+
+        # bash_string = $(tmux show-environment DISPLAY).strip()
+        # if bash_string != "-DISPLAY":
+        #     source-bash @(bash_string)
+        #     print_color("{INTENSE_RED}DISPLAY updated.{RESET}")
+
+        if cmd.startswith("code"):
+            vars = ["VSCODE_IPC_HOOK_CLI", "VSCODE_GIT_ASKPASS_NODE",
+                    "VSCODE_GIT_ASKPASS_MAIN" ,"VSCODE_GIT_IPC_HANDLE"]
+            for v in vars:
+                if not os.path.exists(__xonsh__.env.get(v, "/fail")):
+                    source-bash $(tmux show-environment v)
+                    print_color("{INTENSE_RED} %s updated.{RESET}" % v)
 
 @events.autovox_policy
 def home_virtualenvs_policy(path, **_):
