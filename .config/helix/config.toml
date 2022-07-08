@@ -1,0 +1,4 @@
+[keys.insert]
+"C-c" = "normal_mode"
+"C-backspace" = "delete_word_backward"  # doesn't work
+"C-del" = "delete_word_forward"
