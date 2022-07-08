@@ -1,23 +1,24 @@
 ---
 cunha_ui_packages:
-  - zsh
-  - vim-nox
   - git
-  - tcpdump
   - jq
   - keychain
-  - ranger
-  - ncurses-term
   - kitty-terminfo
-  - tmux
   - man
   - manpages-dev
+  - ncurses-term
+  - ranger
   - wget
+  - tcpdump
+  - tmux
+  - vim-nox
+  - zsh
 
 cunha_ui_packages_nofail:
   # - manpages-posix-dev  # requires contrib/non-free repos
   - fzf
   - fasd
+  - npm
   - shellcheck
   - tmux-plugin-manager
   - xclip
