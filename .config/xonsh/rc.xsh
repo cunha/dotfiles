@@ -35,7 +35,7 @@ else:
 $VISUAL = $EDITOR
 
 xontrib load coreutils
-xontrib load whole_word_jumping  # rc.d/bindinds.xsh provides the rest
+xontrib load whole_word_jumping
 xontrib load docker_tabcomplete
 xontrib load apt_tabcomplete
 xontrib load prompt_ret_code
@@ -121,7 +121,7 @@ def home_virtualenvs_policy(path, **_):
 ##############################################################################
 
 # uncomment the following to start and connect to an SSH agent
-# source-bash $(keychain --quiet --eval --agents ssh)
+source-bash $(keychain --quiet --eval --agents ssh)
 
 # uncomment the following to prevent others from reading our files
 # umask 007
