@@ -6,7 +6,7 @@
     rustup_cargo_crates: []
     rustup_configure_shell: false
     install_puppeteer_deps: false
-    install_hx: false
+    install_hx: true
     install_julia: false
   roles:
     - role: hurricanehrndz.rustup
