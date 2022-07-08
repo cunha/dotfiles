@@ -5,3 +5,4 @@ base_packages:
   - apt-transport-https
   - aptitude
   - python3-pip
+  - python3-venv
