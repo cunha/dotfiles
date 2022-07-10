@@ -107,7 +107,7 @@ def _update_tmux_env(cmd: str) -> None:
                     "VSCODE_GIT_ASKPASS_MAIN" ,"VSCODE_GIT_IPC_HANDLE"]
             for v in vars:
                 if not os.path.exists(__xonsh__.env.get(v, "/fail")):
-                    source-bash $(tmux show-environment v)
+                    source-bash $(tmux show-environment @(v))
                     print_color("{INTENSE_RED}%s updated.{RESET}" % v)
 
 @events.autovox_policy
