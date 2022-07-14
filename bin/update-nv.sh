@@ -8,3 +8,7 @@ chmod 755 $HOME/bin/nv
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
     --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+npm install bash-language-server
+npm upgrade bash-language-server
+

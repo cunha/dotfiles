@@ -63,7 +63,7 @@ call plug#end()
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')
 
-exec 'source' stdpath('config') . '/plugins.vim'
+exec 'source ' . stdpath('config') . '/plugins.vim'
 let g:tmux_navigator_no_mappings = 1
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
