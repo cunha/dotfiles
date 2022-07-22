@@ -129,3 +129,6 @@ fi
 if [ -d "$HOME/.julia/bin" ] ; then
     PATH="$HOME/.julia/bin:$PATH"
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
