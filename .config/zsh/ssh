@@ -35,3 +35,5 @@ function update_ssh_auth_sock {
 # export ZSH_SSH_AGENT_ENV="$HOME/.ssh/ssh-agent-$(hostname)" ;
 # zsh-ssh-agent ;
 
+# eval $(keychain --quiet --eval --agents ssh)
+
