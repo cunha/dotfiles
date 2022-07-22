@@ -10,7 +10,7 @@ path=( /sbin /usr/sbin $path )
 # libpath=( $HOME/work/libs/lib/ $libpath )
 
 # if command -v rustc > /dev/null ; then
-# 	export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+#   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 #   path=( $HOME/.cargo/bin $path )
 # fi
 
@@ -22,6 +22,10 @@ fi
 
 if [[ -d $HOME/.cargo/bin ]] ; then
 	path=( $HOME/.cargo/bin $path )
+fi
+
+if [[ -d "$HOME/.julia/bin" ]] ; then
+    path=( $HOME/.julia/bin $path )
 fi
 
 path=( $HOME/bin $HOME/.local/bin $path )

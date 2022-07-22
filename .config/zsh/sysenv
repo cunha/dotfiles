@@ -2,3 +2,10 @@ DEBEMAIL="cunha@dcc.ufmg.br"
 DEBFULLNAME="Italo Cunha"
 # uncomment to prevent others from reading our files:
 # umask 007
+
+if [[ -s "$HOME/.cargo/env" ]] ; then
+    . "$HOME/.cargo/env"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
