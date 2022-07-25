@@ -24,8 +24,18 @@ if [[ -d $HOME/.cargo/bin ]] ; then
 	path=( $HOME/.cargo/bin $path )
 fi
 
-if [[ -d "$HOME/.julia/bin" ]] ; then
+if [[ -d $HOME/.julia/bin ]] ; then
     path=( $HOME/.julia/bin $path )
 fi
 
 path=( $HOME/bin $HOME/.local/bin $path )
+
+# winpath="/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+# if [[ -d $winpath ]] ; then
+# 	path=( $winpath $path )
+# elif [[ -z $VSCODE_GIT_ASKPASS_NODE ]] ; then
+# 	sshpath="${VSCODE_GIT_ASKPASS_NODE%%/node}/bin/remote-cli"
+# 	if [[ -d $sshpath ]] ; then
+# 		path=( $sshpath $path )
+# 	fi
+# fi
