@@ -2,7 +2,7 @@
 # alias date='date +%Y%m%d.%H%M' ;
 alias mdate='date +%Y%m%d.%H%M%S' ;
 alias ls='ls --color=auto --group-directories-first' ;
-alias dir='ls -hl' ;
+alias ll='ls -hl' ;
 alias dirs='dirs -v' ;
 alias clear='' ;
 alias xboard='xboard -size medium -ics -icshost 69.36.243.188 -icsport 5000 -telnet -telnetProgram timeseal'
