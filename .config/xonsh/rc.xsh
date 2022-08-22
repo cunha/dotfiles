@@ -104,7 +104,7 @@ def _update_tmux_env(cmd: str) -> None:
 
         if cmd.startswith("code"):
             vars = ["VSCODE_IPC_HOOK_CLI", "VSCODE_GIT_ASKPASS_NODE",
-                    "VSCODE_GIT_ASKPASS_MAIN" ,"VSCODE_GIT_IPC_HANDLE"]
+                    "VSCODE_GIT_ASKPASS_MAIN", "VSCODE_GIT_IPC_HANDLE"]
             for v in vars:
                 if not os.path.exists(__xonsh__.env.get(v, "/fail")):
                     source-bash $(tmux show-environment @(v))
