@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 function precmd {
 	if [[ $? -ne 0 ]] ; then
 		PROMPT_TERM_COLOR="%F{red}"
@@ -30,5 +32,12 @@ function update_user_env {
 	if [[ -n $TMUX ]] ; then
 		update_ssh_auth_sock
 		# update_xorg_display
+		if [[ -n $VSCODE_IPC_HOOK_CLI ]] && [[ ! -e $VSCODE_IPC_HOOK_CLI ]] ; then
+			eval $(tmux show-environment VSCODE_IPC_HOOK_CLI)
+			eval $(tmux show-environment VSCODE_GIT_ASKPASS_NODE)
+			eval $(tmux show-environment VSCODE_GIT_ASKPASS_MAIN)
+			eval $(tmux show-environment VSCODE_GIT_IPC_HANDLE)
+			echo "${fg[red]}VS Code env updated.${terminfo[sgr0]}"
+		fi
 	fi
 }
