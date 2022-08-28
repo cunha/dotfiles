@@ -338,6 +338,15 @@ handle_fallback() {
     exit 1
 }
 
+drop_large() {
+    sz=$(du -BM "${FILE_PATH}" | cut -f1 | tr -d M)
+    if [[ $sz -gt 32 ]] ; then
+        echo "----- Preview of large file skipped -----"
+        handle_fallback
+    fi
+}
+
+drop_large
 
 MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
 if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
