@@ -7,7 +7,18 @@
 	ui = true
 [core]
 	excludesfile = ~/.config/gitignore
+	editor = code --wait
 [pull]
 	rebase = true
 [rebase]
 	autoStash = true
+[diff]
+	tool = code
+[difftool "code"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+	prompt = false
+[merge]
+	tool = code
+[mergetool "code"]
+	cmd = code --wait --merge $LOCAL $REMOTE $BASE $MERGED
+	prompt = false
