@@ -15,7 +15,7 @@ if ! infocmp "$TERM" &> /dev/null ; then
 fi
 
 if [[ $(which code) != "code not found" ]] ; then
-	export EDITOR=code
+	export EDITOR="code --wait"
 elif [[ $(which hx) != "hx not found" ]] ; then
 	export EDITOR=hx
 elif [[ $(which vim) != "vim not found" ]] ; then
