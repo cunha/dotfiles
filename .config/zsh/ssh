@@ -25,10 +25,15 @@ function zsh-ssh-agent {
 }
 
 function update_ssh_auth_sock {
-	[[ -e $SSH_AUTH_SOCK ]] && return
-	eval $(tmux show-environment SSH_AUTH_SOCK)
-	eval $(tmux show-environment DISPLAY)
-	echo "$fg[red]SSH_AUTH_SOCK DISPLAY updated.$terminfo[sgr0]"
+    NEW_SOCK=$(tmux show-environment SSH_AUTH_SOCK)
+    NEW_SOCK=${NEW_SOCK##*=}
+    [[ $NEW_SOCK == $SSH_AUTH_SOCK ]] && return
+    if [[ ! -S $NEW_SOCK ]] ; then
+        echo "${fg[red]}$NEW_SOCK is not a valid socket.${terminfo[sgr0]}"
+        return
+    fi
+    SSH_AUTH_SOCK=$NEW_SOCK
+    echo "${fg[yellow]}SSH auth socket updated.${terminfo[sgr0]}"
 }
 
 # This functionality no longer needed, we now chain the SSH agent:
@@ -36,4 +41,3 @@ function update_ssh_auth_sock {
 # zsh-ssh-agent ;
 
 # eval $(keychain --quiet --eval --agents ssh)
-

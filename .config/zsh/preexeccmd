@@ -31,13 +31,19 @@ function preexec {
 function update_user_env {
 	if [[ -n $TMUX ]] ; then
 		update_ssh_auth_sock
-		# update_xorg_display
-		if [[ -n $VSCODE_IPC_HOOK_CLI ]] && [[ ! -e $VSCODE_IPC_HOOK_CLI ]] ; then
-			eval $(tmux show-environment VSCODE_IPC_HOOK_CLI)
-			eval $(tmux show-environment VSCODE_GIT_ASKPASS_NODE)
-			eval $(tmux show-environment VSCODE_GIT_ASKPASS_MAIN)
-			eval $(tmux show-environment VSCODE_GIT_IPC_HANDLE)
-			echo "${fg[red]}VS Code env updated.${terminfo[sgr0]}"
+		NEW_IPC_HOOK=$(tmux show-environment VSCODE_IPC_HOOK_CLI)
+		NEW_IPC_HOOK=${NEW_IPC_HOOK##*=}
+		if [[ -n $VSCODE_IPC_HOOK_CLI ]] ; then
+			[[ $NEW_IPC_HOOK == "$VSCODE_IPC_HOOK_CLI" ]] && return
+			if [[ ! -S $NEW_IPC_HOOK ]] ; then
+				echo "${fg[red]}$NEW_IPC_HOOK is not a valid socket.${terminfo[sgr0]}"
+				return
+			fi
 		fi
+		VSCODE_IPC_HOOK_CLI=$NEW_IPC_HOOK
+		eval $(tmux show-environment VSCODE_GIT_ASKPASS_NODE)
+		eval $(tmux show-environment VSCODE_GIT_ASKPASS_MAIN)
+		eval $(tmux show-environment VSCODE_GIT_IPC_HANDLE)
+		echo "${fg[yellow]}VS Code env updated.${terminfo[sgr0]}"
 	fi
 }
