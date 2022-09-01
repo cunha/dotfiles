@@ -26,7 +26,7 @@ fi
 export VISUAL=$EDITOR
 
 if [[ $(which xclip) == "xclip not found" ]] ; then
-	echo "xclip not found"
+	echo "${fg[red]}xclip not found${terminfo[sgr0]}"
 fi
 
 export REPORTTIME=10 ;
