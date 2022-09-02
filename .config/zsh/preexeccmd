@@ -32,6 +32,13 @@ function update_user_env {
 	if [[ -n $TMUX ]] ; then
 		update_ssh_auth_sock
 		NEW_IPC_HOOK=$(tmux show-environment VSCODE_IPC_HOOK_CLI)
+		if [[ "$NEW_IPC_HOOK" == "-VSCODE_IPC_HOOK_CLI" ]] ; then
+			unset VSCODE_IPC_HOOK_CLI
+			unset VSCODE_GIT_ASKPASS_NODE
+			unset VSCODE_GIT_ASKPASS_MAIN
+			unset VSCODE_GIT_IPC_HANDLE
+			return
+		fi
 		NEW_IPC_HOOK=${NEW_IPC_HOOK##*=}
 		if [[ -n $VSCODE_IPC_HOOK_CLI ]] ; then
 			[[ $NEW_IPC_HOOK == "$VSCODE_IPC_HOOK_CLI" ]] && return
