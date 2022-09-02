@@ -1,32 +1,36 @@
 #shellcheck shell=bash
 
 if [[ -s $HOME/.config/dircolors ]] ; then
-	eval "$(dircolors -b "$HOME/.config/dircolors")"
+    eval "$(dircolors -b "$HOME/.config/dircolors")"
 fi
 
 if ! infocmp "$TERM" &> /dev/null ; then
-	termfile="$HOME/.config/tmux/terminfo/$TERM.terminfo"
-	if [[ -s $termfile ]] ; then
-		tic "$termfile"
-	else
-		echo "TERM $TERM is undefined"
-		echo "File $termfile does not exist"
-	fi
+    termfile="$HOME/.config/tmux/terminfo/$TERM.terminfo"
+    if [[ -s $termfile ]] ; then
+        tic "$termfile"
+    else
+        echo "TERM $TERM is undefined"
+        echo "File $termfile does not exist"
+    fi
 fi
 
 if [[ $(which code) != "code not found" ]] ; then
-	export EDITOR="code --wait"
+    export EDITOR="code --wait"
 elif [[ $(which hx) != "hx not found" ]] ; then
-	export EDITOR=hx
+    export EDITOR=hx
 elif [[ $(which vim) != "vim not found" ]] ; then
     export EDITOR=vim
 else
-	export EDITOR=vi
+    export EDITOR=vi
 fi
 export VISUAL=$EDITOR
 
 if [[ $(which xclip) == "xclip not found" ]] ; then
-	echo "${fg[red]}xclip not found${terminfo[sgr0]}"
+    echo "${fg[red]}xclip not found${terminfo[sgr0]}"
 fi
 
 export REPORTTIME=10 ;
+
+if [[ -d $HOME/bin/zsh-autoswitch-virtualenv ]] ; then
+    source $HOME/bin/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
+fi
