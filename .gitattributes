@@ -1,1 +1,0 @@
-bin/playbooks/roles/users/files/passwd.txt filter=git-crypt diff=git-crypt
