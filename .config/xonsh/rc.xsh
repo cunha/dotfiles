@@ -36,11 +36,11 @@ $VISUAL = $EDITOR
 
 xontrib load coreutils
 xontrib load whole_word_jumping
-xontrib load docker_tabcomplete
-xontrib load apt_tabcomplete
-xontrib load prompt_ret_code
 xontrib load vox
 xontrib load autovox
+
+xontrib load docker_tabcomplete
+xontrib load apt_tabcomplete
 
 # TODO: Figure out how to re-alias dirs to dirs -vl  (rc.d/aliases.xsh)
 # TODO: Print run time of long-running processes; bash/zsh REPORTTIME env
@@ -92,15 +92,17 @@ else:
 @events.on_precommand
 def _update_tmux_env(cmd: str) -> None:
     if "TMUX" in __xonsh__.env:
+        tmux rename-window @(cmd.split()[0])
+
         sock = $(tmux show-environment SSH_AUTH_SOCK).split("=")[1].strip()
         if sock != __xonsh__.env.get("SSH_AUTH_SOCK", "/fail"):
             $SSH_AUTH_SOCK = sock
-            print_color("{INTENSE_RED}SSH_AUTH_SOCK updated.{RESET}")
+            print_color("{YELLOW}SSH_AUTH_SOCK updated.{RESET}")
 
         # bash_string = $(tmux show-environment DISPLAY).strip()
         # if bash_string != "-DISPLAY":
         #     source-bash @(bash_string)
-        #     print_color("{INTENSE_RED}DISPLAY updated.{RESET}")
+        #     print_color("{YELLOW}DISPLAY updated.{RESET}")
 
         if cmd.startswith("code"):
             vars = ["VSCODE_IPC_HOOK_CLI", "VSCODE_GIT_ASKPASS_NODE",
@@ -108,7 +110,13 @@ def _update_tmux_env(cmd: str) -> None:
             for v in vars:
                 if not os.path.exists(__xonsh__.env.get(v, "/fail")):
                     source-bash $(tmux show-environment @(v))
-                    print_color("{INTENSE_RED}%s updated.{RESET}" % v)
+                    print_color("{YELLOW}%s updated.{RESET}" % v)
+
+@events.on_pre_prompt
+def _update_tmux_window() -> None:
+    if "TMUX" in __xonsh__.env:
+        title = os.path.basename(__xonsh__.env.get("PWD"))
+        tmux rename-window @(title)
 
 @events.autovox_policy
 def home_virtualenvs_policy(path, **_):
@@ -126,3 +134,5 @@ source-bash $(keychain --quiet --eval --agents ssh)
 
 # uncomment the following to prevent others from reading our files
 # umask 007
+
+# _update_tmux_window("", 0, "", [])

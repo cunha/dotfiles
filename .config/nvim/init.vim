@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'tpope/vim-fugitive'
+Plug 'machakann/vim-sandwich'
 Plug 'scrooloose/nerdtree'
 call plug#end()
 

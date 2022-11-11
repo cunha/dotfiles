@@ -11,7 +11,7 @@ function precmd {
 	if [[ -z "$WINDOW" ]] ; then
 		settitle $(hostname -s):$(pwd)
 	else
-		echo -ne "\033k$(basename "$(pwd)")\033\\"
+		tmux rename-window $(basename $(pwd))
 	fi
 }
 
@@ -24,7 +24,7 @@ function preexec {
 	if [[ -z "$WINDOW" ]] ; then
 		settitle "$(hostname -s):$(pwd) -- $cmd"
 	else
-		echo -ne "\033k$cmd\033\\"
+		tmux rename-window $cmd
 	fi
 }
 
