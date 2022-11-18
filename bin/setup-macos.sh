@@ -15,8 +15,3 @@ tempfile=$(mktemp) \
   && tic -x -o ~/.terminfo $tempfile \
   && rm $tempfile
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo install cargo-update
-cargo install exa
-cargo install ripgrep
-cargo install xsv
