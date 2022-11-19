@@ -13,9 +13,3 @@ brew install unzip
 brew install wezterm
 brew install wget
 
-# Download and compile wezterm's terminfo database
-tempfile=$(mktemp) \
-  && curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
-  && tic -x -o ~/.terminfo "$tempfile" \
-  && rm "$tempfile"
-
