@@ -14,6 +14,8 @@ if [[ ! -d $HOME/bin/helix ]] ; then
   git clone https://github.com/helix-editor/helix "$HOME/bin/helix"
 fi
 (cd "$HOME/bin/helix" && git pull && cargo install --path helix-term)
+hx --grammar fetch
+hx --grammar build
 
 # Download and compile wezterm's terminfo database
 tempfile=$(mktemp) \
