@@ -1,3 +1,6 @@
+#!/bin/bash
+set -eu
+
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
  
@@ -8,10 +11,11 @@ brew install showkey
 brew install tmux
 brew install unzip
 brew install wezterm
+brew install wget
 
 # Download and compile wezterm's terminfo database
 tempfile=$(mktemp) \
-  && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
-  && tic -x -o ~/.terminfo $tempfile \
-  && rm $tempfile
+  && curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
+  && tic -x -o ~/.terminfo "$tempfile" \
+  && rm "$tempfile"
 

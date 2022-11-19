@@ -1,14 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 if [[ ! -x $HOME/.cargo/bin/rustup ]] ; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
-cargo install cargo-update
-cargo install exa
-cargo install ripgrep
-cargo install xsv
-cargo install-update -a
+brew install exa
+brew install ripgrep
+brew install xsv
 
 if [[ ! -d $HOME/bin/helix ]] ; then
   git clone https://github.com/helix-editor/helix "$HOME/bin/helix"
