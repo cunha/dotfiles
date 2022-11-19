@@ -1,4 +1,23 @@
+[editor]
+color-modes = true
+cursorline = true
+indent-guides.render = true
+line-number = "relative"
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner", "spacer", "file-name", "file-type"]
+center = []
+right = ["diagnostics", "selections", "position", "total-line-numbers", "file-encoding"]
+
+
 [keys.insert]
 "C-c" = "normal_mode"
-"C-backspace" = "delete_word_backward"  # doesn't work
-"C-del" = "delete_word_forward"
