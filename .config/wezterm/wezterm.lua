@@ -32,8 +32,6 @@ local keys = {
 }
 
 return {
-  -- JetBrains Mono is the default
-  -- font = wezterm.font 'JetBrains Mono',
   bold_brightens_ansi_colors = false,
   color_scheme = "Cunha Noctis Azureus",
   cursor_blink_rate = 500,
@@ -42,12 +40,15 @@ return {
   default_cursor_style = "BlinkingBlock",
   enable_kitty_keyboard = true,
   enable_scroll_bar = false,
+  -- font = wezterm.font 'JetBrains Mono' -- JetBrains Mono is the default
+  font_size = 12,
   hide_tab_bar_if_only_one_tab = true,
   keys = keys,
   launch_menu = launch_menu,
-  leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 },
-  max_tab_width = 120,
+  leader = { key = 'KeypadAdd', timeout_milliseconds = 1000 },
+  tab_max_width = 32,
   scrollback_lines = 65000,
   ssh_domains = ssh_domains,
   use_fancy_tab_bar = false,
+  debug_key_events = true,
 }
