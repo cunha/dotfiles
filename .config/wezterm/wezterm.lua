@@ -1,38 +1,8 @@
-local wezterm = require 'wezterm'
-
-local unix_domains = {
-  {
-    name = "zeusproxy",
-    proxy_command = { "ssh", "-T", "-A", "zeus", "wezterm", "cli", "proxy" },
-  },
-}
-
-local ssh_domains = {
-  {
-    name = 'zeus',
-    -- ":port" on the end.
-    remote_address = 'zeus',
-    -- no_agent_auth = false
-    username = 'cunha',
-    remote_wezterm_path = "/home/cunha/bin/wezterm",
-    -- If true, connect to this domain automatically at startup
-    -- connect_automatically = true
-    -- timeout = 60
-    multiplexing = 'WezTerm',
-  },
-  {
-    name = 'timbersaw',
-    -- ":port" on the end.
-    remote_address = 'timbersaw',
-    -- no_agent_auth = false
-    username = 'cunha',
-    remote_wezterm_path = "/home/cunha/bin/wezterm",
-    -- If true, connect to this domain automatically at startup
-    -- connect_automatically = true
-    -- timeout = 60
-    multiplexing = 'WezTerm',
-  },
-}
+-- local wezterm = require 'wezterm'
+local unix_domains = {}
+-- unix_domains = require 'unix'
+local ssh_domains = {}
+-- ssh_domains = require 'ssh'
 
 local keys = {
     { key = 'c', mods = 'LEADER', action = 'ShowLauncher' },
@@ -48,7 +18,7 @@ return {
   enable_kitty_keyboard = true,
   enable_scroll_bar = false,
   -- font = wezterm.font 'JetBrains Mono' -- JetBrains Mono is the default
-  font_size = 12,
+  font_size = 13,
   hide_tab_bar_if_only_one_tab = true,
   keys = keys,
   -- launch_menu = launch_menu,
