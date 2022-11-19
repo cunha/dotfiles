@@ -1,5 +1,12 @@
 local wezterm = require 'wezterm'
 
+local unix_domains = {
+  {
+    name = "zeusproxy",
+    proxy_command = { "ssh", "-T", "-A", "zeus", "wezterm", "cli", "proxy" },
+  },
+}
+
 local ssh_domains = {
   {
     name = 'zeus',
@@ -44,11 +51,13 @@ return {
   font_size = 12,
   hide_tab_bar_if_only_one_tab = true,
   keys = keys,
-  launch_menu = launch_menu,
+  -- launch_menu = launch_menu,
   leader = { key = 'KeypadAdd', timeout_milliseconds = 1000 },
+  tab_bar_at_bottom = true,
   tab_max_width = 32,
+  term = "wezterm",
   scrollback_lines = 65000,
   ssh_domains = ssh_domains,
+  unix_domains = unix_domains,
   use_fancy_tab_bar = false,
-  debug_key_events = true,
 }
