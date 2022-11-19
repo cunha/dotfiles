@@ -14,7 +14,7 @@ function zshaddhistory {
 	if [[ $currdir =~ '^/home/cunha/Desktop' ]] ; then return ; fi
 	touch .zshlocal
 	echo -n $1 >> .zshlocal
-	sz=$(stat --format "%s" .zshlocal)
+	sz=$(wc -c < .zshlocal)
 	if [[ $sz -gt 1048576 ]] ; then
 		tail --bytes 786432 .zshlocal > .zshlocal.tmp
 		mv .zshlocal.tmp .zshlocal
