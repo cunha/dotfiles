@@ -642,6 +642,195 @@
           ]
         }
       ]
+    },
+    {
+      "description": "NumLockFN: NL+[signs] to keypad",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "hyphen",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_hyphen"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "equal_sign",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_equal_sign"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_comma"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_period"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_slash"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_plus"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_asterisk"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_enter"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        }
+      ]
     }
   ]
 }
