@@ -1,0 +1,36 @@
+[colors]
+ansi = [
+    '#28353E',
+    '#E66533',
+    '#40C090',
+    '#F0D082',
+    '#3080FF',
+    '#DF769B',
+    '#60B0F0',
+    '#D0D0D0',
+]
+brights = [
+    '#475E6C',
+    '#E97749',
+    '#60D0A0',
+    '#FFB050',
+    '#50A0FF',
+    '#E798B3',
+    '#70D0FF',
+    '#E0E0E0',
+]
+background = '#07273B'
+cursor_bg = '#bbbbbb'
+cursor_border = '#bbbbbb'
+cursor_fg = '#ffffff'
+foreground = '#BECFDA'
+selection_bg = '#b5d5ff'
+selection_fg = '#000000'
+
+[colors.indexed]
+
+[metadata]
+name = 'Cunha Noctis Azureus'
+origin_url = 'https://dcc.ufmg.br/~cunha/'
+        
+                
