@@ -4,11 +4,12 @@ cursorline = true
 indent-guides.render = true
 line-number = "relative"
 true-color = true
+auto-pairs = false
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
-select = "underline"
+select = "block"
 
 [editor.file-picker]
 hidden = false
@@ -18,6 +19,21 @@ left = ["mode", "spinner", "spacer", "file-name", "file-type"]
 center = []
 right = ["diagnostics", "selections", "position", "total-line-numbers", "file-encoding"]
 
+[editor.whitespace]
+render = "all"
+
+[editor.whitespace.characters]
+space = " "
+nbsp = "⍽"
+tab = "→"
+newline = "¬"
+tabpad = " "
 
 [keys.insert]
 "C-c" = "normal_mode"
+
+[keys.normal]
+"A-j" = "goto_previous_buffer"
+"A-k" = "goto_next_buffer"
+"A-h" = "jump_view_left"
+"A-l" = "jump_view_right"

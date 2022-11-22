@@ -28,6 +28,11 @@ if [[ -d $HOME/.julia/bin ]] ; then
     path=( $HOME/.julia/bin $path )
 fi
 
+pippath=$(python3 -m site --user-base)/bin
+if [[ -d $pippath ]] ; then
+    path=( $pippath $path )
+fi
+
 path=( $HOME/bin $HOME/.local/bin $path )
 
 # winpath="/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"

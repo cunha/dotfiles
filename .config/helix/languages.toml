@@ -1,0 +1,17 @@
+[[language]]
+name = "bash"
+auto-format = false
+indent = { tab-width = 4, unit = "spaces" }
+rulers = [80]
+
+[[language]]
+name = "python"
+rulers = [100]
+
+[language.formatter]
+command = "black"
+args = [ "-", "--quiet" ]
+
+[[language]]
+name = "rust"
+rulers = [100]

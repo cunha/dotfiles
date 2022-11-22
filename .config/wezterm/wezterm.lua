@@ -17,7 +17,7 @@ return {
   enable_scroll_bar = false,
   -- font = wezterm.font 'JetBrains Mono' -- JetBrains Mono is the default
   font_size = 13,
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
   key_tables = keys.key_tables,
   keys = keys.keys,
   -- launch_menu = launch_menu,
