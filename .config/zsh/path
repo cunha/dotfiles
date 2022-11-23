@@ -35,12 +35,12 @@ fi
 
 path=( $HOME/bin $HOME/.local/bin $path )
 
-# winpath="/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
-# if [[ -d $winpath ]] ; then
-# 	path=( $winpath $path )
-# elif [[ -z $VSCODE_GIT_ASKPASS_NODE ]] ; then
-# 	sshpath="${VSCODE_GIT_ASKPASS_NODE%%/node}/bin/remote-cli"
-# 	if [[ -d $sshpath ]] ; then
-# 		path=( $sshpath $path )
-# 	fi
-# fi
+winpath="/mnt/c/Users/$USER/AppData/Local/Programs/Microsoft VS Code/bin"
+if [[ -d $winpath ]] ; then
+	path=( $winpath $path )
+elif [[ -z $VSCODE_GIT_ASKPASS_NODE ]] ; then
+	sshpath="${VSCODE_GIT_ASKPASS_NODE%%/node}/bin/remote-cli"
+	if [[ -d $sshpath ]] ; then
+		path=( $sshpath $path )
+	fi
+fi
