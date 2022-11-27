@@ -5,7 +5,7 @@ cmdpath=$(command -v fasd)
 if [[ -z $cmdpath ]] ; then
 	echo "${fg[red]}fasd not found${terminfo[sgr0]}"
 else
-	# echo "${fg[green]}fasd is as $cmdpath${terminfo[sgr0]}"
+	# echo "${fg[green]}fasd is at $cmdpath${terminfo[sgr0]}"
 	if [[ $cmdpath -nt $fasd_cache ]] || [[ ! -s $fasd_cache ]] ; then
 		fasd --init env auto > $fasd_cache
 	fi
