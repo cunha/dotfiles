@@ -2,51 +2,6 @@
   "title": "NumLockFN",
   "rules": [
     {
-      "description": "Swap Cmd+Backspace and Opt+Backspace",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": [
-                "left_command"
-              ],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": [
-                  "left_option"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": [
-                "left_option"
-              ],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": [
-                "left_command"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "NumLockFN: NumLock enables NumLockFN mode",
       "manipulators": [
         {
@@ -79,13 +34,16 @@
       ]
     },
     {
-      "description": "NumLockFN: Swap command and option",
+      "description": "NumLockFN: NL+CMD+[hjkl] to Opt+[Left, Down, Up, Right]",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "left_command",
+            "key_code": "h",
             "modifiers": {
+              "mandatory": [
+                "left_command"
+              ],
               "optional": [
                 "any"
               ]
@@ -93,7 +51,10 @@
           },
           "to": [
             {
-              "key_code": "left_option"
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option"
+              ]
             }
           ],
           "conditions": [
@@ -107,8 +68,11 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "left_option",
+            "key_code": "j",
             "modifiers": {
+              "mandatory": [
+                "left_command"
+              ],
               "optional": [
                 "any"
               ]
@@ -116,7 +80,68 @@
           },
           "to": [
             {
-              "key_code": "left_command"
+              "key_code": "down_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "left_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option"
+              ]
             }
           ],
           "conditions": [
@@ -214,6 +239,63 @@
           "to": [
             {
               "key_code": "right_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "NumLockFN: NL+semicolon to Opt+Left, NL+quote to Opt+Right",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option"
+              ]
             }
           ],
           "conditions": [
@@ -380,7 +462,7 @@
       ]
     },
     {
-      "description": "NumLockFN: NumLock+p to Print Screen, NL+e to Escape",
+      "description": "NumLockFN: NumLock+p to Print Screen, NL+space to Escape",
       "manipulators": [
         {
           "type": "basic",
@@ -408,7 +490,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "e",
+            "key_code": "spacebar",
             "modifiers": {
               "optional": [
                 "any"
@@ -819,80 +901,6 @@
           "to": [
             {
               "key_code": "keypad_asterisk"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numlock_mode",
-              "value": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "NumLockFN: Space+Open Bracket ([) to Scroll Lock, Space+Close Bracket (]) to Pause, Space+Backslash (\\) to Insert",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "scroll_lock"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numlock_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "close_bracket",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "pause"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numlock_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "backslash",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "insert"
             }
           ],
           "conditions": [
