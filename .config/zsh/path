@@ -1,5 +1,5 @@
 typeset -U path
-path=( /sbin /usr/sbin $path )
+path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 
 # typeset -TU PYTHONPATH pythonpath
 # export PYTHONPATH
