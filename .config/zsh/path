@@ -9,9 +9,13 @@ path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 # export LD_LIBRARY_PATH
 # libpath=( $HOME/work/libs/lib/ $libpath )
 
-macgnupath=$(/opt/homebrew/bin/brew --prefix)/opt/coreutils/libexec/gnubin
-if [[ -d $macgnupath ]] ; then
-	path=( $macgnupath $path )
+brewbin=/opt/homebrew/bin
+if [[ -d $brewbin ]] ; then
+	path=( $brewbin $path )
+	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
+	if [[ -d $macgnupath ]] ; then
+		path=( $macgnupath $path )
+	fi
 fi
 
 if [[ -x $HOME/bin/go/bin/go ]] ; then
@@ -32,7 +36,6 @@ pippath=$(python3 -m site --user-base)/bin
 if [[ -d $pippath ]] ; then
     path=( $pippath $path )
 fi
-
 
 path=( $HOME/bin $HOME/.local/bin $path )
 
