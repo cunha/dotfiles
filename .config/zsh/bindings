@@ -69,6 +69,7 @@ rxvt-unicode*)
     bindkey -M viins '^[[33~' backward-kill-bashword
     ;;
 wezterm*|tmux*|xterm*)
+    bindkey -M emacs '^[[3~' delete-char
     bindkey -M emacs '^[[1;5D' backward-word
     bindkey -M emacs '^[[1;5C' forward-word
     bindkey -M emacs '^[[1;3D' backward-bashword
