@@ -112,6 +112,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
+if [[ -d $macgnupath ]] ; then
+	PATH="$macgnupath:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"

@@ -9,10 +9,10 @@ path=( /sbin /usr/sbin $path )
 # export LD_LIBRARY_PATH
 # libpath=( $HOME/work/libs/lib/ $libpath )
 
-# if command -v rustc > /dev/null ; then
-#   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-#   path=( $HOME/.cargo/bin $path )
-# fi
+macgnupath=$(/opt/homebrew/bin/brew --prefix)/opt/coreutils/libexec/gnubin
+if [[ -d $macgnupath ]] ; then
+	path=( $macgnupath $path )
+fi
 
 if [[ -x $HOME/bin/go/bin/go ]] ; then
 	export GOROOT=$HOME/bin/go
@@ -32,6 +32,7 @@ pippath=$(python3 -m site --user-base)/bin
 if [[ -d $pippath ]] ; then
     path=( $pippath $path )
 fi
+
 
 path=( $HOME/bin $HOME/.local/bin $path )
 
