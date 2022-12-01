@@ -8,6 +8,15 @@ rulers = [80]
 name = "python"
 rulers = [100]
 
+[language.config]
+pylsp.plugins.autopep8.enabled = false
+pylsp.plugins.mccabe.enabled = false
+pylsp.plugins.pycodestyle.enabled = false
+pylsp.plugins.pyflakes.enabled = false
+pylsp.plugins.pylint.enabled = true
+pylsp.plugins.flake8.enabled = true
+pylsp.plugins.flake8.maxLineLength = 88
+
 [language.formatter]
 command = "black"
 args = [ "-", "--quiet" ]
