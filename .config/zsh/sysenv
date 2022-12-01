@@ -3,9 +3,22 @@ DEBFULLNAME="Italo Cunha"
 # uncomment to prevent others from reading our files:
 # umask 007
 
+typeset -U path
+path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
+
+brewbin=/opt/homebrew/bin
+if [[ -d $brewbin ]] ; then
+	path=( $brewbin $path )
+	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
+	if [[ -d $macgnupath ]] ; then
+		path=( $macgnupath $path )
+	fi
+fi
+
 if [[ -s "$HOME/.cargo/env" ]] ; then
     . "$HOME/.cargo/env"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+if [[ -x "$HOME/.cargo/bin/fnm" ]] ; then
+    eval $("$HOME/.cargo/bin/fnm" env --shell zsh)
+fi

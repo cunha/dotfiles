@@ -112,19 +112,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
-macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
-if [[ -d $macgnupath ]] ; then
-	PATH="$macgnupath:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+brewbin=/opt/homebrew/bin
+if [[ -d $brewbin ]] ; then
+	PATH=$brewbin:$PATH
+	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
+	if [[ -d $macgnupath ]] ; then
+		PATH=$macgnupath:$PATH
+	fi
 fi
 
 if [ -s "$HOME/.cargo/env" ] ; then
@@ -135,5 +129,14 @@ if [ -d "$HOME/.julia/bin" ] ; then
     PATH="$HOME/.julia/bin:$PATH"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [[ -x "$HOME/.cargo/bin/fnm" ]] ; then
+    eval $("$HOME/.cargo/bin/fnm" env --shell bash)
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi

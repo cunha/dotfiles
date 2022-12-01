@@ -1,5 +1,4 @@
 typeset -U path
-path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 
 # typeset -TU PYTHONPATH pythonpath
 # export PYTHONPATH
@@ -9,23 +8,10 @@ path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 # export LD_LIBRARY_PATH
 # libpath=( $HOME/work/libs/lib/ $libpath )
 
-brewbin=/opt/homebrew/bin
-if [[ -d $brewbin ]] ; then
-	path=( $brewbin $path )
-	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
-	if [[ -d $macgnupath ]] ; then
-		path=( $macgnupath $path )
-	fi
-fi
-
 if [[ -x $HOME/bin/go/bin/go ]] ; then
 	export GOROOT=$HOME/bin/go
 	export GOPATH=$HOME/go/
 	path=( $GOROOT/bin $path )
-fi
-
-if [[ -d $HOME/.cargo/bin ]] ; then
-	path=( $HOME/.cargo/bin $path )
 fi
 
 if [[ -d $HOME/.julia/bin ]] ; then

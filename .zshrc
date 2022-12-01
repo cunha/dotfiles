@@ -2,6 +2,7 @@ source $HOME/.config/zsh/bindings
 # for fn in $(ls $HOME/.config/zsh/completion.d/) ; do
 # 	source $HOME/.config/zsh/completion.d/$fn
 # done
+source $HOME/.config/zsh/path
 source $HOME/.config/zsh/prompt
 source $HOME/.config/zsh/preexeccmd
 source $HOME/.config/zsh/history
