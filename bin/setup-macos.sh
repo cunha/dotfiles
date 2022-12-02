@@ -5,6 +5,7 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
  
 brew install bash
+brew install fzf
 brew install git
 brew install jq
 brew install lazygit
