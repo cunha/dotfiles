@@ -13,6 +13,10 @@ if [[ -d $brewbin ]] ; then
 	if [[ -d $macgnupath ]] ; then
 		path=( $macgnupath $path )
 	fi
+	sedpath=$(brew --prefix)/opt/gnu-sed/libexec/gnubin
+	if [[ -d $sedpath ]] ; then
+		path=( $sedpath $path )
+	fi
 fi
 
 if [[ -s "$HOME/.cargo/env" ]] ; then
