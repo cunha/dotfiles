@@ -32,7 +32,11 @@ tabpad = " "
 [keys.insert]
 "A-left" = "move_prev_word_end"
 "A-right" = "move_next_word_start"
+"C-backspace" = "delete_word_backward"
+"C-del" = "delete_word_forward"
 
 [keys.normal]
-"A-l" = ":reflow"
+"A-h" = "jump_view_left"
+"A-l" = "jump_view_right"
+"A-q" = ":reflow"
 
