@@ -1,7 +1,7 @@
 [editor]
+bufferline = "always"
 color-modes = true
 cursorline = true
-indent-guides.render = true
 line-number = "relative"
 true-color = true
 auto-pairs = false
@@ -13,6 +13,10 @@ select = "block"
 
 [editor.file-picker]
 hidden = false
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
 
 [editor.statusline]
 left = ["mode", "spinner", "spacer", "file-name", "file-type"]
@@ -36,6 +40,8 @@ tabpad = " "
 "C-del" = "delete_word_forward"
 
 [keys.normal]
+"A-j" = "goto_previous_buffer"
+"A-k" = "goto_next_buffer"
 "A-h" = "jump_view_left"
 "A-l" = "jump_view_right"
 "A-q" = ":reflow"
