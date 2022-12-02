@@ -123,3 +123,6 @@ bindkey -M isearch '\e' accept-search
 
 # bindkey -v ;
 bindkey -e ;
+
+source $HOME/.config/zsh/fzf/key-bindings.zsh
+bindkey -M emacs '^S' fzf-cd-widget
