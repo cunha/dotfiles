@@ -1,0 +1,65 @@
+{
+  "title": "CMD as F20 and Return as Control",
+  "rules": [
+    {
+      "description": "CMD as F20 if alone",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_command",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "f19"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 400
+          }
+        }
+      ]
+    },
+    {
+      "description": "Return as Control Modifier",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 400
+          }
+        }
+      ]
+    }
+  ]
+}
