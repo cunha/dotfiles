@@ -18,3 +18,7 @@ brew install unzip
 brew install wezterm
 brew install wget
 
+brew install bash-language-server
+brew install shellcheck
+brew install lua-language-server
+

@@ -1,9 +1,6 @@
 #!/bin/bash
 set -eu
 
-if [[ ! -x $HOME/.cargo/bin/rustup ]] ; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
 cargo install cargo-update
 cargo install exa
 cargo install ripgrep
