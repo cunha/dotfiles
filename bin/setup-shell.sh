@@ -18,8 +18,6 @@ hx --grammar fetch
 hx --grammar build
 
 # Download and compile wezterm's terminfo database
-tempfile=$(mktemp) \
-  && curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
-  && tic -x -o ~/.terminfo "$tempfile" \
-  && rm "$tempfile"
+curl -o "$HOME/.cache/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+tic -x -o ~/.terminfo "$HOME/.cache/wezterm.terminfo"
 
