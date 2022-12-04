@@ -76,8 +76,6 @@ wezterm*|tmux*|xterm*)
     bindkey -M emacs '^[[1;3C' forward-bashword
     bindkey -M emacs '^[[3;5~' kill-word
     bindkey -M emacs '^[[3;3~' kill-bashword
-    bindkey -M emacs '^[[H' beginning-of-line
-    bindkey -M emacs '^[[F' end-of-line
     bindkey -M emacs '^[^?' backward-kill-bashword
     bindkey -M viins '^[[1;5D' backward-word
     bindkey -M viins '^[[1;5C' forward-word
@@ -85,18 +83,21 @@ wezterm*|tmux*|xterm*)
     bindkey -M viins '^[[1;3C' forward-bashword
     bindkey -M viins '^[[3;5~' kill-word
     bindkey -M viins '^[[3;3~' kill-bashword
+    bindkey -M viins '^[^?' backward-kill-bashword
+esac
+case $TERM in
+wezterm*|xterm*)
+    bindkey -M emacs '^[[H' beginning-of-line
+    bindkey -M emacs '^[[F' end-of-line
     bindkey -M viins '^[[H' beginning-of-line
     bindkey -M viins '^[[F' end-of-line
-    bindkey -M viins '^[^?' backward-kill-bashword
     ;;
-    # tmux on urxvt:
-    # bindkey -M emacs '^[[1;5D' backward-word
-    # bindkey -M emacs '^[[1;5C' forward-word
-    # bindkey -M emacs '^[^[[D' backward-bashword
-    # bindkey -M emacs '^[^[[C' forward-bashword
-    # bindkey -M emacs '^[[3;5~' kill-word
-    # bindkey -M emacs '^[^[[3~' kill-bashword
-    # bindkey -M emacs '^[[18;2~' backward-kill-bashword
+tmux*)
+    bindkey -M emacs '^[[1~' beginning-of-line
+    bindkey -M emacs '^[[4~' end-of-line
+    bindkey -M viins '^[[1~' beginning-of-line
+    bindkey -M viins '^[[4~' end-of-line
+    ;;
 esac
 # temporary
 bindkey -M emacs '^w' beep
