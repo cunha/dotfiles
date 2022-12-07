@@ -19,10 +19,12 @@ elif [[ $KERNEL == Darwin ]] ; then
   brew install shellcheck
 fi
 
-pip3 install --user --upgrade pip
+pip3 install --user --upgrade 'python-lsp-server[full]'
 pip3 install --user --upgrade black
+pip3 install --user --upgrade flake8
+pip3 install --user --upgrade isort
+pip3 install --user --upgrade pip
 pip3 install --user --upgrade pyflakes
-pip3 install --user --upgrade python-lsp-server
 pip3 install --user --upgrade rope
 
 AUTO_VENV_REPO="https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git"
