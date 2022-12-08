@@ -1,4 +1,5 @@
 # unhash -am "*" ;
+
 # alias date='date +%Y%m%d.%H%M' ;
 alias mdate='date +%Y%m%d.%H%M%S' ;
 # alias ls='ls --color=auto --group-directories-first' ;
@@ -25,45 +26,8 @@ peering-dump-configs () {
     scp -r peering.usc.edu:/opt/peering/web/local/dump-configs .
 }
 
-peering-ssh-bird () {
-    if [[ $1 == "--cli" ]] ; then
-        ssh $2 -tt 'sudo docker exec -ti peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl'
-    elif [[ $1 == "--scp" ]] ; then
-        scp "$2" "$3:"
-        ssh $3 -tt 'sudo docker cp '$2' peeringmux_bird_1:/root/'$2
-    elif [[ $1 == "--summary" ]] ; then
-        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show protocols all \"up*\""' \
-                > bird-summary.txt
-        local sessions=$(grep Description bird-summary.txt | wc -l)
-        local established=$(grep -Ee "BGP state.*Established" bird-summary.txt | wc -l)
-        echo "$established of $sessions IPv4 sessions established"
-    elif [[ $1 == "--export" ]] ; then
-        echo "[$2] routes exported to $3"
-        ssh $2 'sudo docker exec peeringmux_bird_1 birdc -s /var/run/peering/bird/bird.ctl "show route export '$3'"'
-    else
-        ssh $1 -tt 'sudo docker exec -ti peeringmux_bird_1 bash'
-    fi
-}
-
-peering-ssh-bird6 () {
-    if [[ $1 == "--cli" ]] ; then
-        ssh $2 -tt 'sudo docker exec -ti peeringmux_bird6_1 birdc6 -s /var/run/peering/bird6/bird6.ctl'
-    elif [[ $1 == "--scp" ]] ; then
-        scp "$2" "$3:"
-        ssh $3 -tt 'sudo docker cp '$2' peeringmux_bird6_1:/root/'$2
-    elif [[ $1 == "--summary" ]] ; then
-        ssh $2 'sudo docker exec peeringmux_bird6_1 birdc -s /var/run/peering/bird6/bird6.ctl "show protocols \"up*\""' \
-                | grep BGP > bird-summary.txt
-        local sessions=$(wc -l < bird-summary.txt)
-        local established=$(grep Established bird-summary.txt | wc -l)
-        echo "$established of $sessions IPv6 sessions established"
-    elif [[ $1 == "--export" ]] ; then
-        echo "[$2] routes exported to $3"
-        ssh $2 'sudo docker exec peeringmux_bird6_1 birdc -s /var/run/peering/bird6/bird6.ctl "show route export '$3'"'
-    else
-        ssh $1 -tt 'sudo docker exec -ti peeringmux_bird6_1 bash'
-    fi
-}
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls -hl --color=auto; }
 
 transfer() {
     # check arguments
