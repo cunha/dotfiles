@@ -26,3 +26,15 @@ hx --grammar build
 curl -o "$HOME/.cache/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
 tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
 
+VVREPO=git@github.com:hackerb9/vv.git
+CLONE_PATH=$HOME/bin/vv.git
+if [[ ! -d $CLONE_PATH ]] ; then
+  echo "Cloning $VVREPO"
+  git clone $VVREPO "$CLONE_PATH"
+fi
+(cd "$CLONE_PATH" && git pull)
+if [[ ! -e $HOME/bin/vv ]] ; then
+  ln -s "$CLONE_PATH"/vv "$HOME/bin/vv"
+fi
+
+
