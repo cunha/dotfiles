@@ -1,0 +1,113 @@
+{
+  "title": "WezTerm layout changes",
+  "rules": [
+    {
+      "description": "WezTerm: Swap LCommand and Control",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command"
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.github.wez.wezterm"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control"
+          },
+          "to": [
+            {
+              "key_code": "left_command"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.github.wez.wezterm"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "WezTerm+NumLockFN: NL+[cv] to CMD+[cv]",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [ "left_command" ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            },
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.github.wez.wezterm"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "v",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": [ "left_command" ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            },
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.github.wez.wezterm"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

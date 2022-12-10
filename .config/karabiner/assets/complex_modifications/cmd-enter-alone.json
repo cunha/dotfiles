@@ -1,8 +1,8 @@
 {
-  "title": "CMD as F20 and Return as Control",
+  "title": "CMD as F19 and Return as Control",
   "rules": [
     {
-      "description": "CMD as F20 if alone",
+      "description": "CMD as F19 if alone",
       "manipulators": [
         {
           "type": "basic",

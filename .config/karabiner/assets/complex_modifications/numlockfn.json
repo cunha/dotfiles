@@ -520,7 +520,7 @@
       ]
     },
     {
-      "description": "NumLockFN: NumLock+p to Print Screen, NL+space to Escape",
+      "description": "NumLockFN: NL+p to Print, NL+space to Escape, NL+return to Insert",
       "manipulators": [
         {
           "type": "basic",
@@ -567,9 +567,33 @@
               "value": 1
             }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "insert"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
         }
       ]
     },
+
     {
       "description": "NumLockFN: NL+[1-9] to keypad",
       "manipulators": [
