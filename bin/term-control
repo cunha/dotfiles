@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+set -eu
+
+function usage {
+    echo "Create a new view in the terminal depending on the back-end used."
+    echo "Supportted view creation solutions: wezterm > tmux"
+    echo ""
+    echo "usage: $0 TYPE [-d DIRECTORY] [-e FILE]"
+    echo ""
+    echo "TYPE        may be w(indow) t(ab) or p(ane)"
+    echo "-d DIR      specifies the working directory of the created view"
+    echo "-e FILE     edit the given FILE in the created view"
+    exit 1
+}
+
+debug=0
+create=pane
+directory=$(pwd)
+editfile=/dev/null
+while getopts "Dwtpd:e:" arg ; do
+    case "$arg" in
+    w)
+        create=window
+        ;;
+    t)
+        create=tab
+        ;;
+    p)
+        create=pane
+        ;;
+    d)
+        directory=$OPTARG
+        ;;
+    e)
+        editfile=$OPTARG
+        ;;
+    D)
+        debug=1
+        ;;
+    *)
+        usage
+        ;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+termcmd=()
+cwdparam=()
+exeparam=()
+
+
+if [[ ${TMUX:-default} != default ]] ; then
+    [[ $debug -eq 1 ]] && echo "detected tmux"
+    case $create in
+    window)
+        echo "tmux does not allow creating new sessions"
+        exit 1
+        ;;
+    tab)
+        termcmd=( tmux new-window )
+        ;;
+    pane)
+        termcmd=( tmux split-window -h )
+        ;;
+    esac
+    cwdparam=( -c "$directory" )
+elif [[ $TERM_PROGRAM == WezTerm ]] ; then
+    [[ $debug -eq 1 ]] && echo "detected wezterm"
+    case $create in
+    window)
+        termcmd=( wezterm-gui start )
+        ;;
+    tab)
+        termcmd=( wezterm cli spawn )
+        ;;
+    pane)
+        termcmd=( wezterm cli split-pane --right )
+        ;;
+    esac
+    cwdparam=( --cwd "$directory" )
+
+fi
+
+if [[ $editfile != /dev/null ]] ; then
+    [[ $debug -eq 1 ]] && echo "editfile: $editfile"
+    exeparam=( hx "$editfile" )
+fi
+
+[[ $debug -eq 1 ]] && echo "termcmd: ${termcmd[*]}"
+[[ $debug -eq 1 ]] && echo "cwdparam: ${cwdparam[*]}"
+[[ $debug -eq 1 ]] && echo "exeparam: ${exeparam[*]}"
+
+echo "${termcmd[*]} ${cwdparam[*]} ${exeparam[*]}"
+"${termcmd[@]}" "${cwdparam[@]}" "${exeparam[@]}"
+

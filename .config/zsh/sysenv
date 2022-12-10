@@ -17,6 +17,10 @@ if [[ -d $brewbin ]] ; then
 	if [[ -d $sedpath ]] ; then
 		path=( $sedpath $path )
 	fi
+	manpath=$(brew --prefix)/opt/man-db/libexec/bin
+	if [[ -d $manpath ]] ; then
+		path=( $manpath $path )
+	fi
 fi
 
 if [[ -s "$HOME/.cargo/env" ]] ; then

@@ -1,0 +1,8 @@
+{
+  "ltex.enabled": true,
+  "ltex.language": "pt-BR",
+  "ltex.disabledRules": {
+    "en-US": ["WHITESPACE_RULE"],
+    "pt-BR": ["WHITESPACE_RULE"]
+  }
+}

@@ -44,5 +44,5 @@ tabpad = " "
 "A-k" = "goto_next_buffer"
 "A-h" = "jump_view_left"
 "A-l" = "jump_view_right"
-"A-q" = ":reflow"
+"C-q" = ":reflow"
 
