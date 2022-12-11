@@ -1,8 +1,8 @@
 -- local wezterm = require 'wezterm'
 local unix_domains = {}
-unix_domains = require 'unix'
+-- unix_domains = require 'unix'
 local ssh_domains = {}
-ssh_domains = require 'ssh'
+-- ssh_domains = require 'ssh'
 local keys = require 'keys'
 
 return {
