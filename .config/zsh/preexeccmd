@@ -29,8 +29,8 @@ function preexec {
 }
 
 function update_user_env {
+	update_ssh_auth_sock
 	if [[ -n $TMUX ]] ; then
-		update_ssh_auth_sock
 		NEW_IPC_HOOK=$(tmux show-environment VSCODE_IPC_HOOK_CLI)
 		if [[ "$NEW_IPC_HOOK" == "-VSCODE_IPC_HOOK_CLI" ]] ; then
 			unset VSCODE_IPC_HOOK_CLI

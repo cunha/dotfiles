@@ -25,14 +25,21 @@ function zsh-ssh-agent {
 }
 
 function update_ssh_auth_sock {
-    NEW_SOCK=$(tmux show-environment SSH_AUTH_SOCK)
-    NEW_SOCK=${NEW_SOCK##*=}
-    [[ $NEW_SOCK == $SSH_AUTH_SOCK ]] && return
-    if [[ ! -S $NEW_SOCK ]] ; then
-        echo "${fg[red]}$NEW_SOCK is not a valid socket.${terminfo[sgr0]}"
+    linkpath=$HOME/.ssh/last_sock
+    [[ -e $linkpath ]] || return
+    if [[ ! -h $linkpath ]] ; then
+        echo "${fg[red]}$linkpath is not a symbolic link, removing.${terminfo[sgr0]}"
+        rm -rf $linkpath
         return
     fi
-    SSH_AUTH_SOCK=$NEW_SOCK
+    sockpath=$(readlink --no-newline $linkpath)
+    if [[ ! -S $HOME/.ssh/last_sock ]] ; then
+        echo "${fg[red]}$sockpath is not a valid socket, removing link.${terminfo[sgr0]}"
+        rm -rf $linkpath
+        return
+    fi
+    [[ $sockpath == $SSH_AUTH_SOCK ]] && return
+    SSH_AUTH_SOCK=$sockpath
     echo "${fg[yellow]}SSH auth socket updated.${terminfo[sgr0]}"
 }
 
