@@ -39,7 +39,7 @@ function update_ssh_auth_sock {
         return
     fi
     [[ $sockpath == $SSH_AUTH_SOCK ]] && return
-    SSH_AUTH_SOCK=$sockpath
+    export SSH_AUTH_SOCK=$sockpath
     echo "${fg[yellow]}SSH auth socket updated.${terminfo[sgr0]}"
 }
 

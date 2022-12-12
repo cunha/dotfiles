@@ -1,4 +1,13 @@
 typeset -U path
+typeset -U manpath
+
+if [[ -d /home/linuxbrew/.linuxbrew/bin ]] ; then
+	path=( /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin $path )
+	manpath=( /home/linuxbrew/.linuxbrew/share/man $manpath )
+	export HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
+	export HOMEBREW_CELLAR=/home/linuxbrew/.linuxbrew/Cellar
+	export HOMEBREW_REPOSITORY=/home/linuxbrew/.linuxbrew/Homebrew
+fi
 
 # typeset -TU PYTHONPATH pythonpath
 # export PYTHONPATH
@@ -18,9 +27,9 @@ if [[ -d $HOME/.julia/bin ]] ; then
     path=( $HOME/.julia/bin $path )
 fi
 
-if [[ -d $HOME/bin/lua-ls/bin ]] ; then
-	path=( $HOME/bin/lua-ls/bin $path )
-fi
+# if [[ -d $HOME/bin/lua-ls/bin ]] ; then
+# 	path=( $HOME/bin/lua-ls/bin $path )
+# fi
 
 pippath=$(python3 -m site --user-base)/bin
 if [[ -d $pippath ]] ; then

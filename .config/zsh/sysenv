@@ -27,6 +27,6 @@ if [[ -s "$HOME/.cargo/env" ]] ; then
     . "$HOME/.cargo/env"
 fi
 
-if [[ -x "$HOME/.cargo/bin/fnm" ]] ; then
-    eval $("$HOME/.cargo/bin/fnm" env --shell zsh)
-fi
+# if [[ -x "$HOME/.cargo/bin/fnm" ]] ; then
+#     eval $("$HOME/.cargo/bin/fnm" env --shell zsh)
+# fi
