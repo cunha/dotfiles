@@ -64,7 +64,7 @@ if [[ ${TMUX:-default} != default ]] ; then
         ;;
     esac
     cwdparam=( -c "$directory" )
-elif [[ $TERM_PROGRAM == WezTerm ]] ; then
+elif [[ ${TERM_PROGRAM:-default} == WezTerm ]] ; then
     [[ $debug -eq 1 ]] && echo "detected wezterm"
     case $create in
     window)
