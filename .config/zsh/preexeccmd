@@ -51,6 +51,8 @@ function update_user_env {
 		eval $(tmux show-environment VSCODE_GIT_ASKPASS_NODE)
 		eval $(tmux show-environment VSCODE_GIT_ASKPASS_MAIN)
 		eval $(tmux show-environment VSCODE_GIT_IPC_HANDLE)
+		codepath=${VSCODE_GIT_ASKPASS_NODE%%node}/bin/remote-cli
+		path=( $codepath $path )
 		echo "${fg[yellow]}VS Code env updated.${terminfo[sgr0]}"
 	fi
 }
