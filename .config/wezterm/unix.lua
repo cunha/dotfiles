@@ -1,14 +1,8 @@
 return {
   {
-    name = "ip2as",
-    socket_path = "~/.local/share/wezterm/ip2as.sock",
-  },
-  {
-    name = "peering",
-    socket_path = "~/.local/share/wezterm/peering.sock",
-  },
-  {
-    name = "zeusproxy",
-    proxy_command = { "ssh", "-T", "-A", "zeus", "wezterm", "cli", "proxy" },
+    name = "timbersaw-peering",
+    socket_path = "Users/cunha/.local/share/wezterm/timbersaw-peering.sock",
+    proxy_command = { "ssh", "-T", "-A", "timbersaw", "wezterm", "cli", "proxy" },
+    local_echo_threshold_ms = 50000,
   },
 }

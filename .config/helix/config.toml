@@ -1,10 +1,11 @@
 [editor]
+auto-pairs = false
 bufferline = "always"
 color-modes = true
 cursorline = true
 line-number = "relative"
+rulers = [80]
 true-color = true
-auto-pairs = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -38,11 +39,26 @@ tabpad = " "
 "A-right" = "move_next_word_start"
 "C-backspace" = "delete_word_backward"
 "C-del" = "delete_word_forward"
+"C-w" = "normal_mode"
 
 [keys.normal]
 "A-j" = "goto_previous_buffer"
 "A-k" = "goto_next_buffer"
 "A-h" = "jump_view_left"
 "A-l" = "jump_view_right"
-"C-q" = ":reflow"
+"C-w" = ":reflow"
+"pageup" = "half_page_up"
+"pagedown" = "half_page_down"
+"C-d" = "jump_forward"
+"C-f" = "jump_backward"
+"C-e" = "repeat_last_motion"
+
+[keys.select]
+"pageup" = "half_page_up"
+"pagedown" = "half_page_down"
+"C-d" = "jump_forward"
+"C-f" = "jump_backward"
+"C-e" = "repeat_last_motion"
+
+
 

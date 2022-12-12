@@ -19,8 +19,33 @@ pylsp.plugins.flake8.maxLineLength = 88
 
 [language.formatter]
 command = "black"
-args = [ "-", "--quiet" ]
+args = ["-", "--quiet"]
 
 [[language]]
 name = "rust"
 rulers = [100]
+
+[[language]]
+name = "latex"
+indent = { tab-width = 4, unit = " " }
+diagnostic-severity = "Hint"
+rulers = [80]
+max-line-length = 78
+
+[language.config]
+texlab.build.executable = "tectonic"
+texlab.build.args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+]
+texlab.build.onSave = true
+texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+texlab.forwardSearch.args = ["%l", "%p", "%f"]
+
+[[language]]
+name = "markdown"
+max-line-length = 78
