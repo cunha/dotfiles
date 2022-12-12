@@ -25,4 +25,3 @@ brew install w3m
 brew install wezterm
 brew install wget
 
-
