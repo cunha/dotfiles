@@ -25,22 +25,28 @@ function zsh-ssh-agent {
 }
 
 function update_ssh_auth_sock {
-    linkpath=$HOME/.ssh/last_sock
-    [[ -e $linkpath ]] || return
-    if [[ ! -h $linkpath ]] ; then
-        echo "${fg[red]}$linkpath is not a symbolic link, removing.${terminfo[sgr0]}"
-        rm -rf $linkpath
-        return
-    fi
-    sockpath=$(readlink --no-newline $linkpath)
-    if [[ ! -S $HOME/.ssh/last_sock ]] ; then
-        echo "${fg[red]}$sockpath is not a valid socket, removing link.${terminfo[sgr0]}"
-        rm -rf $linkpath
-        return
-    fi
-    [[ $sockpath == $SSH_AUTH_SOCK ]] && return
-    export SSH_AUTH_SOCK=$sockpath
-    echo "${fg[yellow]}SSH auth socket updated.${terminfo[sgr0]}"
+    for linkpath in $HOME/.ssh/sockets/* ; do
+        if [[ ! -h $linkpath ]] ; then
+            echo "${fg[red]}$linkpath is not a symbolic link, removing.${terminfo[sgr0]}"
+            rm -rf $linkpath
+            continue
+        fi
+        if [[ ! -e $linkpath ]] ; then
+            echo "${fg[red]}$linkpath is a dandling symbolic link, removing.${terminfo[sgr0]}"
+            rm -rf $linkpath
+            continue
+        fi
+        sockpath=$(readlink --no-newline $linkpath)
+        if [[ ! -S $sockpath ]] ; then
+            echo "${fg[red]}$sockpath is not a valid socket, removing link.${terminfo[sgr0]}"
+            rm -rf $linkpath
+            continue
+        fi
+        [[ $sockpath == $SSH_AUTH_SOCK ]] && return
+        export SSH_AUTH_SOCK=$sockpath
+        echo "${fg[yellow]}SSH auth socket updated.${terminfo[sgr0]}"
+        break
+    done
 }
 
 # This functionality no longer needed, we now chain the SSH agent:
