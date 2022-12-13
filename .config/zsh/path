@@ -47,3 +47,10 @@ elif [[ -z $VSCODE_GIT_ASKPASS_NODE ]] ; then
 		path=( $sshpath $path )
 	fi
 fi
+
+if [[ -v VSCODE_GIT_ASKPASS_NODE ]] ; then
+	codepath=${VSCODE_GIT_ASKPASS_NODE%%node}/bin/remote-cli
+	if [[ -d $codepath ]] ; then
+		path=( $codepath $path )
+	fi
+fi
