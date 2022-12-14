@@ -26,8 +26,11 @@ peering-dump-configs () {
     scp -r peering.usc.edu:/opt/peering/web/local/dump-configs .
 }
 
-autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls -hl --color=auto; }
+autoload -Uz add-zsh-hook
+function _auto_ls() {
+    ls -hl --color=auto
+}
+add-zsh-hook chpwd _auto_ls
 
 transfer() {
     # check arguments
