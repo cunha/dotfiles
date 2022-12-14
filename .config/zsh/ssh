@@ -26,8 +26,9 @@ function zsh-ssh-agent {
 
 function update_ssh_auth_sock {
     for linkpath in $(ls $HOME/.ssh/sockets) ; do
+        linkpath=$HOME/.ssh/sockets/$linkpath
         if [[ ! -h $linkpath ]] ; then
-            echo "${fg[red]}$linkpath is not a symbolic link, removing.${terminfo[sgr0]}"
+            echo "${fg[red]}$linkpath is not a valid symbolic link, removing.${terminfo[sgr0]}"
             rm -rf $linkpath
             continue
         fi
