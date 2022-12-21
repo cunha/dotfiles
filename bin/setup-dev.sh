@@ -22,6 +22,7 @@ brew install lua-language-server
 brew install shellcheck
 brew install taplo
 brew install texlab
+brew install yaml-language-server
 
 pip3 install --user --upgrade 'python-lsp-server[full]'
 pip3 install --user --upgrade black
