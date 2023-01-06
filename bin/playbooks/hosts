@@ -1,0 +1,23 @@
+# DO NOT FORGET TO ENABLE AgentForward
+
+[targets]
+# localhost ansible_connection=local
+# dev
+# jcloud
+joe1
+# joe2
+# joe3
+# peering
+# revtr
+# timbersaw
+# dazzle
+# zeus
+# vcm1
+# revtr
+# dev
+# peering.ee.columbia.edu
+# peering2
+# miami
+
+[targets:vars]
+ansible_python_interpreter=/usr/bin/python3

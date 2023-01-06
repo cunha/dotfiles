@@ -1,0 +1,29 @@
+- name: Add users
+  become: true
+  user:
+    name: "{{ item }}"
+    password: $6$z1.Z8ZcG$rV25sfMlPd6luu6weLPZuiUPJYTTcCtnJ8n9l.oP0/25RbiVJnWyzdFOUnwCdHU/bC/gajNyn1jN94vFIAWMn.
+  with_items: "{{ user_list }}"
+
+# - name: Give sudo permissions
+#   become: true
+#   user:
+#     name: "{{ item }}"
+#     groups: sudo
+#     append: yes
+#   with_items: "{{ user_list }}"
+
+- name: Create passwd file
+  become: true
+  copy:
+    src: passwd.txt
+    dest: "/home/{{ item }}/passwd.txt"
+  with_items: "{{ user_list }}"
+
+- name: Add SSH pubkey
+  become: true
+  authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', item) }}"
+    exclusive: no
+  with_items: "{{ user_list }}"

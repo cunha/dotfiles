@@ -1,0 +1,14 @@
+config-dir={{ powerdns_config_dir }}
+daemon=yes
+setgid=pdns
+setuid=pdns
+
+launch=pipe
+pipe-timeout=2000
+pipe-abi-version=3
+pipe-regex=atlas.peering.usc.edu$
+pipe-command={{ pdyndns_executable }} --config {{ pdyndns_config_file }}
+
+distributor-threads=1
+out-of-zone-additional-processing=no
+
