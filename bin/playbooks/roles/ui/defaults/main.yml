@@ -9,6 +9,7 @@ cunha_ui_packages:
   - man
   - manpages-dev
   - ncurses-term
+  - pkg-config
   - procps
   - tcpdump
   - tmux
