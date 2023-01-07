@@ -42,9 +42,12 @@ texlab.build.args = [
   "--keep-logs",
   "--keep-intermediates",
 ]
+texlab.build.forwardSearchAfter = true
 texlab.build.onSave = true
-texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+texlab.chktex.onOpenAndSave = true
+texlab.formatterLineLength = 78
 texlab.forwardSearch.args = ["%l", "%p", "%f"]
+# texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
 
 [[language]]
 name = "markdown"
