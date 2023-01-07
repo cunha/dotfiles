@@ -18,4 +18,4 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # Uncomment this line to jump into xonsh on initialization
-# exec xonsh
+exec xonsh

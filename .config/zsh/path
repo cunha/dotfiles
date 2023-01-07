@@ -17,9 +17,15 @@ fi
 # export LD_LIBRARY_PATH
 # libpath=( $HOME/work/libs/lib/ $libpath )
 
-if [[ -x $HOME/bin/go/bin/go ]] ; then
-	export GOROOT=$HOME/bin/go
-	export GOPATH=$HOME/go/
+# if command -v rustc > /dev/null ; then
+#   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+#   path=( $HOME/.cargo/bin $path )
+# fi
+
+if [[ -x $HOME/.local/go/bin ]] ; then
+	export GOROOT=$HOME/.local/go
+	export GOPATH=$HOME/.cache/go
+	export GOBIN=$HOME/.local/bin
 	path=( $GOROOT/bin $path )
 fi
 
