@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eu
 
+sudo apt install pkg-config libssl-dev
+
 if [[ ! -d "$HOME/.rustup" ]] ; then
   curl -o "$HOME/rustup.sh" --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs
   sh rustup.sh --no-modify-path -y
@@ -18,7 +20,7 @@ cargo install-update -a
 if [[ ! -d $HOME/bin/helix ]] ; then
   git clone https://github.com/helix-editor/helix "$HOME/bin/helix"
 fi
-(cd "$HOME/bin/helix" && git pull && cargo install --path helix-term)
+(cd "$HOME/bin/helix" && git pull && cargo install --locked --path helix-term)
 hx --grammar fetch
 hx --grammar build
 
