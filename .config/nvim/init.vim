@@ -1,11 +1,16 @@
 set nocompatible
 
 call plug#begin()
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'ggandor/leap.nvim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'machakann/vim-sandwich'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
-Plug 'tpope/vim-fugitive'
-Plug 'machakann/vim-sandwich'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 " set runtimepath+=~/.vim/plugins/dein.vim/
@@ -93,6 +98,7 @@ filetype plugin on
 filetype indent on
 let mapleader = ";"
 let maplocalleader = ","
+colorscheme catppuccin-frappe
 
 " file management {{{
 set hidden          " stop asking for :w all the time
@@ -177,7 +183,7 @@ set foldenable
 set foldcolumn=3
 " }}}
 
-source ~/.vim/settings/colors.vim
+" source ~/.vim/settings/colors.vim
 source ~/.vim/settings/cscope.vim
 source ~/.vim/settings/file-types.vim
 source ~/.vim/settings/mappings.vim
@@ -292,6 +298,8 @@ nnoremap <silent> <C-a>k :TmuxNavigateUp<cr>
 
 nnoremap <leader>ev :edit ~/.vim/settings/plugins.vim<cr>:edit ~/.vim/settings/mappings.vim<cr>:edit ~/.vim/settings/file-types.vim<cr>:edit $MYVIMRC<cr>
 nnoremap <leader>es :source $MYVIMRC<cr>
+
+lua require('leap').add_default_mappings()
 
 " map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 " \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"

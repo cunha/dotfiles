@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eu
 
-sudo apt install pkg-config libssl-dev
-
 if [[ ! -d "$HOME/.rustup" ]] ; then
   curl -o "$HOME/rustup.sh" --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs
   sh rustup.sh --no-modify-path -y
@@ -39,4 +37,7 @@ if [[ ! -e $HOME/bin/vv ]] ; then
   ln -s "$CLONE_PATH"/vv "$HOME/bin/vv"
 fi
 
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+    --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
