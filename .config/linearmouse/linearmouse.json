@@ -1,0 +1,43 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.7.6",
+  "schemes" : [
+    {
+      "buttons" : {
+        "universalBackForward" : false
+      },
+      "if" : {
+        "device" : {
+          "productName" : "USB Gaming Mouse",
+          "productID" : "0xfc4f",
+          "category" : "mouse",
+          "vendorID" : "0x4d9"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true
+      },
+      "scrolling" : {
+        "scale" : {
+          "vertical" : 1
+        },
+        "modifiers" : {
+          "command" : {
+            "type" : "none"
+          },
+          "shift" : {
+            "type" : "none"
+          },
+          "option" : {
+            "type" : "none"
+          }
+        },
+        "reverse" : {
+          "vertical" : true
+        },
+        "distance" : {
+          "vertical" : "36px"
+        }
+      }
+    }
+  ]
+}
