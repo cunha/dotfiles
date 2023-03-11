@@ -15,6 +15,9 @@ return {
 
     { key = 'w', mods = 'SUPER', action = act.CloseCurrentTab{ confirm = true } },
 
+    { key = 'LeftArrow', mods = 'SUPER', action = act.ScrollToPrompt(-1) },
+    { key = 'RightArrow', mods = 'SUPER', action = act.ScrollToPrompt(1) },
+
     { key = '1', mods = 'SUPER', action = act.ActivateTab(0) },
     { key = '2', mods = 'SUPER', action = act.ActivateTab(1) },
     { key = '3', mods = 'SUPER', action = act.ActivateTab(2) },
@@ -87,6 +90,7 @@ return {
       { key = 'O', mods = 'SHIFT', action = act.CopyMode 'MoveToSelectionOtherEndHoriz' },
       { key = 'T', mods = 'NONE', action = act.CopyMode{ JumpBackward = { prev_char = true } } },
       { key = 'T', mods = 'SHIFT', action = act.CopyMode{ JumpBackward = { prev_char = true } } },
+      { key = 'X', mods = 'SHIFT', action = act.CopyMode{ SetSelectionMode = 'SemanticZone' } },
       { key = 'V', mods = 'NONE', action = act.CopyMode{ SetSelectionMode =  'Line' } },
       { key = 'V', mods = 'SHIFT', action = act.CopyMode{ SetSelectionMode =  'Line' } },
       { key = '^', mods = 'NONE', action = act.CopyMode 'MoveToStartOfLineContent' },

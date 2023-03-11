@@ -2,6 +2,28 @@
 
 autoload -Uz add-zsh-hook
 
+if [[ $TERM = wezterm ]] ; then
+	if [[ -e "$HOME/.config/wezterm/wezterm.sh" ]] ; then
+		source "$HOME/.config/wezterm/wezterm.sh"
+	else
+		echo -n "${fg[yellow]}wezterm shell integration: "
+	fi
+	echo -n "${fg[yellow]}wezterm shell integration: "
+	if typeset -f __wezterm_semantic_precmd > /dev/null ; then
+		echo -n "${fg[green]}zones "
+		add-zsh-hook precmd __wezterm_semantic_precmd
+		add-zsh-hook preexec __wezterm_semantic_preexec
+	else
+		echo -n "${fg[red]}zones "
+	fi
+	if typeset -f __wezterm_osc7 > /dev/null ; then
+		echo "${fg[green]}cwd${terminfo[sgr0]}"
+		add-zsh-hook precmd __wezterm_osc7
+	else
+		echo "${fg[red]}cwd${terminfo[sgr0]}"
+	fi
+fi
+
 function _precmd_env {
 	if [[ $? -ne 0 ]] ; then
 		PROMPT_TERM_COLOR="%F{red}"
@@ -62,3 +84,4 @@ function update_user_env {
 		echo "${fg[yellow]}VS Code env updated.${terminfo[sgr0]}"
 	fi
 }
+

@@ -9,7 +9,8 @@ return {
     -- If true, connect to this domain automatically at startup
     -- connect_automatically = true
     -- timeout = 60
-    multiplexing = 'WezTerm',
+    -- multiplexing = 'WezTerm',
+    multiplexing = 'None',
   },
   {
     name = 'timbersaw',
@@ -21,6 +22,7 @@ return {
     -- If true, connect to this domain automatically at startup
     -- connect_automatically = true
     -- timeout = 60
-    multiplexing = 'WezTerm',
+    -- multiplexing = 'WezTerm',
+    multiplexing = 'None',
   },
 }

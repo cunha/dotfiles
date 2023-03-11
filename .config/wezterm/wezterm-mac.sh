@@ -1,0 +1,1 @@
+/Applications/WezTerm.app/Contents/Resources/wezterm.sh
