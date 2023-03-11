@@ -8,7 +8,7 @@ path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 
 brewbin=/opt/homebrew/bin
 if [[ -d $brewbin ]] ; then
-	path=( $brewbin $path )
+	path=( $brewbin /opt/homebrew/sbin $path )
 	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
 	if [[ -d $macgnupath ]] ; then
 		path=( $macgnupath $path )
