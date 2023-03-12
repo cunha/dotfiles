@@ -867,30 +867,7 @@
           },
           "to": [
             {
-              "key_code": "keypad_equal_sign"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numlock_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "keypad_comma"
+              "key_code": "keypad_plus"
             }
           ],
           "conditions": [
@@ -950,30 +927,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "s",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "keypad_plus"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numlock_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "d",
+            "key_code": "comma",
             "modifiers": {
               "optional": [
                 "any"
