@@ -20,9 +20,11 @@ brew install bash-language-server
 brew install lazygit
 brew install lua-language-server
 brew install neovim
+brew install python
 brew install shellcheck
 brew install taplo
 brew install texlab
+brew install virtualenv
 brew install yaml-language-server
 
 pip3 install --user --upgrade 'python-lsp-server[all]'
