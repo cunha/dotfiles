@@ -30,7 +30,7 @@ fi
 export REPORTTIME=10
 
 if [[ -d $HOME/bin/zsh-autoswitch-virtualenv ]] ; then
-    export AUTOSWITCH_DEFAULT_PYTHON=/usr/bin/python3
+    export AUTOSWITCH_DEFAULT_PYTHON=python3
     source $HOME/bin/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
 fi
 
