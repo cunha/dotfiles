@@ -6,23 +6,6 @@ DEBFULLNAME="Italo Cunha"
 typeset -U path
 path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 
-brewbin=/opt/homebrew/bin
-if [[ -d $brewbin ]] ; then
-	path=( $brewbin /opt/homebrew/sbin $path )
-	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
-	if [[ -d $macgnupath ]] ; then
-		path=( $macgnupath $path )
-	fi
-	sedpath=$(brew --prefix)/opt/gnu-sed/libexec/gnubin
-	if [[ -d $sedpath ]] ; then
-		path=( $sedpath $path )
-	fi
-	manpath=$(brew --prefix)/opt/man-db/libexec/bin
-	if [[ -d $manpath ]] ; then
-		path=( $manpath $path )
-	fi
-fi
-
 if [[ -s "$HOME/.cargo/env" ]] ; then
     . "$HOME/.cargo/env"
 fi

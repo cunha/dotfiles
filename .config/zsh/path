@@ -1,12 +1,34 @@
 typeset -U path
 typeset -U manpath
 
+function setup_homebrew {
+	export HOMEBREW_PREFIX=$1
+	export HOMEBREW_CELLAR=$HOMEBREW_PREFIX/Cellar
+	export HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX/Homebrew
+	path=( $1/bin $1/sbin $path )
+	manpath=( $1/share/man $manpath )
+	macgnupath=$(brew --prefix)/opt/coreutils/libexec/gnubin
+	if [[ -d $macgnupath ]] ; then
+		path=( $macgnupath $path )
+	fi
+	sedpath=$(brew --prefix)/opt/gnu-sed/libexec/gnubin
+	if [[ -d $sedpath ]] ; then
+		path=( $sedpath $path )
+	fi
+	manpath=$(brew --prefix)/opt/man-db/libexec/bin
+	if [[ -d $manpath ]] ; then
+		path=( $manpath $path )
+	fi
+	pypath=$(brew --prefix)/opt/python/libexec/bin
+	if [[ -d $pypath ]] ; then
+		path=( $pypath $path )
+	fi
+}
+
 if [[ -d /home/linuxbrew/.linuxbrew/bin ]] ; then
-	path=( /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin $path )
-	manpath=( /home/linuxbrew/.linuxbrew/share/man $manpath )
-	export HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
-	export HOMEBREW_CELLAR=/home/linuxbrew/.linuxbrew/Cellar
-	export HOMEBREW_REPOSITORY=/home/linuxbrew/.linuxbrew/Homebrew
+	setup_homebrew /home/linuxbrew/.linuxbrew
+elif [[ -d /opt/homebrew/bin ]] ; then
+	setup_homebrew /opt/homebrew
 fi
 
 # typeset -TU PYTHONPATH pythonpath
