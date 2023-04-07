@@ -8,3 +8,4 @@
 .sconsign.dblite
 .gdb_history
 *.swp
+.venv
