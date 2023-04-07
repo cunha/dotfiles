@@ -30,7 +30,7 @@ name = "latex"
 indent = { tab-width = 4, unit = " " }
 diagnostic-severity = "Hint"
 rulers = [80]
-max-line-length = 78
+text-width = 78
 
 [language.config]
 texlab.build.executable = "tectonic"
@@ -51,4 +51,4 @@ texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport
 
 [[language]]
 name = "markdown"
-max-line-length = 78
+text-width = 78
