@@ -1,0 +1,9 @@
+python-lsp-server[all]
+black
+flake8
+isort
+pip
+pycodestyle
+pyflakes
+pylint
+rope
