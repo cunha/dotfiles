@@ -2,6 +2,7 @@ python-lsp-server[all]
 black
 flake8
 isort
+mypy
 pip
 pycodestyle
 pyflakes
