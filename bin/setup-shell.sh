@@ -10,10 +10,7 @@ fi
 rustup update
 rustup upgrade
 cargo install cargo-update
-cargo install exa
 cargo install markdown2html-converter
-cargo install ripgrep
-cargo install xsv
 cargo install-update -a
 
 if [[ ! -d $HOME/bin/helix ]] ; then

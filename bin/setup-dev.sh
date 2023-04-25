@@ -17,14 +17,19 @@ MARCHS=${MARCH//86_/}
 # elif [[ $KERNEL == Darwin ]] ; then
 
 brew install bash-language-server
+brew install exa
+brew install helix
 brew install lazygit
 brew install lua-language-server
 brew install neovim
 brew install python
+brew install ripgrep
 brew install shellcheck
 brew install taplo
 brew install texlab
 brew install virtualenv
+brew install vscode-langservers-extracted
+brew install xsv
 brew install yaml-language-server
 
 pip3 install --user --upgrade -r $HOME/.config/requirements.txt
