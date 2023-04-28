@@ -2,7 +2,7 @@
   "title": "NumLockFN",
   "rules": [
     {
-      "description": "NumLockFN: NumLock enables NumLockFN mode",
+      "description": "NumLockFN: NumLock (RCmd) enables NumLockFN mode",
       "manipulators": [
         {
           "type": "basic",
@@ -28,6 +28,53 @@
                 "name": "numlock_mode",
                 "value": 0
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "NumLockFN: F14 (RCmd) locks NumLockFN mode",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f14"
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "numlock_mode",
+                "value": 0
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f14"
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "numlock_mode",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 0
             }
           ]
         }
@@ -937,6 +984,103 @@
           "to": [
             {
               "key_code": "keypad_asterisk"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "NumLockFN: NL+[asdf] to f16,f17,f18,f19",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f16"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f17"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f18"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f19"
             }
           ],
           "conditions": [
