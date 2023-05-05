@@ -11,6 +11,7 @@ rustup update
 rustup upgrade
 cargo install cargo-update
 cargo install markdown2html-converter
+cargo install --git https://github.com/kamiyaa/joshuto.git --force
 cargo install-update -a
 
 if [[ ! -d $HOME/bin/helix ]] ; then
@@ -41,4 +42,3 @@ curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
 
 # git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 #         ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
