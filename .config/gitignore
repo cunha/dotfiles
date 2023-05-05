@@ -9,3 +9,4 @@
 .gdb_history
 *.swp
 .venv
+.DS_Store
