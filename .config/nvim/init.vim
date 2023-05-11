@@ -126,7 +126,6 @@ set formatoptions+=j  " remove comment leader when joining lines
 set formatoptions+=n  " format lists
 set formatoptions+=b  " smarter handling of long lines
 set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+\\\\|^\\s*[-*+]\\s\\+\\\\|^\\s*(\\a)\\s\\+
-set printoptions=formfeed:y  " use ^L to break pages
 " }}}
 
 " make the status line look good (also, airline) {{{
