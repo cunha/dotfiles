@@ -113,7 +113,11 @@ keymap = [
     { keys = [ "m", "M" ], command = "linemode sizemtime" },
 
     { keys = [ "g" ], command = "cd_bookmark" },
-    { keys = [ "?" ], command = "help" }
+    { keys = [ "?" ], command = "help" },
+
+    { keys = [ "x", "d", "a" ], command = "shell dotgit add %s" },
+    { keys = [ "x", "d", "d" ], command = "shell dotgit difftool --no-prompt --tool code %s" },
+
 ]
 
 [task_view]
