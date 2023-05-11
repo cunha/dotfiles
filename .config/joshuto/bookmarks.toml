@@ -1,0 +1,9 @@
+bookmark = [
+    { key = "a", path = "~/GDrive/teaching/dcc831-inetarch" },
+    { key = "o", path = "~/GDrive/teaching/dcc605-os" },
+    { key = "n", path = "~/GDrive/teaching/compsci311" },
+
+    { key = "c", path = "~/.config" },
+    { key = "d", path = "~/Downloads" },
+    { key = "h", path = "~/" },
+]
