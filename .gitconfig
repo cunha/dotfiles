@@ -14,11 +14,11 @@
 	autoStash = true
 # [diff]
 # 	tool = code
-# [difftool "code"]
-# 	cmd = code --wait --diff $LOCAL $REMOTE
-# 	prompt = false
+[difftool "code"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+	prompt = false
 # [merge]
 # 	tool = code
-# [mergetool "code"]
-# 	cmd = code --wait --merge $LOCAL $REMOTE $BASE $MERGED
-# 	prompt = false
+[mergetool "code"]
+	cmd = code --wait --merge $LOCAL $REMOTE $BASE $MERGED
+	prompt = false

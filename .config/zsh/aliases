@@ -7,8 +7,8 @@ alias ls='ls --color=auto' ;
 alias ll='ls -hl' ;
 alias dirs='dirs -v' ;
 alias clear='' ;
-alias xboard='xboard -size medium -ics -icshost 69.36.243.188 -icsport 5000 -telnet -telnetProgram timeseal'
-alias dotgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+# alias xboard='xboard -size medium -ics -icshost 69.36.243.188 -icsport 5000 -telnet -telnetProgram timeseal'
+# alias dotgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 # alias fzf='fzf-tmux'
 alias xin='xclip -i -selection clipboard'
 

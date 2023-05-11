@@ -30,4 +30,9 @@ brew install --cask wezterm --no-quarantine
 brew install wget
 brew install --cask zoom
 
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono
+brew install --cask font-symbols-only-nerd-font
+brew install --cask font-noto-color-emoji
+
 ln -s /Applications/Marta.app/Contents/Resources/launcher "$HOME/bin/marta"
