@@ -5,9 +5,21 @@ local ssh_domains = {}
 -- ssh_domains = require 'ssh'
 local keys = require 'keys'
 
+
+function get_appearance_color_scheme()
+  if wezterm.gui then
+    appearance = wezterm.gui.get_appearance()
+    if not appearance:find 'Dark' then
+      return "Catppuccin Latte"
+    end
+  end
+  return "Cunha Noctis Azureus"
+end
+
+
 return {
   bold_brightens_ansi_colors = false,
-  color_scheme = "Cunha Noctis Azureus",
+  color_scheme = get_appearance_color_scheme(),
   cursor_blink_rate = 500,
   cursor_blink_ease_in = "Constant",
   cursor_blink_ease_out = "Constant",
