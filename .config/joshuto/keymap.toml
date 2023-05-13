@@ -60,7 +60,8 @@ keymap = [
     { keys = [ "y", "y" ], command = "copy_files" },
     { keys = [ "y", "n" ], command = "copy_filename" },
     { keys = [ "y", "." ], command = "copy_filename_without_extension" },
-    { keys = [ "y", "p" ], command = "copy_filepath" },
+    # { keys = [ "y", "p" ], command = "copy_filepath" },
+    { keys = [ "y", "p" ], command = "shell osclip %s" },
     { keys = [ "y", "d" ], command = "copy_dirpath" },
 
     { keys = [ "p", "l" ], command = "symlink_files --relative=false" },
@@ -117,6 +118,7 @@ keymap = [
 
     { keys = [ "x", "d", "a" ], command = "shell dotgit add %s" },
     { keys = [ "x", "d", "d" ], command = "shell dotgit difftool --no-prompt --tool code %s" },
+    { keys = [ "x", "w", ], command = "shell term-control -t" },
 
 ]
 
