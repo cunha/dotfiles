@@ -17,6 +17,7 @@ brew install iproute2mac
 brew install jq
 brew install man-db
 brew install --cask marta
+brew install media-info
 brew install pandoc
 brew install showkey
 brew install --cask skim
@@ -25,6 +26,7 @@ brew install tectonic
 brew install texlive
 brew install tmux
 brew install unzip
+brew install visual-studio-code
 brew install w3m
 brew install --cask wezterm --no-quarantine
 brew install wget
