@@ -175,10 +175,8 @@ kdenlive.app_list = [
 ]
 
 tex.app_list = [
-    { command = "micro" },
-    { command = "gedit", fork = true, silent = true },
-    { command = "bat", confirm_exit = true },
-    { command = "pdflatex" } ]
+    { command = "code" },
+]
 
 torrent.app_list = [
     { command = "transmission-gtk" } ]
