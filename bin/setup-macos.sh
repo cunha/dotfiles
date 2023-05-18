@@ -13,6 +13,7 @@ brew install --cask docker
 brew install fzf
 brew install git
 brew install gnu-sed
+brew install --cask keepassxc
 brew install iproute2mac
 brew install jq
 brew install man-db
