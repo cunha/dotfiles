@@ -1,4 +1,4 @@
--- local wezterm = require 'wezterm'
+local wezterm = require 'wezterm'
 -- local unix_domains = {}
 -- unix_domains = require 'unix'
 local ssh_domains = {}
@@ -11,9 +11,11 @@ function get_appearance_color_scheme()
     appearance = wezterm.gui.get_appearance()
     if not appearance:find 'Dark' then
       return "Catppuccin Latte"
+    else
+      return "Catppuccin Frappe"
     end
   end
-  return "Cunha Noctis Azureus"
+  -- return "Cunha Noctis Azureus"
 end
 
 
