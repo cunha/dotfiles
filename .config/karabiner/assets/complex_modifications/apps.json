@@ -29,7 +29,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a /Applications/Marta.app"
+              "shell_command": "open -a \"/Applications/Visual Studio Code.app\""
             }
           ],
           "conditions": [
@@ -47,7 +47,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a \"/Applications/Visual Studio Code.app\""
+              "shell_command": "open -a /Applications/Marta.app"
             }
           ],
           "conditions": [
