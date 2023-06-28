@@ -22,3 +22,5 @@
 [mergetool "code"]
 	cmd = code --wait --merge $LOCAL $REMOTE $BASE $MERGED
 	prompt = false
+[init]
+	defaultBranch = main
