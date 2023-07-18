@@ -7,5 +7,5 @@ DEBURL=https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd
 DEBFILE=$HOME/.cache/$(basename $DEBURL)
 if [[ ! -e $DEBFILE ]] ; then
 	wget "$DEBURL" -O "$DEBFILE"
-	sudo dpkg -i "$DEBFILE"
 fi
+sudo dpkg -i "$DEBFILE"
