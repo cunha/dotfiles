@@ -118,6 +118,8 @@ keymap = [
 
     { keys = [ "x", "d", "a" ], command = "shell dotgit add %s" },
     { keys = [ "x", "d", "d" ], command = "shell dotgit difftool --no-prompt --tool code %s" },
+    { keys = [ "x", "c" ], command = "shell code %s" },
+    { keys = [ "x", "h" ], command = "shell hx %s" },
     { keys = [ "x", "w" ], command = "shell term-control -t" },
     { keys = [ "x", "o" ], command = "shell open %s" },
 ]
