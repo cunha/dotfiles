@@ -1,13 +1,20 @@
 #shellcheck shell=bash
 
+WEZTERM_INFO_URL=https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+
 if [[ -s $HOME/.config/dircolors ]] ; then
     eval "$(dircolors -b "$HOME/.config/dircolors")"
 fi
 
 if ! infocmp "$TERM" &> /dev/null ; then
-    termfile="$HOME/.config/tmux/terminfo/$TERM.terminfo"
+    termfile="$HOME/.config/terminfo/$TERM.terminfo"
+    # Download and compile wezterm's terminfo database
+    if [[ $TERM == wezterm && ! -s $termfile ]] ; then
+        curl -o "$termfile" $WEZTERM_INFO_URL
+    fi
+
     if [[ -s $termfile ]] ; then
-        tic "$termfile"
+        tic -x $termfile
     else
         echo "TERM $TERM is undefined"
         echo "File $termfile does not exist"

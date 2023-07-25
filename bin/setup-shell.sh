@@ -22,7 +22,7 @@ hx --grammar fetch
 hx --grammar build
 
 # Download and compile wezterm's terminfo database
-curl -o "$HOME/.cache/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
 tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
 
 VVREPO=git@github.com:hackerb9/vv.git
