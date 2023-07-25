@@ -31,8 +31,9 @@ function set-prompt {
 		PROMPT+=" %F{green}${VIRTUAL_ENV##*/}%f"
 	fi
 	PROMPT+="$PS1KMR"
+	# NEWLINE=$'\n'
+	# PROMPT+="${NEWLINE}"
 	PROMPT+="$PROMPT_TERM_COLOR%# %f"
-
 }
 
 function zle-line-init zle-keymap-select {
@@ -59,4 +60,3 @@ zle -N edit-command-line ;
 PS1KML="[" ;
 PS1KMR="]" ;
 set-prompt ;
-
