@@ -4,7 +4,7 @@
 # localhost ansible_connection=local
 # dev
 # jcloud
-joe1
+# joe1
 # joe2
 # joe3
 # peering
@@ -18,6 +18,8 @@ joe1
 # peering.ee.columbia.edu
 # peering2
 # miami
+# rubick
+mainm
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
