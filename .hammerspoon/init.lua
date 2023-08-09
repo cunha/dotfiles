@@ -1,13 +1,13 @@
 -- Configuration adapted from
 -- https://github.com/raulchen/dotfiles/tree/master/hammerspoon
 
-inspect = hs.inspect.inspect
-prefix = require("prefix")
-utils = require("utils")
+-- inspect = hs.inspect.inspect
 
+require("appswitcher")
+
+require("prefix")
 require("window")
-pcall(hs.fnutils.partial(require, "local"))
 
-utils.tempNotify(3, hs.notify.new({
-    title = "Config reloaded",
-}))
+-- pcall(hs.fnutils.partial(require, "local"))
+
+hs.alert.show("Config reloaded", 1)

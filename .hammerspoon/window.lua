@@ -1,7 +1,7 @@
 local spaces = require("hs.spaces")
 
 local prefix = require("prefix")
-local utils = require("utils")
+-- local utils = require("utils")
 
 hs.window.animationDuration = 0
 
