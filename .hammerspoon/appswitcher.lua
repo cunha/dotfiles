@@ -1,4 +1,4 @@
-4-- References
+-- References
 -- https://rakhesh.com/coding/using-hammerspoon-to-switch-apps/
 -- https://rakhesh.com/coding/using-hammerspoon-to-switch-apps-part-2/
 
@@ -6,6 +6,7 @@ local apps = {
     {"pad1", "Google Chrome"},
     {"pad2", "Visual Studio Code"},
     {"pad3", "WezTerm"},
+    {"f20", "Finder"},
 }
 
 local function launchOrFocusOrRotate(app)

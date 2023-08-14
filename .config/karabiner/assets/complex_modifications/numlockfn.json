@@ -1001,7 +1001,7 @@
       ]
     },
     {
-      "description": "NumLockFN: NL+[asdf] to f16,f17,f18,f19",
+      "description": "NumLockFN: NL+[asdfe] to f16,f17,f18,f19,f20",
       "manipulators": [
         {
           "type": "basic",
@@ -1085,6 +1085,29 @@
           "to": [
             {
               "key_code": "f19"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numlock_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f20"
             }
           ],
           "conditions": [
