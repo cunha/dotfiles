@@ -6,7 +6,7 @@ local apps = {
     {"pad1", "Google Chrome"},
     {"pad2", "Visual Studio Code"},
     {"pad3", "WezTerm"},
-    {"f20", "Finder"},
+    {"f20", "Marta"},
 }
 
 local function launchOrFocusOrRotate(app)
