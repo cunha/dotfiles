@@ -1,0 +1,55 @@
+environment {
+    terminal "Kitty"
+    textEditor "Visual Studio Code"
+}
+
+behavior {
+    theme "Kon"
+
+    quickSelect {
+        activateOnAnyCharacter false
+        filterMatchedItems true
+    }
+}
+
+keyBindings {
+    "Cmd+PageDown" "core.tab.next"
+    "Cmd+PageUp" "core.tab.previous"
+    "Cmd+j" "core.favorites"
+    "Cmd+Shift+j" "core.favorites.add"
+    "Cmd+H" "core.display.hidden"
+    "Cmd+O" null
+    "Cmd+'" "core.terminal.activate"
+
+    "Delete" "core.trash"
+    "Cmd+Y" null
+
+    "F4" null
+    "F5" null
+    "F6" null
+    "F7" null
+    "F8" null
+    "Shift+F8" null
+
+    "m" "core.move"
+    "Shift+m" "core.copy"
+    "n" "core.rename"
+
+    "c" "core.new.folder"
+    "Shift+c" "core.new.file"
+    "e" "core.edit"
+    "Shift+e" "core.edit.folder"
+}
+
+setup {
+    actionBar [
+        "core.clone.left"
+        "core.back"
+        "core.open.with"
+        "core.edit"
+        "core.move"
+        "core.copy"
+        "core.rename"
+        "core.new.folder"
+    ]
+}

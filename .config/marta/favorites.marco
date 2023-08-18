@@ -1,0 +1,6 @@
+Home "~"
+OS "~/GDrive/teaching/dcc605-os"
+CloudComp "/Users/cunha/GDrive/teaching/cloudcomp"
+GDrive "/Users/cunha/GDrive"
+Queue "/Users/cunha/GDrive/queue"
+Applications "${all.applications}"
