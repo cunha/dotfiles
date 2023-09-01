@@ -19,6 +19,7 @@ MARCHS=${MARCH//86_/}
 brew install bash-language-server
 brew install exa
 brew install helix
+brew install joshuto
 brew install lazygit
 brew install lua-language-server
 brew install neovim
