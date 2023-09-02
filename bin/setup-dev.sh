@@ -32,6 +32,7 @@ brew install virtualenv
 brew install vscode-langservers-extracted
 brew install xsv
 brew install yaml-language-server
+brew install zellij
 
 pip3 install --user --upgrade -r $HOME/.config/requirements.txt
 
