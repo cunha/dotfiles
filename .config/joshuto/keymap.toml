@@ -130,6 +130,7 @@ keymap = [
     { keys = [ "x", "w" ], command = "shell term-control -t" },
     { keys = [ "x", "o" ], command = "shell open %s" },
     { keys = [ "x", "." ], command = "shell open ." },
+    { keys = [ "x", "z" ], command = "shell zsh" },
 ]
 
 [task_view]

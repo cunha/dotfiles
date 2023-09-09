@@ -38,6 +38,8 @@ return {
     { key = 'k', mods = 'SHIFT|SUPER', action = act.AdjustPaneSize{ 'Up', 1 } },
     { key = 'l', mods = 'SHIFT|SUPER', action = act.AdjustPaneSize{ 'Right', 1 } },
 
+    { key = 'f', mods = 'SUPER', action = act.QuickSelect },
+    
     { key = 'Enter', mods = 'SUPER', action = act.ToggleFullScreen },
     { key = 'z', mods = 'SUPER', action = act.TogglePaneZoomState },
 
@@ -58,7 +60,7 @@ return {
     -- { key = 'Copy', mods = 'NONE', action = act.CopyTo 'Clipboard' },
     -- { key = 'Paste', mods = 'NONE', action = act.PasteFrom 'Clipboard' },
     { key = 'x', mods = 'SUPER', action = act.ActivateCopyMode },
-    { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
+    -- { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
     { key = 'e', mods = 'SUPER', action = act.CharSelect{ copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection' } },
     -- { key = 'Insert', mods = 'SHIFT', action = act.PasteFrom 'PrimarySelection' },
     -- { key = 'Insert', mods = 'CTRL', action = act.CopyTo 'PrimarySelection' },

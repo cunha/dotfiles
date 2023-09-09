@@ -6,9 +6,15 @@ return {
     local_echo_threshold_ms = 50000,
   },
   {
-    name = "zeus",
-    socket_path = "Users/cunha/.local/share/wezterm/zeus.sock",
-    proxy_command = { "ssh", "-T", "-A", "zeus", "wezterm", "cli", "proxy" },
+    name = "slardar",
+    socket_path = "Users/cunha/.local/share/wezterm/slardar.sock",
+    proxy_command = { "ssh", "-T", "-A", "slardar", "wezterm", "cli", "proxy" },
+    local_echo_threshold_ms = 50000,
+  },
+  {
+    name = "rubick",
+    socket_path = "Users/cunha/.local/share/wezterm/rubick.sock",
+    proxy_command = { "ssh", "-T", "-A", "rubick", "wezterm", "cli", "proxy" },
     local_echo_threshold_ms = 50000,
   },
 }

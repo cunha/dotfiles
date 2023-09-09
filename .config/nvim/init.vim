@@ -183,9 +183,9 @@ set foldcolumn=3
 " }}}
 
 " source ~/.vim/settings/colors.vim
-source ~/.vim/settings/cscope.vim
-source ~/.vim/settings/file-types.vim
-source ~/.vim/settings/mappings.vim
+" source ~/.vim/settings/cscope.vim
+" source ~/.vim/settings/file-types.vim
+" source ~/.vim/settings/mappings.vim
 
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 autocmd CompleteDone * pclose

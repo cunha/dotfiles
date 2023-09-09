@@ -26,16 +26,7 @@ cunha_ui_packages_nofail:
   - shellcheck
   - tmux-plugin-manager
   - xclip
-
-cunha_pip_packages:
-  - black
-  - prompt-toolkit[full]
-  - pyflakes
-  - pylint
-  - python-lsp-server[full]
-  - ranger-fm
-  - rope
-  - xonsh[full]
+  - ranger
 
 paths_to_remove_before_checkout:
   - bin
@@ -104,4 +95,4 @@ puppeteer_deps:
 neovim_latest_deb: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
 
 wezterm_terminfo_path: /home/cunha/.cache/wezterm.terminfo
-wezterm_terminfo_url: https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo 
+wezterm_terminfo_url: https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
