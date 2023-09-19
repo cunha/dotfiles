@@ -366,10 +366,10 @@ address-book=
 global-address-book=
 
 # Set by Alpine; controls beginning-of-month sent-mail pruning.
-last-time-prune-questioned=123.6
+last-time-prune-questioned=123.8
 
 # Set by Alpine; controls display of "new version" message.
-last-version-used=6.24
+last-version-used=6.26
 
 # This names the path to an alternative program, and any necessary arguments,
 # to be used in posting mail messages.  Example:
@@ -685,3 +685,7 @@ encryption-protocol-range=
 
 # Your client-id and client-secret information to authenticate using XOAUTH2
 xoauth2-info=
+
+# Colon separated list of ciphers that should be negotiated with the remote
+# ssl server upon connection.
+ssl-ciphers=

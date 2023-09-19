@@ -24,12 +24,6 @@
     cache_valid_time: 600
   when: install_puppeteer_deps
 
-# - name: Install Python packages
-#   pip:
-#     name: "{{ cunha_pip_packages }}"
-#     state: latest
-#     extra_args: --user
-
 - name: Create cache directory
   file:
     path: /home/cunha/.cache
