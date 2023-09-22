@@ -4,59 +4,63 @@ set -eu
 # xcode-select --install
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-brew install atool
-brew install bash
-brew install coreutils
-brew install curl
-brew install fzf
-brew install git
-brew install gnu-sed
-brew install iproute2mac
-brew install jq
-brew install man-db
-brew install media-info
-brew install pandoc
-brew install showkey
-brew install socat
-brew install tectonic
-brew install texlive
-brew install tmux
-brew install transmission-cli
-brew install unzip
-brew install visual-studio-code
-brew install w3m
-brew install wget
+brew install atool \
+             ansible \
+             bash \
+             coreutils \
+             curl \
+             fzf \
+             git \
+             gnu-sed \
+             iproute2mac \
+             jq \
+             man-db \
+             media-info \
+             openjdk \
+             ossp-uuid \
+             pandoc \
+             showkey \
+             socat \
+             tectonic \
+             telnet \
+             texlive \
+             tmux \
+             transmission-cli \
+             unzip \
+             visual-studio-code \
+             w3m \
+             wget
 
-brew install --cask aldente
-# brew install --cask amethyst
-brew install --cask discord
-brew install --cask docker
-brew install --cask firefox
-brew install --cask google-chrome
-brew install --cask google-drive
-brew install --cask hammerspoon
-brew install --cask karabiner-elements
-brew install --cask keepassxc
-brew install --cask libreoffice
-brew install --cask linearmouse
-brew install --cask marta
-brew install --cask microsoft-office
-brew install --cask nightfall
-brew install --cask onedrive
-brew install --cask slack
-brew install --cask wireguard
-brew install --cask wireshark
-brew install --cask skim
-brew install --cask transmission
-brew install --cask transmission-remote-gui
-brew isntall --cask vlc
-# brew isntall --cask webex
+brew install --cask aldente \
+                    discord \
+                    docker \
+                    firefox \
+                    google-chrome \
+                    google-drive \
+                    hammerspoon \
+                    karabiner-elements \
+                    keepassxc \
+                    libreoffice \
+                    linearmouse \
+                    marta \
+                    microsoft-office \
+                    nightfall \
+                    slack \
+                    wireshark \
+                    skim \
+                    transmission \
+                    transmission-remote-gui \
+                    visual-studio-code \
+                    vlc \
+                    zoom \
+                    # amethyst
+                    # webex
+
 brew install --cask wezterm --no-quarantine
-brew install --cask zoom
 
 brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono
-brew install --cask font-symbols-only-nerd-font
-brew install --cask font-noto-color-emoji
+brew install --cask font-jetbrains-mono \
+                    font-symbols-only-nerd-font \
+                    font-noto-color-emoji
 
 ln -s /Applications/Marta.app/Contents/Resources/launcher "$HOME/bin/marta"
