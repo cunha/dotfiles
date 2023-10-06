@@ -1,7 +1,0 @@
-- name: Install GUI packages
-  become: true
-  become_user: root
-  apt:
-    name: "{{ cunha_gui_packages }}"
-    state: latest
-    cache_valid_time: 600
