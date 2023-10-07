@@ -44,6 +44,14 @@ if [[ ! -d $CLONE_PATH ]] ; then
 fi
 (cd "$CLONE_PATH" && git pull)
 
+mkdir -p $HOME/.vim/plugins
+cd $HOME/.vim/plugins
+if [[ -d dein.vim ]] ; then
+  cd dein.vim && git pull
+else
+  git clone git@github.com:Shougo/dein.vim.git dein.vim
+fi
+
 # LUAVER=$(curl -s "https://api.github.com/repos/sumneko/lua-language-server/releases/latest" | grep '"tag_name":' | sed -E 's/.*tag_name": "(.*[^"]+)".*/\1/')
 # LUAURL="https://github.com/sumneko/lua-language-server/releases/latest/download/lua-language-server-${LUAVER}-${KERNELLOW}-${MARCHS}.tar.gz"
 # LUAFILE=$HOME/.cache/$(basename "$LUAURL")
