@@ -40,3 +40,4 @@ if [[ -d $HOME/bin/zsh-autoswitch-virtualenv ]] ; then
 fi
 
 export COLORTERM=truecolor
+
