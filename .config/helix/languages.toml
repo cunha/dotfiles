@@ -52,3 +52,15 @@ text-width = 78
 [[language]]
 name = "markdown"
 text-width = 78
+language-servers = [{ name = "marksman" }, { name = "ltex" }]
+
+[[language]]
+name = "text"
+language-servers = [{ name = "ltex" }]
+scope = "text.plain"
+roots = []
+file-types = ["txt", "text"]
+
+[language-server.ltex]
+name = "ltex"
+command = "/opt/homebrew/bin/ltex-ls"
