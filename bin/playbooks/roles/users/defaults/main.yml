@@ -1,7 +1,8 @@
 user_list:
-  - artv
-  - vinicius
-  - elverton
+  # - sichanghe
+  # - artv
+  # - vinicius
+  # - elverton
   # - bschlinker
   # - marcelmendes
   # - pgoulart
@@ -13,3 +14,7 @@ user_list:
   # - marina
   # - beatriz
   # - lucasaugusto
+  # - arturluis
+  # - yurilopes
+  # - davisouza
+  - vitorr

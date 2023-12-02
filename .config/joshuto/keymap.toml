@@ -121,6 +121,7 @@ keymap = [
     { keys = [ "m", "M" ], command = "linemode sizemtime" },
 
     { keys = [ "g" ], command = "cd_bookmark" },
+    { keys = [ "G" ], command = "add_bookmark" },
     { keys = [ "?" ], command = "help" },
 
     { keys = [ "x", "d", "a" ], command = "shell dotgit add %s" },

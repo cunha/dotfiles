@@ -1,6 +1,9 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
+rubick
+# timbersaw
+# cloudvm
 # localhost ansible_connection=local
 # dev
 # jcloud
@@ -19,7 +22,9 @@
 # peering2
 # miami
 # rubick
-mainm
+# mainm
+# uw01
+# steven
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3

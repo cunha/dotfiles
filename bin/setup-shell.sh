@@ -13,6 +13,9 @@ cargo install cargo-update
 cargo install markdown2html-converter
 cargo install-update -a
 
+brew install fzf
+
+
 # Download and compile wezterm's terminfo database
 curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
 tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"

@@ -42,9 +42,9 @@ brew install --cask aldente \
                     keepassxc \
                     libreoffice \
                     linearmouse \
+                    maccy \
                     marta \
                     microsoft-office \
-                    nightfall \
                     slack \
                     wireshark \
                     skim \

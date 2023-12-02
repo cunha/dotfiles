@@ -50,15 +50,15 @@ tabpad = " "
 "C-w" = ":reflow"
 "pageup" = "half_page_up"
 "pagedown" = "half_page_down"
-"C-d" = "jump_forward"
-"C-f" = "jump_backward"
+# "C-d" = "jump_forward"
+# "C-f" = "jump_backward"
 "C-e" = "repeat_last_motion"
 
 [keys.select]
 "pageup" = "half_page_up"
 "pagedown" = "half_page_down"
-"C-d" = "jump_forward"
-"C-f" = "jump_backward"
+# "C-d" = "jump_forward"
+# "C-f" = "jump_backward"
 "C-e" = "repeat_last_motion"
 
 

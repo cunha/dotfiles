@@ -8,18 +8,18 @@ rulers = [80]
 name = "python"
 rulers = [100]
 
-[language.config]
-pylsp.plugins.autopep8.enabled = false
-pylsp.plugins.mccabe.enabled = false
-pylsp.plugins.pycodestyle.enabled = false
-pylsp.plugins.pyflakes.enabled = false
-pylsp.plugins.pylint.enabled = true
-pylsp.plugins.flake8.enabled = true
-pylsp.plugins.flake8.maxLineLength = 88
+# [language.config]
+# pylsp.plugins.autopep8.enabled = false
+# pylsp.plugins.mccabe.enabled = false
+# pylsp.plugins.pycodestyle.enabled = false
+# pylsp.plugins.pyflakes.enabled = false
+# pylsp.plugins.pylint.enabled = true
+# pylsp.plugins.flake8.enabled = true
+# pylsp.plugins.flake8.maxLineLength = 88
 
-[language.formatter]
-command = "black"
-args = ["-", "--quiet"]
+# [language.formatter]
+# command = "black"
+# args = ["-", "--quiet"]
 
 [[language]]
 name = "rust"
@@ -32,22 +32,22 @@ diagnostic-severity = "Hint"
 rulers = [80]
 text-width = 78
 
-[language.config]
-texlab.build.executable = "tectonic"
-texlab.build.args = [
-  "-X",
-  "compile",
-  "%f",
-  "--synctex",
-  "--keep-logs",
-  "--keep-intermediates",
-]
-texlab.build.forwardSearchAfter = true
-texlab.build.onSave = true
-texlab.chktex.onOpenAndSave = true
-texlab.formatterLineLength = 78
-texlab.forwardSearch.args = ["%l", "%p", "%f"]
-texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+# [language.config]
+# texlab.build.executable = "tectonic"
+# texlab.build.args = [
+#   "-X",
+#   "compile",
+#   "%f",
+#   "--synctex",
+#   "--keep-logs",
+#   "--keep-intermediates",
+# ]
+# texlab.build.forwardSearchAfter = true
+# texlab.build.onSave = true
+# texlab.chktex.onOpenAndSave = true
+# texlab.formatterLineLength = 78
+# texlab.forwardSearch.args = ["%l", "%p", "%f"]
+# texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
 
 [[language]]
 name = "markdown"

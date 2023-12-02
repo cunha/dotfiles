@@ -1,1 +1,1 @@
-wezterm-linux.sh
+wezterm-mac.sh

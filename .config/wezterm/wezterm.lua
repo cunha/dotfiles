@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
--- local unix_domains = {}
--- unix_domains = require 'unix'
+local unix_domains = {}
+unix_domains = require 'unix'
 local ssh_domains = {}
--- ssh_domains = require 'ssh'
+ssh_domains = require 'ssh'
 local keys = require 'keys'
 
 
@@ -41,7 +41,7 @@ return {
   term = "wezterm",
   scrollback_lines = 65000,
   ssh_domains = ssh_domains,
-  -- unix_domains = unix_domains,
+  unix_domains = unix_domains,
   use_fancy_tab_bar = false,
   -- debug_key_events = true,
   -- KeypadComma is raw:95
