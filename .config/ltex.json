@@ -1,8 +1,19 @@
 {
   "ltex.enabled": true,
-  "ltex.language": "pt-BR",
+  "ltex.dictionary": {
+    "en-US": [
+      ":/home/cunha/.config/ltex/dictionary.en-US.txt"
+    ],
+    "pt-BR": [
+      ":/home/cunha/.config/ltex/dictionary.pt-BR.txt"
+    ]
+  },
   "ltex.disabledRules": {
-    "en-US": ["WHITESPACE_RULE"],
-    "pt-BR": ["WHITESPACE_RULE"]
+    "en-US": [
+      "WHITESPACE_RULE"
+    ],
+    "pt-BR": [
+      "WHITESPACE_RULE"
+    ]
   }
 }
