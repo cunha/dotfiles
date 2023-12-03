@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eu
+
+command=$1
+cwd=$2
+
+if [[ ${REMOTE_CONTROL_PORT:-default} == default ]] ; then
+    echo "REMOTE_CONTROL_PORT is not set"
+    exit 1
+fi
+
+if ! command -v websocat &> /dev/null ; then
+    echo "websocat is not installed"
+    exit 1
+fi
+
+echo "{\
+    \"command\": \"workbench.action.terminal.$command\",\
+    \"args\": {\"cwd\": \"$cwd\"}\
+}" | websocat "ws://127.0.0.1:$REMOTE_CONTROL_PORT"

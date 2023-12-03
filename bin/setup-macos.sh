@@ -28,6 +28,7 @@ brew install atool \
              transmission-cli \
              unzip \
              visual-studio-code \
+             websocat \
              w3m \
              wget
 

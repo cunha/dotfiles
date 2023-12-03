@@ -3,7 +3,7 @@ set -eu
 
 function usage {
     echo "Create a new view in the terminal depending on the back-end used."
-    echo "Supportted view creation solutions: wezterm > tmux"
+    echo "Supportted view creation solutions: vscode > wezterm > tmux"
     echo ""
     echo "usage: $0 TYPE [-d DIRECTORY] [-e FILE]"
     echo ""
@@ -12,6 +12,8 @@ function usage {
     echo "-e FILE     edit the given FILE in the created view"
     exit 1
 }
+
+# Limitations: On VSCode, -w does not work and -p does not support -d.
 
 debug=0
 create=pane
@@ -64,6 +66,23 @@ if [[ ${TMUX:-default} != default ]] ; then
         ;;
     esac
     cwdparam=( -c "$directory" )
+elif [[ ${TERM_PROGRAM:-default} == vscode ]] ; then
+    [[ $debug -eq 1 ]] && echo "detected vscode"
+    case $create in
+    window)
+        echo "vscode does not allow creating new windows"
+        exit 1
+        ;;
+    tab)
+        termcmd=( term-control-vscode newWithCwd "$directory" )
+        ;;
+    pane)
+        if [[ $directory != $(pwd) ]] ; then
+            echo "note: vscode does not allow setting cwd on new panes"
+        fi
+        termcmd=( term-control-vscode split "$directory" )
+        ;;
+    esac
 elif [[ ${TERM_PROGRAM:-default} == WezTerm ]] ; then
     [[ $debug -eq 1 ]] && echo "detected wezterm"
     case $create in
@@ -78,7 +97,6 @@ elif [[ ${TERM_PROGRAM:-default} == WezTerm ]] ; then
         ;;
     esac
     cwdparam=( --cwd "$directory" )
-
 fi
 
 if [[ $editfile != /dev/null ]] ; then
@@ -92,4 +110,3 @@ fi
 
 echo "${termcmd[*]} ${cwdparam[*]} ${exeparam[*]}"
 "${termcmd[@]}" "${cwdparam[@]}" "${exeparam[@]}"
-
