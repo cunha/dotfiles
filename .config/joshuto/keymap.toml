@@ -132,7 +132,7 @@ keymap = [
     { keys = [ "x", "o" ], command = "shell open %s" },
     { keys = [ "x", "." ], command = "shell open ." },
     { keys = [ "x", "z" ], command = "shell zsh" },
-    { keys = [ "x", "x", "g"], command = "shell /Users/cunha/git/os-assignments/dccthread/dccthread-assignment/copyexec.sh %s" },
+    { keys = [ "x", "x", "g"], command = "shell /home/cunha/git/os-assignments/mempager/copyexec.sh %s" },
 ]
 
 [task_view]
