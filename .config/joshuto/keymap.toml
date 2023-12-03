@@ -118,7 +118,7 @@ keymap = [
 
     { keys = [ "m", "s" ], command = "linemode size" },
     { keys = [ "m", "m" ], command = "linemode mtime" },
-    { keys = [ "m", "M" ], command = "linemode sizemtime" },
+    # { keys = [ "m", "M" ], command = "linemode sizemtime" },
 
     { keys = [ "g" ], command = "cd_bookmark" },
     { keys = [ "G" ], command = "add_bookmark" },
