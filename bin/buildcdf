@@ -12,7 +12,7 @@ def buildcdf(iterator, height_step=0.00001):
     val, weight = next(iterator)
     while val is not None:
         if val != last:
-            assert not result or last > result[-1][0], 'input not sorted'
+            assert not result or last >= result[-1][0], 'input not sorted'
             result.append((last, cnt))
             cnt += weight
         else:
@@ -20,11 +20,9 @@ def buildcdf(iterator, height_step=0.00001):
         last = val
         val, weight = next(iterator)
 
-    if not result:
-        result.append([0.0, 0.0])
     result.append([last, cnt])
 
-    cdf = list()
+    cdf = [[min(result[0][0], 0.0), 0.0]]
 
     h = height_step
     i = 0
