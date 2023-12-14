@@ -51,6 +51,7 @@ brew install --cask aldente \
                     skim \
                     transmission \
                     transmission-remote-gui \
+                    utm \
                     visual-studio-code \
                     vlc \
                     zoom \
