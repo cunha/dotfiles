@@ -6,12 +6,14 @@ cunha_ui_packages:
   - file
   - git
   - jq
+  - libssl-dev
   - man
   - manpages-dev
   - ncurses-term
-  - ranger
+  - pkg-config
   - pkg-config
   - procps
+  - ranger
   - tcpdump
   - tmux
   - vim-nox
@@ -21,11 +23,18 @@ cunha_ui_packages:
 
 cunha_ui_packages_nofail:
   # - manpages-posix-dev  # requires contrib/non-free repos
-  - fzf
+  - ansible
+  - curl
   - fasd
+  - fzf
+  - jq
   - kitty-terminfo
+  - pandoc
   - shellcheck
+  - socat
+  - tmux
   - tmux-plugin-manager
+  - w3m
   - xclip
 
 paths_to_remove_before_checkout:
