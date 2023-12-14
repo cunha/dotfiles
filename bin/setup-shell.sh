@@ -9,28 +9,33 @@ if [[ ! -d "$HOME/.rustup" ]] ; then
 fi
 rustup update
 rustup upgrade
-cargo install cargo-update
-cargo install markdown2html-converter
-cargo install-update -a
-
-brew install fzf
-
+# cargo install cargo-update
+# cargo install markdown2html-converter
+# cargo install-update -a
 
 # Download and compile wezterm's terminfo database
-curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
-tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
+# curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+# tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
 
-VVREPO=git@github.com:hackerb9/vv.git
-CLONE_PATH=$HOME/bin/vv.git
-if [[ ! -d $CLONE_PATH ]] ; then
-  echo "Cloning $VVREPO"
-  git clone $VVREPO "$CLONE_PATH"
-fi
-(cd "$CLONE_PATH" && git pull)
-if [[ ! -e $HOME/bin/vv ]] ; then
-  ln -s "$CLONE_PATH"/vv "$HOME/bin/vv"
-fi
+# VVREPO=git@github.com:hackerb9/vv.git
+# CLONE_PATH=$HOME/bin/vv.git
+# if [[ ! -d $CLONE_PATH ]] ; then
+#   echo "Cloning $VVREPO"
+#   git clone $VVREPO "$CLONE_PATH"
+# fi
+# (cd "$CLONE_PATH" && git pull)
+# if [[ ! -e $HOME/bin/vv ]] ; then
+#   ln -s "$CLONE_PATH"/vv "$HOME/bin/vv"
+# fi
 
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
-    --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+#     --create-dirs \
+#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+mkdir -p $HOME/.vim/plugins
+cd $HOME/.vim/plugins
+if [[ -d dein.vim ]] ; then
+    cd dein.vim && git pull
+else
+    git clone git@github.com:Shougo/dein.vim.git dein.vim
+fi
