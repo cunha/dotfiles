@@ -1,7 +1,8 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
-rubick
+debvmac
+# rubick
 # timbersaw
 # cloudvm
 # localhost ansible_connection=local
