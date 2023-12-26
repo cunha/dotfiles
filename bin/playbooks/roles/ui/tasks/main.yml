@@ -69,6 +69,7 @@
 
 - name: Pull dotfiles
   command: git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha pull
+  when: not dotfiles_repo.stat.exists
 
 - name: Set shell to zsh
   become: true

@@ -1,11 +1,11 @@
 # DO NOT FORGET TO ENABLE AgentForward
 
 [targets]
+# localhost ansible_connection=local
 debvmac
 # rubick
 # timbersaw
 # cloudvm
-# localhost ansible_connection=local
 # dev
 # jcloud
 # joe1
@@ -24,8 +24,11 @@ debvmac
 # miami
 # rubick
 # mainm
+<<<<<<< Updated upstream
 # uw01
 # steven
+=======
+>>>>>>> Stashed changes
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3

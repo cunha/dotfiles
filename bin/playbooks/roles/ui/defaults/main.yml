@@ -11,7 +11,6 @@ cunha_ui_packages:
   - manpages-dev
   - ncurses-term
   - pkg-config
-  - pkg-config
   - procps
   - ranger
   - tcpdump
@@ -35,7 +34,6 @@ cunha_ui_packages_nofail:
   - tmux
   - tmux-plugin-manager
   - w3m
-  - xclip
 
 paths_to_remove_before_checkout:
   - bin
