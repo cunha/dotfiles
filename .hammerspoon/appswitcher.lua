@@ -5,7 +5,7 @@
 local apps = {
     {"pad1", "Google Chrome"},
     {"pad2", "Visual Studio Code"},
-    {"pad3", "WezTerm"},
+    {"pad3", "Kitty"},
     {"f20", "Finder"},
 }
 
