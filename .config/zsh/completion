@@ -1,3 +1,8 @@
+BREW_ZSH_SITE_FUNCTIONS=/home/linuxbrew/.linuxbrew/share/zsh/site-functions
+if [[ -d $BREW_ZSH_SITE_FUNCTIONS ]] ; then
+	fpath=($BREW_ZSH_SITE_FUNCTIONS $fpath)
+fi
+
 autoload -Uz compinit ;
 compinit -d $HOME/.cache/zcompdump ;
 
