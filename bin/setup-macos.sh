@@ -32,7 +32,7 @@ brew install atool \
              w3m \
              wget
 
-brew install --cask aldente \
+brew install --cask battery \
                     discord \
                     docker \
                     firefox \
