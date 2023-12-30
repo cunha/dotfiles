@@ -1,4 +1,4 @@
-BREW_ZSH_SITE_FUNCTIONS=/home/linuxbrew/.linuxbrew/share/zsh/site-functions
+BREW_ZSH_SITE_FUNCTIONS=$HOMEBREW_PREFIX/share/zsh/site-functions
 if [[ -d $BREW_ZSH_SITE_FUNCTIONS ]] ; then
 	fpath=($BREW_ZSH_SITE_FUNCTIONS $fpath)
 fi
