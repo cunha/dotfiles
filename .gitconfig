@@ -7,7 +7,7 @@
 	ui = true
 [core]
 	excludesfile = ~/.config/gitignore
-	editor = hx
+# 	editor = vim
 [pull]
 	rebase = true
 [rebase]
