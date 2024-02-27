@@ -1,0 +1,10 @@
+---
+- name: Add SSH Pubkey
+  hosts: muxes
+  gather_facts: true
+  tasks:
+    - name: Add SSH pubkey
+      ansible.posix.authorized_key:
+        user: cunha
+        key: "{{ lookup('file', '/Users/cunha/.ssh/id_ed25519_zeus.pub') }}"
+        exclusive: false
