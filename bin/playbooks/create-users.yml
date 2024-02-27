@@ -1,6 +1,24 @@
 ---
-- hosts: targets
+- name: Create Users on Servers
+  hosts: targets
   gather_facts: true
-  become_user: root
+  vars:
+    give_sudo: false
+    user_list:
+      # - sichanghe
+      # - artv
+      # - vinicius
+      # - elverton
+      # - marcelmendes
+      # - welton
+      # - luiz
+      # - osvaldo
+      # - lucasmsp
+      # - lucasaugusto
+      # - arturluis
+      # - yurilopes
+      # - davisouza
+      # - vitorr
+      - joaof
   roles:
-  - users
+    - users

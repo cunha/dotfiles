@@ -1,29 +1,41 @@
-- name: Add users
+
+---
+- name: Generate password
+  ansible.builtin.set_fact:
+    user_password: "{{ lookup('password', '/dev/null length=16 chars=ascii_letters,digits') }}"
+  with_items: "{{ user_list }}"
+  register: passwords
+
+- name: Create users
   become: true
-  user:
-    name: "{{ item }}"
-    password: $6$z1.Z8ZcG$rV25sfMlPd6luu6weLPZuiUPJYTTcCtnJ8n9l.oP0/25RbiVJnWyzdFOUnwCdHU/bC/gajNyn1jN94vFIAWMn.
+  ansible.builtin.user:
+    name: "{{ item.item }}"
+    password: "{{ item.ansible_facts.user_password | password_hash('sha512') }}"
+    state: present
+  with_items: "{{ passwords.results }}"
+
+- name: Save password to file
+  become: true
+  become_user: joaof
+  ansible.builtin.copy:
+    content: "{{ item.ansible_facts.user_password }}"
+    dest: "/home/{{ item.item }}/password.txt"
+    mode: 400
+  with_items: "{{ passwords.results }}"
+
+- name: Add SSH pubkey
+  become: true
+  ansible.builtin.authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', item) }}"
+    exclusive: false
   with_items: "{{ user_list }}"
 
 - name: Give sudo permissions
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     groups: sudo
-    append: yes
+    append: true
   with_items: "{{ user_list }}"
-
-- name: Create passwd file
-  become: true
-  copy:
-    src: passwd.txt
-    dest: "/home/{{ item }}/passwd.txt"
-  with_items: "{{ user_list }}"
-
-- name: Add SSH pubkey
-  become: true
-  authorized_key:
-    user: "{{ item }}"
-    key: "{{ lookup('file', item) }}"
-    exclusive: no
-  with_items: "{{ user_list }}"
+  when: give_sudo
