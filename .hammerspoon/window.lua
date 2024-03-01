@@ -147,6 +147,7 @@ end
 
 -- prefix + number -> move current window to space
 local function MoveWindowToSpace(sp)
+    prefix.exit()
     local win = hs.window.focusedWindow()      -- current window
     local pri_screen = hs.screen.primaryScreen()
     local pri_screen_id = pri_screen:getUUID()
@@ -164,7 +165,8 @@ local function MoveWindowToSpace(sp)
         end
     end
     win:focus()  -- follow window to new space
-    prefix.exit()
+    hs.timer.usleep(500000)  -- MacOS takes focus from us, get is fucking back
+    win:focus()
 end
 for i = 1, 8 do
     prefix.bind('', tostring(i), function() MoveWindowToSpace(i) end)
