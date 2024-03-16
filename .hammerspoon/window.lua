@@ -144,29 +144,36 @@ for i = 1, 4 do
     prefix.bindMultiple('shift', arrowKeys[i], pressedFn, nil, moveWin)
 end
 
+local function getSpaceID(sp)
+    local pri_screen = hs.screen.primaryScreen()
+    local pri_screen_id = pri_screen:getUUID()
+    local all_spaces = spaces.allSpaces()
+    if sp <= #all_spaces[pri_screen_id] then
+        return all_spaces[pri_screen_id][sp]
+    else
+        sp = sp - #all_spaces[pri_screen_id]
+        -- only works for two spaces:
+        for uuid, screen_spaces in pairs(all_spaces) do
+            if uuid ~= pri_screen_id then
+                return screen_spaces[sp]
+            end
+        end
+    end
+end
 
 -- prefix + number -> move current window to space
 local function MoveWindowToSpace(sp)
     prefix.exit()
     local win = hs.window.focusedWindow()      -- current window
-    local pri_screen = hs.screen.primaryScreen()
-    local pri_screen_id = pri_screen:getUUID()
-    local all_spaces = spaces.allSpaces()
-    if sp <= #all_spaces[pri_screen_id] then
-        local spaceID = all_spaces[pri_screen_id][sp]
-        spaces.moveWindowToSpace(win:id(), spaceID)
-    else
-        sp = sp - #all_spaces[pri_screen_id]
-        for uuid, screen_spaces in pairs(all_spaces) do
-            if uuid ~= pri_screen_id then
-                local spaceID = screen_spaces[sp]
-                spaces.moveWindowToSpace(win:id(), spaceID)
-            end
-        end
-    end
+    spaceID = getSpaceID(sp)
+    spaces.moveWindowToSpace(win:id(), spaceID)
     win:focus()  -- follow window to new space
-    hs.timer.usleep(500000)  -- MacOS takes focus from us, get is fucking back
-    win:focus()
+
+    -- MacOS takes focus from us, get it fucking back. This may cease to
+    -- be an issue after we choose to "Reduce motion" in
+    -- System preferences -> accessibility -> display.
+    -- hs.timer.usleep(250000)
+    -- win:focus()
 end
 for i = 1, 8 do
     prefix.bind('', tostring(i), function() MoveWindowToSpace(i) end)
@@ -260,4 +267,68 @@ for i = 1, #edges do
         end
         prefix.bindMultiple(mod, edge, pressedFn, nil, fn)
     end
+end
+
+local function getVisibleSpaces()
+    local screens = hs.screen.allScreens()
+    local visibleSpaces = {}
+    for _, screen in pairs(screens) do
+        local spaceId = hs.spaces.activeSpaceOnScreen(screen)
+        visibleSpaces[spaceId] = screen
+        -- print("Screen " .. hs.inspect(screen) .. " showing space " .. spaceId)
+    end
+    return visibleSpaces
+end
+
+local function windowIsInSpace(win, spaceId)
+    -- return win:isStandard() and hs.spaces.windowSpaces(win)[1] == spaceId
+    return hs.spaces.windowSpaces(win)[1] == spaceId
+end
+
+local function focusOrRotateWindowsInSpace(i)
+    targetSpaceId = getSpaceID(i)
+    print("target space " .. targetSpaceId)
+
+    -- Keeping this block here as documentation for what I have tried.
+    -- The eventtap approach may not be entirely necessary, but I was
+    -- getting some weird behavior where a window in a non-visible space
+    -- would not get picked up by the filter below.
+    visibleSpaces = getVisibleSpaces()
+    if visibleSpaces[targetSpaceId] == nil then
+        -- Use MissionControl directly to avoid the animation in gotoSpace.
+        -- This requires that you configure the shortcuts in
+        -- System preferences -> keyboard -> shortcuts -> Mission Control.
+        hs.eventtap.keyStroke('cmd', 'pad'..i)
+        return
+        -- hs.spaces.gotoSpace(targetSpaceId)
+        -- print("moving to space " .. targetSpaceId)
+
+        -- Consider enabling "Reduce motion" in
+        -- System preferences -> accessibility -> display.
+        -- If you don't, you may need the following delay for
+        -- the animation to play out:
+        -- hs.timer.usleep(250000)
+    end
+
+    local wf = hs.window.filter.new(function(win)
+        return windowIsInSpace(win, targetSpaceId)
+    end)
+    local windows = wf:getWindows()
+    print(hs.inspect(windows))
+
+    focusedSpaceId = hs.spaces.focusedSpace()
+    print("focused space " .. focusedSpaceId)
+    if focusedSpaceId ~= targetSpaceId then
+        -- select first window
+        windows[1]:focus()
+    else
+        -- select last window
+        windows[#windows]:focus()
+    end
+end
+
+for i = 1, 8 do
+    hs.hotkey.bind({}, 'pad'..i, function()
+        focusOrRotateWindowsInSpace(i)
+    end)
 end
