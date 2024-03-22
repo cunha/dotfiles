@@ -1,3 +1,13 @@
+[language-server.ltex]
+name = "ltex"
+command = "/opt/homebrew/bin/ltex-ls"
+# args = ["--log-file=/Users/cunha/ltex.log"]
+
+# Loading dictionary files does not work yet:
+# https://github.com/helix-editor/helix/discussions/5450
+# [language-server.ltex.config.ltex]
+# dictionary = { "en-US" = [ ":~/.config/ltex/dictionary.en-US.txt" ], "pt-BR" = [ ":/Users/cunha/.config/ltex/dictionary.pt-BR.txt" ] }
+
 [[language]]
 name = "bash"
 auto-format = false
@@ -31,6 +41,7 @@ indent = { tab-width = 4, unit = " " }
 diagnostic-severity = "Hint"
 rulers = [80]
 text-width = 78
+language-servers = [{ name = "texlab" }, { name = "ltex" }]
 
 # [language.config]
 # texlab.build.executable = "tectonic"
@@ -60,7 +71,3 @@ language-servers = [{ name = "ltex" }]
 scope = "text.plain"
 roots = []
 file-types = ["txt", "text"]
-
-[language-server.ltex]
-name = "ltex"
-command = "/opt/homebrew/bin/ltex-ls"
