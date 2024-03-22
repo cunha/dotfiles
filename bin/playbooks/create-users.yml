@@ -19,6 +19,7 @@
       # - yurilopes
       # - davisouza
       # - vitorr
-      - joaof
+      # - joaof
+      # - lecio
   roles:
     - users

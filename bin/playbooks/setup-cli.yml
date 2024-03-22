@@ -1,17 +1,9 @@
 ---
-- hosts: targets
+- name: Setup CLI
+  hosts: targets
   gather_facts: true
   vars:
-    # rustup_user: cunha
-    # rustup_cargo_crates: ["cargo-update", "exa", "ripgrep", "xsv"]
-    # rustup_configure_shell: false
-    # rust_default_toolchain: stable
-    # install_hx: true
     install_puppeteer_deps: false
   roles:
     - role: ui
-    # - role: hurricanehrndz.rustup
-    #   become: true
-    #   become_user: root
-    # - role: hx
-    #   when: install_hx
+

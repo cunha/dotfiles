@@ -1,8 +1,9 @@
 ---
 base_packages:
-  - sudo
-  - git
   - apt-transport-https
   - aptitude
+  - git
+  - pipx
   - python3-pip
   - python3-venv
+  - sudo

@@ -2,20 +2,15 @@
 
 [targets]
 # localhost ansible_connection=local
-debvmac
+# debvmac
+# pudge
+# pugna
 # rubick
 # timbersaw
-# cloudvm
-# dev
-# jcloud
-# joe1
-# joe2
-# joe3
+# dazzle
+# slardar
 # peering
 # revtr
-# timbersaw
-# dazzle
-# zeus
 # vcm1
 # revtr
 # dev
@@ -24,11 +19,8 @@ debvmac
 # miami
 # rubick
 # mainm
-<<<<<<< Updated upstream
-# uw01
-# steven
-=======
->>>>>>> Stashed changes
+# vtratlanta
+
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3

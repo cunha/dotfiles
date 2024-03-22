@@ -12,7 +12,6 @@ cunha_ui_packages:
   - ncurses-term
   - pkg-config
   - procps
-  - ranger
   - tcpdump
   - tmux
   - vim-nox
@@ -21,13 +20,13 @@ cunha_ui_packages:
   - zsh
 
 cunha_ui_packages_nofail:
-  # - manpages-posix-dev  # requires contrib/non-free repos
   - ansible
   - curl
   - fasd
   - fzf
   - jq
   - kitty-terminfo
+  - manpages-posix-dev  # requires contrib/non-free repos
   - pandoc
   - shellcheck
   - socat
@@ -99,7 +98,7 @@ puppeteer_deps:
   - wget
   - xdg-utils
 
-neovim_latest_deb: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
-
 wezterm_terminfo_path: /home/cunha/.cache/wezterm.terminfo
 wezterm_terminfo_url: https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+
+# neovim_latest_deb: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
