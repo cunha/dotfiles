@@ -5,3 +5,6 @@ ASNs
 Pythia
 hypergiant
 hypergiants
+JSON-encodable
+ConfigMaps
+ConfigMap
