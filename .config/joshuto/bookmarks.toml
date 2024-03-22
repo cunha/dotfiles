@@ -1,6 +1,6 @@
 bookmark = [
     # { key = "a", path = "~/GDrive/teaching/dcc831-inetarch" },
-    # { key = "n", path = "~/GDrive/teaching/compsci311" },
+    { key = "n", path = "~/GDrive/teaching/dcc023-networks" },
     { key = "o", path = "~/GDrive/teaching/dcc605-os" },
     { key = "p", path = "~/GDrive/teaching/cloudcomp" },
 
