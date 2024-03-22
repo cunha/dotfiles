@@ -26,7 +26,9 @@ return {
   cursor_blink_ease_in = "Constant",
   cursor_blink_ease_out = "Constant",
   default_cursor_style = "BlinkingBlock",
+  enable_csi_u_key_encoding = false,
   disable_default_key_bindings = true,
+  allow_win32_input_mode = false,
   enable_kitty_keyboard = true,
   enable_scroll_bar = false,
   -- font = wezterm.font 'JetBrains Mono' -- JetBrains Mono is the default

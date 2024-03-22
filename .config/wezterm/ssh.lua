@@ -25,4 +25,17 @@ return {
     multiplexing = 'WezTerm',
     -- multiplexing = 'None',
   },
+  {
+    name = 'svtramsterdam',
+    -- ":port" on the end.
+    remote_address = 'vtramsterdam',
+    -- no_agent_auth = false
+    username = 'cunha',
+    -- remote_wezterm_path = "/home/cunha/bin/wezterm",
+    -- If true, connect to this domain automatically at startup
+    -- connect_automatically = true
+    -- timeout = 60
+    multiplexing = 'WezTerm',
+    -- multiplexing = 'None',
+  }
 }
