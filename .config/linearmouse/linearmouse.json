@@ -9,16 +9,13 @@
         "device" : {
           "productName" : "USB Gaming Mouse",
           "productID" : "0xfc4f",
-          "category" : "mouse",
-          "vendorID" : "0x4d9"
+          "vendorID" : "0x4d9",
+          "category" : "mouse"
         }
       },
-      "pointer" : {
-        "disableAcceleration" : true
-      },
       "scrolling" : {
-        "scale" : {
-          "vertical" : 1
+        "reverse" : {
+          "vertical" : true
         },
         "modifiers" : {
           "command" : {
@@ -31,12 +28,61 @@
             "type" : "none"
           }
         },
-        "reverse" : {
-          "vertical" : true
+        "scale" : {
+          "vertical" : 1
         },
         "distance" : {
           "vertical" : "36px"
         }
+      },
+      "pointer" : {
+        "disableAcceleration" : true
+      }
+    },
+    {
+      "pointer" : {
+        "disableAcceleration" : true
+      },
+      "if" : {
+        "device" : {
+          "productID" : "0xc092",
+          "vendorID" : "0x46d",
+          "productName" : "G102 LIGHTSYNC Gaming Mouse",
+          "serialNumber" : "208231764833",
+          "category" : "mouse"
+        }
+      },
+      "scrolling" : {
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : true
+        },
+        "scale" : {
+          "vertical" : 1
+        }
+      }
+    },
+    {
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        }
+      },
+      "if" : {
+        "device" : {
+          "serialNumber" : "2065328D4633",
+          "productID" : "0xc092",
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productName" : "G102 LIGHTSYNC Gaming Mouse"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.1224,
+        "disableAcceleration" : true
       }
     }
   ]
