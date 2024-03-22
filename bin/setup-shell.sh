@@ -14,8 +14,10 @@ rustup upgrade
 # cargo install-update -a
 
 # Download and compile wezterm's terminfo database
-# curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
-# tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
+curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
+
+# pipx install titlecase
 
 # VVREPO=git@github.com:hackerb9/vv.git
 # CLONE_PATH=$HOME/bin/vv.git
@@ -32,10 +34,10 @@ rustup upgrade
 #     --create-dirs \
 #     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-mkdir -p $HOME/.vim/plugins
-cd $HOME/.vim/plugins
-if [[ -d dein.vim ]] ; then
-    cd dein.vim && git pull
-else
-    git clone git@github.com:Shougo/dein.vim.git dein.vim
-fi
+# mkdir -p $HOME/.vim/plugins
+# cd $HOME/.vim/plugins
+# if [[ -d dein.vim ]] ; then
+#     cd dein.vim && git pull
+# else
+#     git clone git@github.com:Shougo/dein.vim.git dein.vim
+# fi

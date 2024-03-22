@@ -19,6 +19,7 @@ brew install atool \
              openjdk \
              ossp-uuid \
              pandoc \
+             pipx \
              showkey \
              socat \
              tectonic \
