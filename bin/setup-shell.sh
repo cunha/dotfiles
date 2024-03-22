@@ -4,6 +4,7 @@ set -eu
 if [[ ! -d "$HOME/.rustup" ]] ; then
   curl -o "$HOME/rustup.sh" --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs
   sh $HOME/rustup.sh --no-modify-path -y
+  rm -f "$HOME/rustup.sh"
   echo "rustup installed, reload shell to update PATH and re-run this script"
   exit 0
 fi
