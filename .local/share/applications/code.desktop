@@ -2,7 +2,7 @@
 Name=Visual Studio Code
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=/usr/share/code/code --force-device-scale-factor=1.5 --no-sandbox --unity-launch %F
+Exec=/usr/share/code/code --enable-features=WebRTCPipeWireCapturer --ozone-platform-hint=auto
 Icon=com.visualstudio.code
 Type=Application
 StartupNotify=false
@@ -16,5 +16,5 @@ X-Desktop-File-Install-Version=0.26
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Exec=/usr/share/code/code --force-device-scale-factor=1.5 --no-sandbox --new-window %F
+Exec=/usr/share/code/code --enable-features=WebRTCPipeWireCapturer --ozone-platform-hint=auto
 Icon=com.visualstudio.code

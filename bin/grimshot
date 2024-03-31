@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -eu
+
+OUTFILE=$HOME/screenshot-$1-$(date +%Y%m%d).png
+
+case $1 in
+ac)
+    grim -g "$(slurp)" - | wl-copy
+    ;;
+wc)
+    grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy
+    ;;
+sc)
+    grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+
+    ;;
+af)
+    grim -g "$(slurp)" $OUTFILE
+    ;;
+wf)
+    grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" $OUTFILE
+    ;;
+sf)
+    grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') $OUTFILE
+
+    ;;
+esac
