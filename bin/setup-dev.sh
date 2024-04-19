@@ -14,9 +14,13 @@ if [[ ! -d $CLONE_PATH ]] ; then
 fi
 (cd "$CLONE_PATH" && git pull)
 
+pipx install python-lsp-server
 pipx install ruff-lsp
 pipx install titlecase
+pipx upgrade-all
 
+cargo install taplo-cli --locked --features lsp
+cargo install-update -a
 
 # brew install bash-language-server \
 #     exa \
