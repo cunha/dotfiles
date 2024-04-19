@@ -1145,10 +1145,10 @@
                         "product_id": 64591,
                         "vendor_id": 1241
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": false,
                     "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
+                    "mouse_flip_vertical_wheel": true,
                     "mouse_flip_x": false,
                     "mouse_flip_y": false,
                     "mouse_swap_wheels": false,
