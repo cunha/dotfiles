@@ -14,19 +14,23 @@ if [[ ! -d $CLONE_PATH ]] ; then
 fi
 (cd "$CLONE_PATH" && git pull)
 
-brew install bash-language-server \
-    exa \
-    helix \
-    joshuto \
-    lazygit \
-    lua-language-server \
-    neovim \
-    python \
-    ripgrep \
-    shellcheck \
-    taplo \
-    texlab \
-    vscode-langservers-extracted \
-    xsv \
-    yaml-language-server \
-    zellij
+pipx install ruff-lsp
+pipx install titlecase
+
+
+# brew install bash-language-server \
+#     exa \
+#     helix \
+#     joshuto \
+#     lazygit \
+#     lua-language-server \
+#     neovim \
+#     python \
+#     ripgrep \
+#     shellcheck \
+#     taplo \
+#     texlab \
+#     vscode-langservers-extracted \
+#     xsv \
+#     yaml-language-server \
+#     zellij

@@ -10,15 +10,23 @@ if [[ ! -d "$HOME/.rustup" ]] ; then
 fi
 rustup update
 rustup upgrade
-# cargo install cargo-update
-# cargo install markdown2html-converter
-# cargo install-update -a
+
+cargo install cargo-update
+cargo install joshuto
+cargo install markdown2html-converter
+cargo install ripgrep
+cargo install xsv
+cargo install zellij
+cargo install-update -a
+
+mkdir -p $HOME/git
+git clone https://github.com/helix-editor/helix.git $HOME/git/helix
+cd $HOME/git/helix && cargo install --path helix-term --locked
 
 # Download and compile wezterm's terminfo database
-curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
-tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
+# curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+# tic -x -o "$HOME/.terminfo" "$HOME/.cache/wezterm.terminfo"
 
-# pipx install titlecase
 
 # VVREPO=git@github.com:hackerb9/vv.git
 # CLONE_PATH=$HOME/bin/vv.git
