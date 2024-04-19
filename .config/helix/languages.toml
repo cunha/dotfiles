@@ -3,6 +3,32 @@ name = "ltex"
 command = "/opt/homebrew/bin/ltex-ls"
 # args = ["--log-file=/Users/cunha/ltex.log"]
 
+[language-server.ruff]
+name = "ruff-lsp"
+command = "ruff-lsp"
+
+[language-server.pylsp]
+name = "pylsp"
+command = "pylsp"
+# pylsp.plugins.pylint.enabled = true
+# pylsp.plugins.rope.enabled = true
+# pylsp.plugins.flake8.enabled = true
+# pylsp.plugins.autopep8.enabled = false
+# pylsp.plugins.mccabe.enabled = false
+# pylsp.plugins.pycodestyle.enabled = false
+# pylsp.plugins.pyflakes.enabled = false
+# pylsp.plugins.flake8.maxLineLength = 88
+
+[language-server.pylsp.config.pylsp.plugins]
+flake8 = {enabled = true, ignore = ["E501"]}
+autopep8 = {enabled = false}
+mccabe = {enabled = false}
+pycodestyle = {enabled = false}
+pyflakes = {enabled = false}
+pylint = {enabled = false}
+yapf = {enabled = false}
+
+
 # Loading dictionary files does not work yet:
 # https://github.com/helix-editor/helix/discussions/5450
 # [language-server.ltex.config.ltex]
@@ -17,15 +43,7 @@ rulers = [80]
 [[language]]
 name = "python"
 rulers = [100]
-
-# [language.config]
-# pylsp.plugins.autopep8.enabled = false
-# pylsp.plugins.mccabe.enabled = false
-# pylsp.plugins.pycodestyle.enabled = false
-# pylsp.plugins.pyflakes.enabled = false
-# pylsp.plugins.pylint.enabled = true
-# pylsp.plugins.flake8.enabled = true
-# pylsp.plugins.flake8.maxLineLength = 88
+language-servers = [{ name = "ruff" }, { name = "pylsp" } ]
 
 # [language.formatter]
 # command = "black"
