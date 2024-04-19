@@ -3,24 +3,17 @@
 [targets]
 # localhost ansible_connection=local
 # debvmac
+#
 # pudge
 # pugna
+# slardar
 # rubick
 # timbersaw
 # dazzle
-# slardar
+#
+# revtr
 # peering
-# revtr
-# vcm1
-# revtr
-# dev
-# peering.ee.columbia.edu
-# peering2
-# miami
-# rubick
-# mainm
-# vtratlanta
-
+# peering-monitor
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3

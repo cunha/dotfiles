@@ -21,5 +21,6 @@
       # - vitorr
       # - joaof
       # - lecio
+      - mgimpel
   roles:
     - users
