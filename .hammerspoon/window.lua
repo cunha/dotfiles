@@ -172,8 +172,9 @@ local function MoveWindowToSpace(sp)
     -- MacOS takes focus from us, get it fucking back. This may cease to
     -- be an issue after we choose to "Reduce motion" in
     -- System preferences -> accessibility -> display.
-    -- hs.timer.usleep(250000)
-    -- win:focus()
+    -- cunha@20240409 it's still an issue
+    hs.timer.usleep(400000)
+    win:focus()
 end
 for i = 1, 8 do
     prefix.bind('', tostring(i), function() MoveWindowToSpace(i) end)
@@ -282,6 +283,8 @@ end
 
 local function windowIsInSpace(win, spaceId)
     -- return win:isStandard() and hs.spaces.windowSpaces(win)[1] == spaceId
+    print("win ".. hs.inspect(win))
+    print("windowSpaces " .. hs.inspect(hs.spaces.windowSpaces(win)))
     return hs.spaces.windowSpaces(win)[1] == spaceId
 end
 
@@ -311,10 +314,15 @@ local function focusOrRotateWindowsInSpace(i)
     end
 
     local wf = hs.window.filter.new(function(win)
-        return windowIsInSpace(win, targetSpaceId)
+        return windowIsInSpace(win, targetSpaceId) and win:isVisible()
     end)
     local windows = wf:getWindows()
     print(hs.inspect(windows))
+
+    if #windows == 0 then
+        hs.eventtap.keyStroke('cmd', 'pad'..i)
+        return
+    end
 
     focusedSpaceId = hs.spaces.focusedSpace()
     print("focused space " .. focusedSpaceId)
