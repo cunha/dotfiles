@@ -32,6 +32,10 @@ function _auto_ls() {
 }
 add-zsh-hook chpwd _auto_ls
 
+if [[ $(uname) == Linux ]] ; then
+    alias code='code --enable-features=WebRTCPipeWireCapturer --ozone-platform-hint=auto'
+fi
+
 transfer() {
     # check arguments
     if [ $# -eq 0 ];

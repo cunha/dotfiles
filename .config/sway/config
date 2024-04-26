@@ -1,20 +1,34 @@
-output DP-1 {
-        pos 2160 832
+output eDP-1 {
+        pos 600 1728
+	scale 1.5
         background #000022 solid_color
 }
-output DP-2 {
+
+output DP-7 {
         pos 0 0
+	scale 1.25
+        # output background <file> center
+        background #000020 solid_color
+}
+
+output DP-9 {
+        pos 3072 0
+	scale 1.25
         transform normal
         transform 270
         # output background <file> center
         background #000020 solid_color
 }
 
+focus output eDP-1
+
 # Get keyboard with swaymsg -t get_inputs | grep -C3 keyboard
 input "type:keyboard" {
     xkb_layout "us,us"
     xkb_variant ",intl"
-    xkb_options "shift:both_capslock,grp:win_space_toggle"
+    xkb_options "grp:win_space_toggle"
+    repeat_delay 300
+    repeat_rate 40
 }
 
 seat seat0 xcursor_theme default 48
@@ -34,7 +48,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Roboto, Font Awesome 5 Free, Font Awesome 5 Brands
+# font pango: Roboto, Font Awesome 5 Free, Font Awesome 5 Brands
 
 floating_modifier $mod
 
@@ -68,86 +82,74 @@ bindsym --release $mod+equal exec slock
 # bindsym XF86AudioStop exec "mocp --stop"
 # bindsym XF86AudioNext exec "mocp --next"
 # bindsym XF86AudioPrev exec "mocp --prev"
-# bindsym XF86AudioMute exec "amixer sset Master,0 toggle"
-# bindsym XF86AudioRaiseVolume exec "amixer sset Master,0 5+"
-# bindsym XF86AudioLowerVolume exec "amixer sset Master,0 5-"
-bindsym XF86AudioMute exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-mute toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86AudioRaiseVolume exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-volume +3%
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/cunha/bin/pa-all-sinks.sh set-sink-volume -3%
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 bindsym XF86MonBrightnessUp exec /home/cunha/bin/bright up
 bindsym XF86MonBrightnessDown exec /home/cunha/bin/bright down
 
 bindsym $mod+F4 kill
-bindsym $mod+d exec dmenu_run
+bindsym XF86Launch7 exec fuzzel
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym KP_Multiply focus prev
+bindsym KP_Divide focus next
 
-bindsym $mod+left focus left
-bindsym $mod+down focus down
-bindsym $mod+up focus up
-bindsym $mod+right focus right
+# bindsym $mod+left focus left
+# bindsym $mod+down focus down
+# bindsym $mod+up focus up
+# bindsym $mod+right focus right
 
-# bindsym $mod+Shift+h move left
-# bindsym $mod+Shift+j move down
-# bindsym $mod+Shift+k move up
-# bindsym $mod+Shift+l move right
-bindsym $mod+Shift+h move workspace to output left
-bindsym $mod+Shift+j move workspace to output down
-bindsym $mod+Shift+k move workspace to output up
-bindsym $mod+Shift+l move workspace to output right
-
-bindsym $mod+semicolon split toggle
-
-bindsym $mod+z fullscreen toggle
-
-bindsym Print exec --no-startup-id scrot -s latest.png
+# bindsym $mod+semicolon split toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 # bindsym $key-super+space exec --no-startup-id pkill -MINRT+1 waybar
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # switch to workspace
-# bindsym $mod+0 exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Chromium\\" \\"workspace 0; exec --no-startup-id chromium --enable-remote-extensions\\""
-bindsym $mod+1 exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Firefox-esr\\" \\"workspace 1; exec --no-startup-id firefox-esr\\""
-bindsym $mod+2 workspace 2
-bindsym $mod+tab exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Code\\" \\"exec --no-startup-id code\\""
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+# bindsym $mod+0 exec "python3 /home/cunha/.config/i3/run-or-focus.py \\"Chromium\\" \\"workspace 0; exec chromium --enable-remote-extensions\\""
+bindsym KP_Insert workspace 0
+bindsym KP_End workspace 1
+bindsym KP_Down workspace 2
+bindsym KP_Next workspace 3
+bindsym KP_Left workspace 4
+bindsym KP_Begin workspace 5
+bindsym KP_Right workspace 6
+bindsym KP_Home workspace 7
+bindsym KP_Up workspace 8
+bindsym KP_Prior workspace 9
 
 # move focused container to workspace
-bindsym $mod+Shift+0 move container to workspace 0
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym XF86Launch5 mode "move [#]=workspace [hjkl]=output [f]loat"
+mode "move [#]=workspace [hjkl]=output [f]loat" {
+    bindsym 0 move container to workspace 0 ; workspace 0 ; mode default
+    bindsym 1 move container to workspace 1 ; workspace 1 ; mode default
+    bindsym 2 move container to workspace 2 ; workspace 2 ; mode default
+    bindsym 3 move container to workspace 3 ; workspace 3 ; mode default
+    bindsym 4 move container to workspace 4 ; workspace 4 ; mode default
+    bindsym 5 move container to workspace 5 ; workspace 5 ; mode default
+    bindsym 6 move container to workspace 6 ; workspace 6 ; mode default
+    bindsym 7 move container to workspace 7 ; workspace 7 ; mode default
+    bindsym 8 move container to workspace 8 ; workspace 8 ; mode default
+    bindsym 9 move container to workspace 9 ; workspace 9 ; mode default
+    bindsym h move workspace to output left ; mode default
+    bindsym j move workspace to output down ; mode default
+    bindsym k move workspace to output up ; mode default
+    bindsym l move workspace to output right ; mode default
+    bindsym f floating toggle ; mode default
+    bindsym Escape mode default
+}
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -184,23 +186,53 @@ mode "moveit" {
     bindsym Escape mode "default"
 }
 
+bindsym $mod+p mode "screenshot: [a]rea [w]indow [s]creen to clipboard, control+ to save to ~/screenshot.png"
+mode "screenshot: [a]rea [w]indow [s]creen to clipboard, control+ to save to ~/screenshot.png" {
+    bindsym a exec grimshot ac ; mode default
+    bindsym w exec grimshot wc ; mode default
+    bindsym s exec grimshot sc ; mode default
+    bindsym Control+a exec grimshot af ; mode default
+    bindsym Control+w exec grimshot wf ; mode default
+    bindsym Control+s exec grimshot sf ; mode default
+    bindsym Escape mode default
+}
+
 bar {
-        swaybar_command waybar
+#    position bottom
+    swaybar_command waybar
+#    status_command while ~/.config/sway/status.sh; do sleep 1; done
+# 
+#    tray_bindsym button1 Activate
+#    tray_bindsym button2 ContextMenu
+# 
+#    colors {
+#        # Text color of status bar
+#        statusline #ffffff
+#        # Background of status bar
+#        background #323232
+#    }
+#    font pango:DejaVu Sans Mono 10
 }
 
 # Startup applications
-exec --no-startup-id gsettings set org.gnome.desktop.interface scaling-factor 1.5
+# exec --no-startup-id gsettings set org.gnome.desktop.interface scaling-factor 1.5
 
 # exec --no-startup-id i3-msg 'exec exec /usr/bin/gnome-settings-daemon'
 # exec --no-startup-id i3-msg 'exec exec /usr/bin/pasystray'
 
-exec --no-startup-id i3-msg 'exec exec /usr/bin/udiskie --tray'
-exec --no-startup-id i3-msg 'exec exec /usr/bin/blueman-applet'
-exec --no-startup-id i3-msg 'exec exec /usr/bin/nm-applet'
-exec --no-startup-id i3-msg 'exec exec /usr/bin/insync start'
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec /usr/bin/insync start --qt-qpa-platform=xcb
+exec /usr/bin/nm-applet --indicator
+exec /usr/bin/swaync
 
-exec --no-startup-id i3-msg 'exec exec /usr/bin/redshift -c /home/cunha/.config/redshift.conf'
-exec --no-startup-id i3-msg 'exec exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1'
+
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/udiskie --tray'
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/blueman-applet'
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/nm-applet'
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/insync start'
+
+# exec --no-startup-id i3-msg 'exec exec /usr/bin/redshift -c /home/cunha/.config/redshift.conf'
+# exec --no-startup-id i3-msg 'exec exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1'
 
 
 # exec --no-startup-id i3-msg 'exec exec /usr/bin/owncloud --logfile /home/cunha/.cache/owncloud.log'
@@ -209,7 +241,7 @@ exec --no-startup-id i3-msg 'exec exec /usr/lib/policykit-1-gnome/polkit-gnome-a
 # for_window [title='ssh-agent'] floating enable
 # exec --no-startup-id i3-msg 'exec exec urxvt -fs 16 -e /usr/bin/zsh -c ssh-add .ssh/muxops_id_rsa .ssh/id_rsa'
 
-assign [class="VirtualBox"] 7
+# assign [class="VirtualBox"] 7
 # assign [class="Code"] 9
 # assign [class="Spotify"] 8
 # for_window [class="VirtualBox"] floating enable
