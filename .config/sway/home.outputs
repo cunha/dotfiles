@@ -1,0 +1,22 @@
+output eDP-1 {
+        pos 600 1728
+	scale 1.5
+        background #000022 solid_color
+}
+
+output DP-7 {
+        pos 0 0
+	scale 1.25
+        # output background <file> center
+        background #000020 solid_color
+}
+
+output DP-9 {
+        pos 3072 0
+	scale 1.25
+        transform normal
+        transform 270
+        # output background <file> center
+        background #000020 solid_color
+}
+
