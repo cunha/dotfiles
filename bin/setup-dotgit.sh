@@ -3,6 +3,11 @@ set -eu
 
 # This script replaces the functionality in the `ui` Ansible playbook
 
+if [[ $(pwd) != $HOME ]] ; then
+	echo "not running at $HOME, aborting"
+	exit 1
+fi
+
 echo "setting up dotfiles repo"
 git init --bare /home/cunha/.dotfiles
 git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha config status.showUntrackedFiles no
@@ -24,6 +29,7 @@ rm -rf bin \
         .profile \
         .pylintrc \
         .screenrc \
+	.ssh/rc \
         .tmux.conf \
         .vim \
         .vimrc \
@@ -34,7 +40,7 @@ rm -rf bin \
         .zshenv \
         .zshrc
 echo "checking out"
-git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha pull
+git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha pull origin master
 git --git-dir=/home/cunha/.dotfiles --work-tree=/home/cunha checkout master
 echo "successfully checked out dotfiles"
 echo "next: change shell to zsh"
