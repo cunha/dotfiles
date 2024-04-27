@@ -114,3 +114,16 @@ devm () {
         echo "unknown devm operation: $1"
     esac
 }
+
+sgo () {
+    local basedir=$HOME/GDrive/scratch
+    if [[ ! -d $basedir ]] ; then
+        echo "$basedir does not exist, aborting"
+        return
+    fi
+    dir=$basedir/$(date +%Y%m%d)
+    mkdir -p $dir
+    cd $dir
+}
+
+
