@@ -126,6 +126,7 @@ keymap = [
 
     { keys = [ "x", "d", "a" ], command = "shell dotgit add %s" },
     { keys = [ "x", "d", "d" ], command = "shell dotgit difftool --no-prompt --tool code %s" },
+    { keys = [ "x", "p" ], command = "shell open -a Dropshelf %p"},
     { keys = [ "x", "c" ], command = "shell code %s" },
     { keys = [ "x", "h" ], command = "shell hx %s" },
     { keys = [ "x", "s", "t" ], command = "shell term-control -t" },
