@@ -28,6 +28,27 @@ pyflakes = {enabled = false}
 pylint = {enabled = false}
 yapf = {enabled = false}
 
+[language-server.texlab]
+name = "texlab"
+command = "texlab"
+
+[language-server.texlab.config]
+texlab.build.executable = "tectonic"
+texlab.build.args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+]
+texlab.build.forwardSearchAfter = true
+texlab.build.onSave = true
+texlab.chktex.onOpenAndSave = true
+texlab.formatterLineLength = 78
+texlab.forwardSearch.args = ["%l", "%p", "%f"]
+texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+
 
 # Loading dictionary files does not work yet:
 # https://github.com/helix-editor/helix/discussions/5450
@@ -60,23 +81,6 @@ diagnostic-severity = "Hint"
 rulers = [80]
 text-width = 78
 language-servers = [{ name = "texlab" }, { name = "ltex" }]
-
-# [language.config]
-# texlab.build.executable = "tectonic"
-# texlab.build.args = [
-#   "-X",
-#   "compile",
-#   "%f",
-#   "--synctex",
-#   "--keep-logs",
-#   "--keep-intermediates",
-# ]
-# texlab.build.forwardSearchAfter = true
-# texlab.build.onSave = true
-# texlab.chktex.onOpenAndSave = true
-# texlab.formatterLineLength = 78
-# texlab.forwardSearch.args = ["%l", "%p", "%f"]
-# texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
 
 [[language]]
 name = "markdown"
