@@ -20,8 +20,10 @@ cargo install zellij
 cargo install-update -a
 
 mkdir -p $HOME/git
-git clone https://github.com/helix-editor/helix.git $HOME/git/helix
-cd $HOME/git/helix && cargo install --path helix-term --locked
+if [[ ! -d $HOME/git/helix ]] ; then
+  git clone https://github.com/helix-editor/helix.git $HOME/git/helix
+fi
+cd $HOME/git/helix && git pull && cargo install --path helix-term --locked
 
 # Download and compile wezterm's terminfo database
 # curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
