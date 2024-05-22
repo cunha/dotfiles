@@ -14,6 +14,7 @@ brew install atool \
              gnu-sed \
              iproute2mac \
              jq \
+             lua-language-server \
              man-db \
              media-info \
              openjdk \
@@ -31,7 +32,8 @@ brew install atool \
              visual-studio-code \
              websocat \
              w3m \
-             wget
+             wget \
+             yq
 
 brew install --cask battery \
                     discord \
