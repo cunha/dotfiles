@@ -21,6 +21,10 @@ alias pdfimgresz='convert -density 200x200 -quality 60 -compress jpeg'
 
 alias dockps='docker ps -a --format="table {{.Names}}\t{{.Command}}\t{{.Status}}"'
 
+if command -v nvim > /dev/null ; then
+    alias vim='nvim' ;
+fi
+
 peering-dump-configs () {
     ssh peering.usc.edu -tt "cd /opt/peering/web ; sudo ./django-manage.sh dump-configs"
     scp -r peering.usc.edu:/opt/peering/web/local/dump-configs .

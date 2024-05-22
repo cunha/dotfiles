@@ -3,6 +3,7 @@ source $HOME/.config/zsh/bindings
 # 	source $HOME/.config/zsh/completion.d/$fn
 # done
 source $HOME/.config/zsh/path
+source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/prompt
 source $HOME/.config/zsh/preexeccmd
 source $HOME/.config/zsh/history

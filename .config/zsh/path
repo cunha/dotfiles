@@ -23,6 +23,10 @@ function setup_homebrew {
 	if [[ -d $pypath ]] ; then
 		path=( $pypath $path )
 	fi
+	llvmpath=$(brew --prefix)/opt/llvm/bin/
+	if [[ -d $llvmpath ]] ; then
+		path=( $llvmpath $path )
+	fi
 }
 
 if [[ -d /home/linuxbrew/.linuxbrew/bin ]] ; then
