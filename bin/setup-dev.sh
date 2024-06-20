@@ -19,6 +19,7 @@ pipx install ruff-lsp
 pipx install titlecase
 pipx upgrade-all
 
+cargo install --git https://github.com/astral-sh/rye rye
 cargo install taplo-cli --locked --features lsp
 cargo install-update -a
 

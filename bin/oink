@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+if [ $# -ne 1 ] ; then
+  echo "Usage: $0 <file>"
+  exit 1
+fi
+
+open -a Dropshelf "$1"
