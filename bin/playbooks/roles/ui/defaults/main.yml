@@ -24,14 +24,12 @@ cunha_ui_packages_nofail:
   - curl
   - fasd
   - fzf
-  - jq
   - kitty-terminfo
-  - manpages-posix-dev  # requires contrib/non-free repos
+  # - manpages-posix-dev  # requires contrib/non-free repos
   - pandoc
   - shellcheck
   - socat
   - tmux
-  - tmux-plugin-manager
   - w3m
 
 paths_to_remove_before_checkout:
@@ -100,5 +98,8 @@ puppeteer_deps:
 
 wezterm_terminfo_path: /home/cunha/.cache/wezterm.terminfo
 wezterm_terminfo_url: https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+
+kitty_terminfo_path: /home/cunha/.cache/xterm-kitty.terminfo
+kitty_terminfo_url: https://raw.githubusercontent.com/kovidgoyal/kitty/master/terminfo/kitty.terminfo
 
 # neovim_latest_deb: https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb

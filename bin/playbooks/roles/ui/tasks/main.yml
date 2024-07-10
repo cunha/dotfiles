@@ -78,15 +78,25 @@
     name: cunha
     shell: /bin/zsh
 
-- name: Download wezterm terminfo database
-  command: "curl -o {{ wezterm_terminfo_path }} {{ wezterm_terminfo_url }}"
+# - name: Download wezterm terminfo database
+#   command: "curl -o {{ wezterm_terminfo_path }} {{ wezterm_terminfo_url }}"
 
-- name: Compile wezterm terminfo database
-  command: "tic -x -o /home/cunha/.terminfo {{ wezterm_terminfo_path }}"
+# - name: Compile wezterm terminfo database
+#   command: "tic -x -o /home/cunha/.terminfo {{ wezterm_terminfo_path }}"
 
-- name: Compile wezterm terminfo database for root
+# - name: Compile wezterm terminfo database for root
+#   become: true
+#   command: "tic -x -o /root/.terminfo {{ wezterm_terminfo_path }}"
+
+- name: Download kitty terminfo database
+  command: "curl -o {{ kitty_terminfo_path }} {{ kitty_terminfo_url }}"
+
+- name: Compile kitty terminfo database
+  command: "tic -x -o /home/cunha/.terminfo {{ kitty_terminfo_path }}"
+
+- name: Compile kitty terminfo database for root
   become: true
-  command: "tic -x -o /root/.terminfo {{ wezterm_terminfo_path }}"
+  command: "tic -x -o /root/.terminfo {{ kitty_terminfo_path }}"
 
 # - name: Cloning dein into .vim/plugins
 #   git:
