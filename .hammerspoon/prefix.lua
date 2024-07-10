@@ -7,12 +7,13 @@ local bindings_string = "Prefix Mode\n" ..
     "v       Hard paste clipboard\n" ..
     "\n" ..
     "#       Move window to space\n" ..
+    -- "Shift-# Move window to space, do not follow\n" ..
     ";       Move window to next screen\n" ..
     "-       Shrink window\n"..
     "+       Expand window\n"..
     "\n" ..
-    "hjkl    place window (hl to maxizmize)\n" ..
-    "        ctrl+ to place window and make smaller\n" ..
+    "hjkl    snap window to edge (hl to maxizmize)\n" ..
+    "        ctrl+ to snap window and make smaller\n" ..
     "        shift+ to move window from current position\n" ..
     "        cmd+ expand window edges\n" ..
     "        cmd+shift+ shrink window edges\n"
@@ -59,6 +60,6 @@ module.bind('', 'r', hs.reload)
 
 module.bind('', 'v', function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
 
-module.bind('', 'a', function() hs.alert.showWithImage(bindings_string, nil, { textFont = "JetBrains Mono" }, 5) end)
+module.bind('', 'a', function() hs.alert.showWithImage(bindings_string, nil, { textFont = "JetBrains Mono", atScreenEdge = 1 }, 5) end)
 
 return module

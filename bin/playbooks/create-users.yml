@@ -13,7 +13,10 @@
       # - welton
       # - luiz
       # - osvaldo
-      # - lucasmsp
+      - lucasmsp
+      - pep
+      - igor
+      - isabelle
       # - lucasaugusto
       # - arturluis
       # - yurilopes
@@ -21,6 +24,8 @@
       # - vitorr
       # - joaof
       # - lecio
-      - mgimpel
+      # - mgimpel
+      # - ezri
+      # - johnh
   roles:
     - users
