@@ -23,6 +23,8 @@ fi
 
 if [[ $(which code) != "code not found" ]] ; then
     export EDITOR="code --wait"
+elif [[ $(which hx) != "hx not found ]] ; then
+    export EDITOR=hx
 elif [[ $(which nvim) != "nvim not found" ]] ; then
     export EDITOR=nvim
 elif [[ $(which vim) != "vim not found" ]] ; then
