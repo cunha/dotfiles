@@ -4,9 +4,10 @@
 
 hs.window.animationDuration = 0
 
+-- f16 is NL+a and bound to the prefix itself
 local apps = {
     -- {"pad1", "Google Chrome"},
-    -- {"pad2", "Visual Studio Code"},
+    {"f17", "Visual Studio Code"}, -- f17 is NL+s
     {"f18", "Kitty"}, -- f18 is NL+d
     -- f19 is NL+c and bound to Maccy
     {"f20", "Finder"}, -- f20 is NL+e
