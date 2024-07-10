@@ -114,7 +114,7 @@ local rectMapCtrl = {
 
 for k, v in pairs(rectMapCtrl) do
     local fn = function()
-        win = hs.window.focusedWindow()
+        local win = hs.window.focusedWindow()
         if win ~= nil then
             win:move(v)
         end
@@ -144,18 +144,18 @@ for i = 1, 4 do
     prefix.bindMultiple('shift', arrowKeys[i], pressedFn, nil, moveWin)
 end
 
-local function getSpaceID(sp)
+local function getScreenSpaceID(sp)
     local pri_screen = hs.screen.primaryScreen()
     local pri_screen_id = pri_screen:getUUID()
     local all_spaces = spaces.allSpaces()
     if sp <= #all_spaces[pri_screen_id] then
-        return all_spaces[pri_screen_id][sp]
+        return pri_screen_id, all_spaces[pri_screen_id][sp]
     else
         sp = sp - #all_spaces[pri_screen_id]
         -- only works for two spaces:
         for uuid, screen_spaces in pairs(all_spaces) do
             if uuid ~= pri_screen_id then
-                return screen_spaces[sp]
+                return uuid, screen_spaces[sp]
             end
         end
     end
@@ -165,7 +165,8 @@ end
 local function MoveWindowToSpace(sp)
     prefix.exit()
     local win = hs.window.focusedWindow()      -- current window
-    spaceID = getSpaceID(sp)
+    local screenID, spaceID = getScreenSpaceID(sp)
+    print("moving window to space " .. spaceID)
     spaces.moveWindowToSpace(win:id(), spaceID)
     win:focus()  -- follow window to new space
 
@@ -174,6 +175,9 @@ local function MoveWindowToSpace(sp)
     -- System preferences -> accessibility -> display.
     -- cunha@20240409 it's still an issue
     hs.timer.usleep(400000)
+    -- moveToScreen may not be necessary after Sonoma fix is merged:
+    -- https://github.com/Hammerspoon/hammerspoon/pull/3638#issuecomment-2209445157
+    win:moveToScreen(screenID)
     win:focus()
 end
 for i = 1, 8 do
@@ -184,7 +188,7 @@ end
 -- prefix + ; -> move window to the next screen
 
 local function getNextScreen(s)
-    all = hs.screen.allScreens()
+    local all = hs.screen.allScreens()
     for i = 1, #all do
         if all[i] == s then
             return all[(i - 1 + 1) % #all + 1]
@@ -196,8 +200,8 @@ end
 local function moveToNextScreen()
     local win = hs.window.focusedWindow()
     if win ~= nil then
-        currentScreen = win:screen()
-        nextScreen = getNextScreen(currentScreen)
+        local currentScreen = win:screen()
+        local nextScreen = getNextScreen(currentScreen)
         if nextScreen then
             win:moveToScreen(nextScreen)
         end
@@ -214,7 +218,7 @@ local function expandWin(ratio)
     if win == nil then
         return
     end
-    frame = win:frame()
+    local frame = win:frame()
     local cx = frame.x + frame.w / 2
     local cy = frame.y + frame.h / 2
     local nw = frame.w * ratio
@@ -236,7 +240,7 @@ local function expandEdge(edge, ratio)
     if win == nil then
         return
     end
-    frame = win:frame()
+    local frame = win:frame()
     local x, y, w, h = frame.x, frame.y, frame.w, frame.h
     if edge == 'h' then
         w = frame.w * ratio
@@ -289,15 +293,16 @@ local function windowIsInSpace(win, spaceId)
 end
 
 local function focusOrRotateWindowsInSpace(i)
-    targetSpaceId = getSpaceID(i)
+    local _screenId, targetSpaceId = getScreenSpaceID(i)
     print("target space " .. targetSpaceId)
 
     -- Keeping this block here as documentation for what I have tried.
     -- The eventtap approach may not be entirely necessary, but I was
     -- getting some weird behavior where a window in a non-visible space
     -- would not get picked up by the filter below.
-    visibleSpaces = getVisibleSpaces()
+    local visibleSpaces = getVisibleSpaces()
     if visibleSpaces[targetSpaceId] == nil then
+        print("visible spaces is nil")
         -- Use MissionControl directly to avoid the animation in gotoSpace.
         -- This requires that you configure the shortcuts in
         -- System preferences -> keyboard -> shortcuts -> Mission Control.
@@ -324,7 +329,7 @@ local function focusOrRotateWindowsInSpace(i)
         return
     end
 
-    focusedSpaceId = hs.spaces.focusedSpace()
+    local focusedSpaceId = hs.spaces.focusedSpace()
     print("focused space " .. focusedSpaceId)
     if focusedSpaceId ~= targetSpaceId then
         -- select first window
