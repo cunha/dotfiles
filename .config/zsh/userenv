@@ -1,6 +1,8 @@
 #shellcheck shell=bash
 
-WEZTERM_INFO_URL=https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+WEZTERM_TERMINFO_URL=https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
+
+KITTY_TERMINFO_URL=https://raw.githubusercontent.com/kovidgoyal/kitty/master/terminfo/kitty.terminfo
 
 if [[ -s $HOME/.config/dircolors ]] ; then
     eval "$(dircolors -b "$HOME/.config/dircolors")"
@@ -10,7 +12,10 @@ if ! infocmp "$TERM" &> /dev/null ; then
     termfile="$HOME/.config/terminfo/$TERM.terminfo"
     # Download and compile wezterm's terminfo database
     if [[ $TERM == wezterm && ! -s $termfile ]] ; then
-        curl -o "$termfile" $WEZTERM_INFO_URL
+        curl -o "$termfile" $WEZTERM_TERMINFO_URL
+    fi
+    if [[ $TERM == xterm-kitty && ! -s $termfile ]] ; then
+        curl -o "$termfile" $KITTY_TERMINFO_URL
     fi
 
     if [[ -s $termfile ]] ; then
@@ -23,7 +28,7 @@ fi
 
 if [[ $(which code) != "code not found" ]] ; then
     export EDITOR="code --wait"
-elif [[ $(which hx) != "hx not found ]] ; then
+elif [[ $(which hx) != "hx not found" ]] ; then
     export EDITOR=hx
 elif [[ $(which nvim) != "nvim not found" ]] ; then
     export EDITOR=nvim
