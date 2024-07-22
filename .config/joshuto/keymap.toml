@@ -134,7 +134,8 @@ keymap = [
     { keys = [ "x", "o" ], command = "shell open %s" },
     { keys = [ "x", "." ], command = "shell open ." },
     { keys = [ "x", "z" ], command = "shell zsh" },
-    { keys = [ "x", "x", "g"], command = "shell /home/cunha/git/os-assignments/mempager/copyexec.sh %s" },
+    # { keys = [ "x", "x", "g"], command = "shell /home/cunha/git/os-assignments/mempager/copyexec.sh %s" },
+    { keys = [ "x", "x", "g"], command = "shell /Users/cunha/git/os-assignments/shell/solution/joshuto-getinfo.sh %s" },
     { keys = [ "x", "x", "z"], command = ":shell 7z x %p -o"},
 ]
 

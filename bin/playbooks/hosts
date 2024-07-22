@@ -5,7 +5,7 @@
 # debvmac
 #
 # pudge
-pugna
+# pugna
 # slardar
 # rubick
 # timbersaw
@@ -16,6 +16,7 @@ pugna
 # peering-monitor
 #
 # isi01
+cfuseast1
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
