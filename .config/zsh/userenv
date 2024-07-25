@@ -26,13 +26,13 @@ if ! infocmp "$TERM" &> /dev/null ; then
     fi
 fi
 
-if [[ $(which code) != "code not found" ]] ; then
+if whence -p code &> /dev/null ; then
     export EDITOR="code --wait"
-elif [[ $(which hx) != "hx not found" ]] ; then
+elif whence -p hx &> /dev/null ; then
     export EDITOR=hx
-elif [[ $(which nvim) != "nvim not found" ]] ; then
+elif whence -p nvim &> /dev/null ; then
     export EDITOR=nvim
-elif [[ $(which vim) != "vim not found" ]] ; then
+elif whence -p vim &> /dev/null ; then
     export EDITOR=vim
 else
     export EDITOR=vi
