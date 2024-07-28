@@ -88,7 +88,7 @@ rulers = [100]
 [[language]]
 name = "latex"
 indent = { tab-width = 4, unit = " " }
-diagnostic-severity = "hint"
+diagnostic-severity = "Hint"
 rulers = [80]
 text-width = 78
 language-servers = [{ name = "texlab" }, { name = "ltex" }]
