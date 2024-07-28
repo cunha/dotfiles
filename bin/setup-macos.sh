@@ -27,6 +27,7 @@ brew install atool \
              socat \
              tectonic \
              telnet \
+             texlab \
              texlive \
              tmux \
              transmission-cli \
