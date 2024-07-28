@@ -31,23 +31,34 @@ yapf = {enabled = false}
 [language-server.texlab]
 name = "texlab"
 command = "texlab"
+# args = ["-vvvv", "--log-file", "texlab.log"]
 
 [language-server.texlab.config]
-texlab.build.executable = "tectonic"
+# tectonic isn't working on IEEEtran.cls:
+# texlab.build.executable = "tectonic"
+# texlab.build.args = [
+#   "-X",
+#   "compile",
+#   "%f",
+#   "--synctex",
+#   "--keep-logs",
+#   "--keep-intermediates",
+#   "-Zshell-escape"
+# ]
+texlab.build.executable = "latexmk"
 texlab.build.args = [
-  "-X",
-  "compile",
-  "%f",
-  "--synctex",
-  "--keep-logs",
-  "--keep-intermediates",
+  "-pdf",
+  "-interaction=nonstopmode",
+  "-synctex=1",
+  "%f"
 ]
-texlab.build.forwardSearchAfter = true
+# calls Skim and causes the terminal to lose focus:
+# texlab.build.forwardSearchAfter = true  
 texlab.build.onSave = true
 texlab.chktex.onOpenAndSave = true
 texlab.formatterLineLength = 78
-texlab.forwardSearch.args = ["%l", "%p", "%f"]
 texlab.forwardSearch.executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+texlab.forwardSearch.args = ["%l", "%p", "%f"]
 
 
 # Loading dictionary files does not work yet:
