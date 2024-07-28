@@ -1,9 +1,14 @@
 #!/bin/bash
 set -eu
 
+# KERNEL=$(uname -s)
+# KERNELLOW=$(uname -s | tr '[:upper:]' '[:lower:]')
+# MARCH=$(uname -m)
+# MARCHS=${MARCH//86_/}
+
 if [[ ! -d "$HOME/.rustup" ]] ; then
   curl -o "$HOME/rustup.sh" --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs
-  sh $HOME/rustup.sh --no-modify-path -y
+  sh "$HOME/rustup.sh" --no-modify-path -y
   rm -f "$HOME/rustup.sh"
   echo "rustup installed, reload shell to update PATH and re-run this script"
   exit 0
@@ -12,18 +17,46 @@ rustup update
 rustup upgrade
 
 cargo install cargo-update
-cargo install joshuto
 cargo install markdown2html-converter
-cargo install ripgrep
-cargo install xsv
-cargo install zellij
 cargo install-update -a
 
-mkdir -p $HOME/git
-if [[ ! -d $HOME/git/helix ]] ; then
-  git clone https://github.com/helix-editor/helix.git $HOME/git/helix
+# On Debian, this requires that we are in the nix-users group.
+if ! nix-channel --list | grep -F nixpkgs &> /dev/null ; then
+  nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 fi
-cd $HOME/git/helix && git pull && cargo install --path helix-term --locked
+nix-channel --update
+nix-env -iA nixpkgs.ansible-language-server
+nix-env -iA nixpkgs.bash-language-server
+nix-env -iA nixpkgs.helix
+nix-env -iA nixpkgs.joshuto
+nix-env -iA nixpkgs.lazygit
+nix-env -iA nixpkgs.lua-language-server
+nix-env -iA nixpkgs.ripgrep
+nix-env -iA nixpkgs.rye
+nix-env -iA nixpkgs.shellcheck
+nix-env -iA nixpkgs.taplo
+nix-env -iA nixpkgs.xsv
+nix-env -iA nixpkgs.yaml-language-server
+nix-env -iA nixpkgs.zellij
+
+AUTO_VENV_REPO="https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git"
+CLONE_PATH=$HOME/bin/zsh-autoswitch-virtualenv
+if [[ ! -d $CLONE_PATH ]] ; then
+  echo "Cloning $AUTO_VENV_REPO"
+  git clone $AUTO_VENV_REPO "$CLONE_PATH"
+fi
+(cd "$CLONE_PATH" && git pull)
+
+pipx install python-lsp-server
+pipx install ruff-lsp
+pipx install titlecase
+pipx upgrade-all
+
+# mkdir -p $HOME/git
+# if [[ ! -d $HOME/git/helix ]] ; then
+#   git clone https://github.com/helix-editor/helix.git $HOME/git/helix
+# fi
+# cd $HOME/git/helix && git pull && cargo install --path helix-term --locked
 
 # Download and compile wezterm's terminfo database
 # curl -o "$HOME/.config/terminfo/wezterm.terminfo" https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo
