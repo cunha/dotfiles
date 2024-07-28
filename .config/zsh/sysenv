@@ -11,4 +11,6 @@ fi
 
 if [[ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]] ; then
     source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [[ -e /usr/share/doc/nix-bin/examples/nix-profile-daemon.sh ]] ; then
+    source /usr/share/doc/nix-bin/examples/nix-profile-daemon.sh
 fi
