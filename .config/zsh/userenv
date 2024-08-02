@@ -48,6 +48,11 @@ fi
 
 export COLORTERM=truecolor
 
+if command -v fzf &> /dev/null ; then
+    eval "$(fzf --zsh)"
+fi
+bindkey -M emacs '^S' fzf-cd-widget
+
 if command -v zoxide &> /dev/null ; then
     eval "$(zoxide init zsh)"
 fi
