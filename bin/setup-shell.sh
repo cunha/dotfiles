@@ -28,6 +28,7 @@ nix-channel --update
 nix-env -iA nixpkgs.ansible-language-server
 nix-env -iA nixpkgs.bash-language-server
 nix-env -iA nixpkgs.helix
+nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.joshuto
 nix-env -iA nixpkgs.lazygit
 nix-env -iA nixpkgs.lua-language-server
@@ -38,6 +39,7 @@ nix-env -iA nixpkgs.taplo
 nix-env -iA nixpkgs.xsv
 nix-env -iA nixpkgs.yaml-language-server
 nix-env -iA nixpkgs.zellij
+nix-env -iA nixpkgs.zoxide
 
 AUTO_VENV_REPO="https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git"
 CLONE_PATH=$HOME/bin/zsh-autoswitch-virtualenv

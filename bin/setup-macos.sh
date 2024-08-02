@@ -11,7 +11,6 @@ brew install atool \
              bash \
              coreutils \
              curl \
-             fzf \
              git \
              gnu-sed \
              iproute2mac \
@@ -71,7 +70,7 @@ brew install --cask font-jetbrains-mono \
                     font-symbols-only-nerd-font \
                     font-noto-color-emoji
 
-ln -s /Applications/Marta.app/Contents/Resources/launcher "$HOME/bin/marta"
+# ln -s /Applications/Marta.app/Contents/Resources/launcher "$HOME/bin/marta"
 
 echo "Setting up dark-mode-notify"
 mkdir -p $HOME/.logs
@@ -86,4 +85,3 @@ cp .build/release/dark-mode-notify $HOME/bin/
 popd &> /dev/null
 cp $HOME/.config/dark-mode-notify/ke.bou.dark-mode-notify.plist ~/Library/LaunchAgents/
 launchctl load -w /Users/cunha/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
-
