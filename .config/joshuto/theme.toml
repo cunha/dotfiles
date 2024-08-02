@@ -1,1 +1,11 @@
 lscolors_enabled = true
+
+[selection]
+fg = "light_red"
+bold = true
+prefix = "  "
+
+[visual_mode_selection]
+fg = "light_red"
+bold = true
+prefix = "v "
