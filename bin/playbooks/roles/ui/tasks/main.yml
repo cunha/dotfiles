@@ -24,6 +24,14 @@
     cache_valid_time: 600
   when: install_puppeteer_deps
 
+- name: Add user cunha to nix-users
+  become: true
+  become_user: root
+  user:
+    name: cunha
+    append: true
+    groups: nix-users
+
 - name: Create cache directory
   file:
     path: /home/cunha/.cache

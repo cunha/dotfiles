@@ -10,6 +10,7 @@ cunha_ui_packages:
   - man
   - manpages-dev
   - ncurses-term
+  - nix-bin
   - pkg-config
   - procps
   - tcpdump
