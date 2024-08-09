@@ -26,9 +26,10 @@ if ! infocmp "$TERM" &> /dev/null ; then
     fi
 fi
 
-if whence -p code &> /dev/null ; then
-    export EDITOR="code --wait"
-elif whence -p hx &> /dev/null ; then
+# if whence -p code &> /dev/null ; then
+#     export EDITOR="code --wait"
+# elif whence -p hx &> /dev/null ; then
+if whence -p hx &> /dev/null ; then
     export EDITOR=hx
 elif whence -p nvim &> /dev/null ; then
     export EDITOR=nvim
