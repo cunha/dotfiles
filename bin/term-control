@@ -97,7 +97,23 @@ elif [[ ${TERM_PROGRAM:-default} == WezTerm ]] ; then
         ;;
     esac
     cwdparam=( --cwd "$directory" )
+elif [[ ${TERM:-default} == xterm-kitty ]] ; then
+    [[ $debug -eq 1 ]] && echo "detected kitty"
+    case $create in
+    window)
+        # termcmd=( open -n -a Kitty.app --args --working-directory "$directory" )
+        termcmd=( kitten @ launch --no-response --type os-window )
+        ;;
+    tab)
+        termcmd=( kitten @ launch --no-response --type tab )
+        ;;
+    pane)
+        termcmd=( kitten @ launch --no-response --type window )
+        ;;
+    esac
+    cwdparam=( --cwd "$directory" )
 fi
+
 
 if [[ $editfile != /dev/null ]] ; then
     [[ $debug -eq 1 ]] && echo "editfile: $editfile"
@@ -109,4 +125,4 @@ fi
 [[ $debug -eq 1 ]] && echo "exeparam: ${exeparam[*]}"
 
 echo "${termcmd[*]} ${cwdparam[*]} ${exeparam[*]}"
-"${termcmd[@]}" "${cwdparam[@]}" "${exeparam[@]}"
+"${termcmd[@]}" "${cwdparam[@]}" "${exeparam[@]}" 
