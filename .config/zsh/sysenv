@@ -1,12 +1,28 @@
-DEBEMAIL="cunha@dcc.ufmg.br"
-DEBFULLNAME="Italo Cunha"
+export DEBEMAIL="cunha@dcc.ufmg.br"
+export DEBFULLNAME="Italo Cunha"
+
+# XDG_DESKTOP_DIR="$HOME/Desktop"
+# XDG_DOCUMENTS_DIR="$HOME/Documents"
+# XDG_DOWNLOAD_DIR="$HOME/Downloads"
+# XDG_MUSIC_DIR="$HOME/Media/Music"
+# XDG_PICTURES_DIR="$HOME/Media/Pictures"
+# XDG_PUBLICSHARE_DIR="$HOME/Documents/Public"
+# XDG_TEMPLATES_DIR="$HOME/Documents/Templates"
+# XDG_VIDEOS_DIR="$HOME/Media/Videos"
+
+# XDG_CONFIG_HOME=$HOME/.config
+# XDG_DATA_HOME=$HOME/.local/share
+# XDG_STATE_HOME=$HOME/.local/state
+# XDG_CACHE_HOME=$HOME/.cache
+# XDG_RUNTIME_DIR=$HOME/.run
+
 umask 007
 
 typeset -U path
 path=( /usr/local/sbin /usr/sbin /sbin /usr/local/bin $path )
 
 if [[ -s "$HOME/.cargo/env" ]] ; then
-    . "$HOME/.cargo/env"
+    source "$HOME/.cargo/env"
 fi
 
 if [[ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]] ; then

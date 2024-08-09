@@ -15,7 +15,6 @@ brew install atool \
              gnu-sed \
              iproute2mac \
              jq \
-             lua-language-server \
              man-db \
              media-info \
              openjdk \
