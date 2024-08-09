@@ -29,7 +29,8 @@ directories_first = true
 reverse = false
 
 [preview]
-max_preview_size = 1048576 # 2MB
+use_xdg_thumbs = false
+max_preview_size = 16777216 # 16MiB
 preview_script = "~/.config/joshuto/preview_file.sh"
 
 [tab]
