@@ -26,6 +26,7 @@ if ! nix-channel --list | grep -F nixpkgs &> /dev/null ; then
 fi
 nix-channel --update
 nix-env -iA nixpkgs.ansible-language-server
+nix-env -iA nixpkgs.atuin
 nix-env -iA nixpkgs.bash-language-server
 nix-env -iA nixpkgs.helix
 nix-env -iA nixpkgs.fzf
