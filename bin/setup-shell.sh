@@ -87,3 +87,5 @@ pipx upgrade-all
 # else
 #     git clone git@github.com:Shougo/dein.vim.git dein.vim
 # fi
+
+echo "Setup completed successfully"
