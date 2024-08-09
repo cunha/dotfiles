@@ -129,6 +129,7 @@ keymap = [
     { keys = [ "x", "p" ], command = "shell open -a Dropshelf %p"},
     { keys = [ "x", "c" ], command = "shell code %s" },
     { keys = [ "x", "h" ], command = "shell hx %s" },
+    { keys = [ "x", "H" ], command = "shell term-control -t -e %s" },
     { keys = [ "x", "s", "t" ], command = "shell term-control -t" },
     { keys = [ "x", "s", "p" ], command = "shell term-control -p" },
     { keys = [ "x", "o" ], command = "shell open %s" },
