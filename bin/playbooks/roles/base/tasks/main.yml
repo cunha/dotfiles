@@ -30,14 +30,14 @@
     group: cunha
     mode: 0600
 
-- name: Give user ability to run commands w/o password
-  become: true
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%sudo ALL\='
-    line: 'cunha ALL=(ALL:ALL) NOPASSWD:ALL'
-    validate: '/usr/sbin/visudo -cf %s'
+# - name: Give user ability to run commands w/o password
+#   become: true
+#   lineinfile:
+#     dest: /etc/sudoers
+#     state: present
+#     regexp: '^%sudo ALL\='
+#     line: 'cunha ALL=(ALL:ALL) NOPASSWD:ALL'
+#     validate: '/usr/sbin/visudo -cf %s'
 
 - name: Set sudo secure path
   become: true
