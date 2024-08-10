@@ -16,7 +16,9 @@
 # peering-monitor
 #
 # isi01
-cfuseast1
+# cfuseast1
+# cfendpoint
+pugna-pdns
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
