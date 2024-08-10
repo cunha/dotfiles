@@ -45,6 +45,7 @@ tabpad = " "
 "C-backspace" = "delete_word_backward"
 "C-del" = "delete_word_forward"
 "C-w" = "normal_mode"
+"C-A-S-a" = "normal_mode"
 
 [keys.normal]
 "A-k" = "goto_previous_buffer"
