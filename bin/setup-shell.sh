@@ -88,4 +88,8 @@ pipx upgrade-all
 #     git clone git@github.com:Shougo/dein.vim.git dein.vim
 # fi
 
+
+git clone git@github.com:PEERINGTestbed/peering-shell.git $HOME/bin/peering-shell
+ln -s $HOME/bin/peering-shell/peering $HOME/bin/peering
+
 echo "Setup completed successfully"
