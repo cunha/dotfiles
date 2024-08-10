@@ -57,7 +57,7 @@ function _preexec_env {
 add-zsh-hook preexec _preexec_env
 
 function update_user_env {
-	update_ssh_auth_sock
+	# update_ssh_auth_sock
 	if [[ -n $TMUX ]] ; then
 		NEW_IPC_HOOK=$(tmux show-environment VSCODE_IPC_HOOK_CLI)
 		if [[ "$NEW_IPC_HOOK" == "-VSCODE_IPC_HOOK_CLI" ]] ; then
