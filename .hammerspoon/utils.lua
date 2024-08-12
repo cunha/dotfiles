@@ -26,4 +26,34 @@ function module.strToTable(str)
     return t
 end
 
+
+-- https://github.com/Hammerspoon/hammerspoon/issues/3224
+-- Firefox sets some AX accessibility extension that breaks window management.
+-- This hack disables the AX accessibility and then re-enables it
+function module.axHotfix(win)
+  if not win then win = hs.window.frontmostWindow() end
+
+  local axApp = hs.axuielement.applicationElement(win:application())
+  local wasEnhanced = axApp.AXEnhancedUserInterface
+  if wasEnhanced then
+    axApp.AXEnhancedUserInterface = false
+  end
+
+  return function()
+    if wasEnhanced then
+      axApp.AXEnhancedUserInterface = true
+    end
+  end
+end
+
+function module.withAxHotfix(fn, position)
+  if not position then position = 1 end
+  return function(...)
+    local args = {...}
+    local revert = module.axHotfix(args[position])
+    fn(...)
+    revert()
+  end
+end
+
 return module
