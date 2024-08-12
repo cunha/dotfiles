@@ -1,6 +1,6 @@
 [language-server.ltex]
 name = "ltex"
-command = "/opt/homebrew/bin/ltex-ls"
+command = "ltex-ls"
 # args = ["--log-file=/Users/cunha/ltex.log"]
 
 [language-server.ruff]
