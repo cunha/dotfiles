@@ -33,6 +33,7 @@ nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.joshuto
 nix-env -iA nixpkgs.lazygit
 nix-env -iA nixpkgs.lua-language-server
+nix-env -iA nixpkgs.ltex-ls
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.rye
 nix-env -iA nixpkgs.shellcheck
