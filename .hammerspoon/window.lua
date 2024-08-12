@@ -1,7 +1,7 @@
 local spaces = require("hs.spaces")
 
 local prefix = require("prefix")
--- local utils = require("utils")
+local utils = require("utils")
 
 hs.window.animationDuration = 0
 
@@ -80,11 +80,13 @@ local function resizeWindow()
             end
         end
         local rect = rectMap[keys]
+        local revert = utils.axHotfix(win)
         if rect ~= nil then
             win:move(rect)
         elseif keys == 'jk' then
             win:centerOnScreen()
         end
+        revert()
     end
     prefix.exit()
 end
@@ -116,7 +118,9 @@ for k, v in pairs(rectMapCtrl) do
     local fn = function()
         local win = hs.window.focusedWindow()
         if win ~= nil then
+            local revert = utils.axHotfix(win)
             win:move(v)
+            revert()
         end
     end
     prefix.bind('ctrl', k, fn)
@@ -134,7 +138,9 @@ for i = 1, 4 do
             local p = win:topLeft()
             p.x = p.x + DX[i] * DELTA
             p.y = p.y + DY[i] * DELTA
+            local release = utils.axHotfix(win)
             win:setTopLeft(p)
+            release()
         end
     end
     local pressedFn = function()
@@ -175,9 +181,11 @@ local function MoveWindowToSpace(sp)
     -- System preferences -> accessibility -> display.
     -- cunha@20240409 it's still an issue
     hs.timer.usleep(400000)
-    -- moveToScreen may not be necessary after Sonoma fix is merged:
+    -- moveToScreen necessary after Sonoma 14.5 issue:
     -- https://github.com/Hammerspoon/hammerspoon/pull/3638#issuecomment-2209445157
+    local release = utils.axHotfix(win)
     win:moveToScreen(screenID)
+    release()
     win:focus()
 end
 for i = 1, 8 do
@@ -203,7 +211,9 @@ local function moveToNextScreen()
         local currentScreen = win:screen()
         local nextScreen = getNextScreen(currentScreen)
         if nextScreen then
+            local release = utils.axHotfix()
             win:moveToScreen(nextScreen)
+            release()
         end
     end
 end
@@ -225,7 +235,9 @@ local function expandWin(ratio)
     local nh = frame.h * ratio
     local nx = cx - nw / 2
     local ny = cy - nh / 2
+    local release = utils.axHotfix(win)
     win:setFrame(hs.geometry.rect(nx, ny, nw, nh))
+    release()
 end
 
 prefix.bind('', '-', function() expandWin(0.9) end)
@@ -255,7 +267,9 @@ local function expandEdge(edge, ratio)
     else
         return
     end
+    local revert = utils.axHotfix(win)
     win:setFrame(hs.geometry.rect(x, y, w, h))
+    revert()
 end
 
 local edges = {'h', 'j', 'k', 'l'}
@@ -318,7 +332,12 @@ local function focusOrRotateWindowsInSpace(i)
         -- hs.timer.usleep(250000)
     end
 
-    local wf = hs.window.filter.new(function(win)
+    -- this is a test following from the issue below to see if we can reliably
+    -- iterate over windows:
+    -- https://github.com/Hammerspoon/hammerspoon/issues/3509
+    hs.window.allWindows()
+
+        local wf = hs.window.filter.new(function(win)
         return windowIsInSpace(win, targetSpaceId) and win:isVisible()
     end)
     local windows = wf:getWindows()
