@@ -6,4 +6,5 @@ base_packages:
   - pipx
   - python3-pip
   - python3-venv
+  - rsync
   - sudo

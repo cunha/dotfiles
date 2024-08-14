@@ -13,7 +13,6 @@ cunha_ui_packages:
   - nix-bin
   - pkg-config
   - procps
-  - rsync
   - tcpdump
   - tmux
   - trash-cli
