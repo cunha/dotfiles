@@ -33,7 +33,10 @@ nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.joshuto
 nix-env -iA nixpkgs.lazygit
 nix-env -iA nixpkgs.lua-language-server
+<<<<<<< HEAD
 nix-env -iA nixpkgs.ltex-ls
+=======
+>>>>>>> master
 nix-env -iA nixpkgs.mods
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.rye
@@ -92,9 +95,16 @@ pipx upgrade-all
 
 
 if [[ ! -d $HOME/bin/peering-shell ]] ; then
+<<<<<<< HEAD
   git clone git@github.com:PEERINGTestbed/peering-shell.git "$HOME/bin/peering-shell"
   ln -s "$HOME/bin/peering-shell/peering" "$HOME/bin/peering"
 fi
 (cd "$HOME/bin/peering-shell" && git pull)
+=======
+  git clone git@github.com:PEERINGTestbed/peering-shell.git $HOME/bin/peering-shell
+  ln -s $HOME/bin/peering-shell/peering $HOME/bin/peering
+fi
+(cd $HOME/bin/peering-shell && git pull)
+>>>>>>> master
 
 echo "Setup completed successfully"
