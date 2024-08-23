@@ -39,6 +39,7 @@ else
     export EDITOR=vi
 fi
 export VISUAL=$EDITOR
+export SUDO_EDITOR=$(which $EDITOR)
 
 export REPORTTIME=10
 
