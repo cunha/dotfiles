@@ -60,4 +60,10 @@ fi
 
 if whence atuin &> /dev/null ; then
     eval "$(atuin init --disable-up-arrow zsh)"
-fi 
+fi
+
+# Thanks Google!
+GDLINK="$HOME/Google Drive"
+if [[ -L "$GDLINK" && -d "$GDLINK" ]] ; then
+    unlink "$GDLINK"
+fi
