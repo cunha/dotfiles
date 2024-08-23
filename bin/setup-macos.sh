@@ -63,6 +63,7 @@ brew install --cask battery \
                     # webex
 
 brew install --cask wezterm --no-quarantine
+brew install --cask kitty --no-quarantine
 
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono \
