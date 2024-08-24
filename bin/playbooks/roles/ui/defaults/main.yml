@@ -13,6 +13,7 @@ cunha_ui_packages:
   - nix-bin
   - pkg-config
   - procps
+  - python3-virtualenv
   - tcpdump
   - tmux
   - trash-cli
