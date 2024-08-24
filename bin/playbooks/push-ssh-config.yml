@@ -1,0 +1,11 @@
+---
+- name: Push SSH config
+  hosts: targets
+  gather_facts: true
+  tasks:
+    - name: Push SSH config
+      ansible.builtin.copy:
+        src: "{{ lookup('env', 'HOME') }}/.ssh/config"
+        dest: "~/.ssh/config"
+        force: true
+        mode: "0640"
