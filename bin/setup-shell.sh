@@ -34,6 +34,7 @@ nix-env -iA nixpkgs.joshuto
 nix-env -iA nixpkgs.lazygit
 nix-env -iA nixpkgs.lua-language-server
 nix-env -iA nixpkgs.ltex-ls
+nix-env -iA nixpkgs.miniserve
 nix-env -iA nixpkgs.mods
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.rye
