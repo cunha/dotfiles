@@ -60,6 +60,7 @@ tabpad = " "
 "C-e" = "repeat_last_motion"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"A-z" = ":toggle soft-wrap.enable"
 
 [keys.select]
 "pageup" = "half_page_up"
