@@ -37,6 +37,7 @@ nix-env -iA nixpkgs.ltex-ls
 nix-env -iA nixpkgs.miniserve
 nix-env -iA nixpkgs.mods
 nix-env -iA nixpkgs.ripgrep
+nix-env -iA nixpkgs.ruff
 nix-env -iA nixpkgs.rye
 nix-env -iA nixpkgs.shellcheck
 nix-env -iA nixpkgs.taplo
@@ -53,8 +54,7 @@ if [[ ! -d $CLONE_PATH ]] ; then
 fi
 (cd "$CLONE_PATH" && git pull)
 
-pipx install python-lsp-server
-pipx install ruff-lsp
+pipx install 'python-lsp-server[all]'
 pipx install titlecase
 pipx upgrade-all
 

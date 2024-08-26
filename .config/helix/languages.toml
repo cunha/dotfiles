@@ -4,8 +4,9 @@ command = "ltex-ls"
 # args = ["--log-file=/Users/cunha/ltex.log"]
 
 [language-server.ruff]
-name = "ruff-lsp"
-command = "ruff-lsp"
+name = "ruff"
+command = "ruff"
+args = ["server"]
 
 [language-server.pylsp]
 name = "pylsp"
@@ -20,13 +21,28 @@ command = "pylsp"
 # pylsp.plugins.flake8.maxLineLength = 88
 
 [language-server.pylsp.config.pylsp.plugins]
-flake8 = {enabled = true, ignore = ["E501"]}
+# flake8 includes pycodestyle, mccabe, pyflakes
+flake8 = {enabled = false, ignore = ["E501"]}
 autopep8 = {enabled = false}
 mccabe = {enabled = false}
 pycodestyle = {enabled = false}
 pyflakes = {enabled = false}
 pylint = {enabled = false}
 yapf = {enabled = false}
+rope = {enabled = true}
+rope_autoimport.enabled = true
+
+# [language-server.pyright]
+# name = "pyright"
+# command = "pyright"
+
+# [language-server.pyright.config.python.analysis]
+# typeCheckingMode = "strict"
+
+# [language-server.pylyzer]
+# name = "pylyzer"
+# command = "pylyzer"
+# config = { settings = { args = ["--server"] } }
 
 [language-server.texlab]
 name = "texlab"
@@ -75,7 +91,8 @@ rulers = [80]
 [[language]]
 name = "python"
 rulers = [100]
-language-servers = [{ name = "ruff" }, { name = "pylsp" } ]
+language-servers = [ { name = "pylsp" }, { name = "ruff" } ]
+formatter = { command = "ruff", args = [ "format", "-" ] }
 
 # [language.formatter]
 # command = "black"
