@@ -12,6 +12,7 @@ brew install atool \
              coreutils \
              curl \
              git \
+             git-crypt \
              gnu-sed \
              iproute2mac \
              jq \
