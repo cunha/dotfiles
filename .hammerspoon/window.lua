@@ -303,7 +303,8 @@ local function windowIsInSpace(win, spaceId)
     -- return win:isStandard() and hs.spaces.windowSpaces(win)[1] == spaceId
     print("win ".. hs.inspect(win))
     print("windowSpaces " .. hs.inspect(hs.spaces.windowSpaces(win)))
-    return hs.spaces.windowSpaces(win)[1] == spaceId
+    local wspaces = hs.spaces.windowSpaces(win)
+    return #wspaces == 1 and wspaces[1] == spaceId
 end
 
 local function focusOrRotateWindowsInSpace(i)
@@ -332,18 +333,28 @@ local function focusOrRotateWindowsInSpace(i)
         -- hs.timer.usleep(250000)
     end
 
+    local wf = hs.window.filter.new(function(win)
+        return windowIsInSpace(win, targetSpaceId) and win:isVisible()
+    end)
+    local fwin = wf:getWindows()
+    print("hs.window.filter: " .. hs.inspect(fwin))
+
     -- this is a test following from the issue below to see if we can reliably
     -- iterate over windows:
     -- https://github.com/Hammerspoon/hammerspoon/issues/3509
-    hs.window.allWindows()
-
-        local wf = hs.window.filter.new(function(win)
-        return windowIsInSpace(win, targetSpaceId) and win:isVisible()
+    local allwin = hs.window.allWindows()
+    local newwin = hs.fnutils.filter(allwin, function(win)
+        return windowIsInSpace(win, targetSpaceId) and win:isVisible() and not hs.fnutils.contains(fwin, win)
     end)
-    local windows = wf:getWindows()
-    print(hs.inspect(windows))
 
-    if #windows == 0 then
+    if #newwin ~= 0 then
+        print("missing windows: " .. hs.inspect(newwin))
+        print("focusing: " .. hs.inspect(newwin[1]))
+        newwin[1]:focus()
+        return
+    end
+
+    if #fwin == 0 then
         hs.eventtap.keyStroke('cmd', 'pad'..i)
         return
     end
@@ -352,10 +363,21 @@ local function focusOrRotateWindowsInSpace(i)
     print("focused space " .. focusedSpaceId)
     if focusedSpaceId ~= targetSpaceId then
         -- select first window
-        windows[1]:focus()
+        print("selecting window 1")
+        -- the following is a hack to prevent some special
+        -- windows like the Hammerspoon console
+        -- from sitting on the top of the queue
+        -- if #fwin >= 2 then
+        --     fwin[2]:focus()
+        -- end
+        fwin[1]:focus()
+        -- print("selecting space " .. i)
+        -- hs.eventtap.keyStroke('cmd', 'pad'..i)
+        -- return
     else
         -- select last window
-        windows[#windows]:focus()
+        print("selecting window " .. #fwin)
+        fwin[#fwin]:focus()
     end
 end
 
