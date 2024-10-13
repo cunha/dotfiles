@@ -17,8 +17,8 @@ normal = "block"
 select = "block"
 
 [editor.file-picker]
-hidden = false
-git-ignore = false
+hidden = true
+git-ignore = true
 
 [editor.indent-guides]
 render = true
