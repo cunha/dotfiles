@@ -16,10 +16,6 @@ fi
 rustup update
 rustup upgrade
 
-cargo install cargo-update
-cargo install markdown2html-converter
-cargo install-update -a
-
 # On Debian, this requires that we are in the nix-users group.
 if ! nix-channel --list | grep -F nixpkgs &> /dev/null ; then
   nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
@@ -28,6 +24,7 @@ nix-channel --update
 nix-env -iA nixpkgs.ansible-language-server
 nix-env -iA nixpkgs.atuin
 nix-env -iA nixpkgs.bash-language-server
+nix-env -iA nixpkgs.cargo-update
 nix-env -iA nixpkgs.helix
 nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.joshuto
@@ -46,6 +43,9 @@ nix-env -iA nixpkgs.yaml-language-server
 nix-env -iA nixpkgs.zellij
 nix-env -iA nixpkgs.zoxide
 
+cargo install markdown2html-converter
+cargo install-update -a
+
 AUTO_VENV_REPO="https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git"
 CLONE_PATH=$HOME/bin/zsh-autoswitch-virtualenv
 if [[ ! -d $CLONE_PATH ]] ; then
@@ -55,6 +55,7 @@ fi
 (cd "$CLONE_PATH" && git pull)
 
 pipx install 'python-lsp-server[all]'
+pipx inject python-lsp-server pylsp-rope
 pipx install titlecase
 pipx upgrade-all
 
