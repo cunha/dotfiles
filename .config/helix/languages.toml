@@ -11,6 +11,7 @@ args = ["server"]
 [language-server.pylsp]
 name = "pylsp"
 command = "pylsp"
+args = ["--log-file=/Users/cunha/.cache/pylsp.log", "-vvvv"]
 # pylsp.plugins.pylint.enabled = true
 # pylsp.plugins.rope.enabled = true
 # pylsp.plugins.flake8.enabled = true
@@ -31,6 +32,7 @@ pylint = {enabled = false}
 yapf = {enabled = false}
 rope = {enabled = true}
 rope_autoimport.enabled = true
+rope_rename.enabled = true
 
 # [language-server.pyright]
 # name = "pyright"
@@ -91,6 +93,7 @@ rulers = [80]
 [[language]]
 name = "python"
 rulers = [100]
+# language-servers = [ { name = "pylsp" } ]
 language-servers = [ { name = "pylsp" }, { name = "ruff" } ]
 formatter = { command = "ruff", args = [ "format", "-" ] }
 
