@@ -10,3 +10,7 @@ zstyle ':completion:*:*:gnuplot:*:*' file-patterns '*.plot' '*'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select
 
+if whence -p terraform &> /dev/null ; then
+	autoload -U +X bashcompinit && bashcompinit
+	complete -o nospace -C $(which terraform) terraform
+fi
