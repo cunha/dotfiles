@@ -16,6 +16,8 @@ export DEBFULLNAME="Italo Cunha"
 # XDG_CACHE_HOME=$HOME/.cache
 # XDG_RUNTIME_DIR=$HOME/.run
 
+export PIPX_HOME=$HOME/.local/pipx
+
 umask 007
 
 typeset -U path
