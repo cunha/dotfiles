@@ -20,3 +20,12 @@ function disabled_zshaddhistory {
 		mv .zshlocal.tmp .zshlocal
 	fi
 }
+
+if whence atuin &> /dev/null ; then
+    eval "$(atuin init --disable-up-arrow zsh)"
+	if ! atuin sync &> /dev/null ; then
+		echo "atuin failed to sync, see:"
+		echo "https://gist.github.com/cunha/845aca469ec9d0a6c992a1e5ee4289c9"
+	fi
+fi
+
