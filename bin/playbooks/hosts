@@ -15,10 +15,18 @@
 # peering
 # peering-monitor
 #
-# isi01
 # cfuseast1
+# pugna-pdns
 # cfendpoint
-pugna-pdns
+# cfend
+
+# client1
+prober
+# ufmg01
+# p14s
+
+
+# skyler
 
 [targets:vars]
 ansible_python_interpreter=/usr/bin/python3
