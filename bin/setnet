@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+
+if [[ $1 == home ]] ; then
+	networksetup -setnetworkserviceenabled "Home U3223QE" on
+	networksetup -setnetworkserviceenabled "DCC U2723QE" off
+elif [[ $1 == dcc ]] ; then
+	networksetup -setnetworkserviceenabled "DCC U2723QE" on
+	networksetup -setnetworkserviceenabled "Home U3223QE" off
+else
+	echo "unknown network configuration $1, use either home or dcc"
+	exit 1
+fi
