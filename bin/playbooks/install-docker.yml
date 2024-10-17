@@ -13,6 +13,18 @@
       - docker-compose-plugin
       - python3-docker
   tasks:
+    - name: Upgrade required system packages
+      become: true
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - virtualenv
+        state: latest
+        update_cache: true
+
     - name: Add Docker repository key
       become: true
       ansible.builtin.apt_key:
